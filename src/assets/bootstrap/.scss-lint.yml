@@ -546,3 +546,4 @@ linters:
 
   Compass::*:
     enabled: false
+

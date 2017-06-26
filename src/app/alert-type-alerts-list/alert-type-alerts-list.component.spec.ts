@@ -23,3 +23,4 @@ describe('AlertTypeAlertsListComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

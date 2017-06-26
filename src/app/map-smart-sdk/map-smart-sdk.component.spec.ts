@@ -23,3 +23,4 @@ describe('MapSmartSDKComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

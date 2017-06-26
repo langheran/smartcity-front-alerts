@@ -65,19 +65,21 @@ $smart-red: (
   )
 );
 
-@media (max-width: 600px) .mat-toolbar{
-      max-height:50px;
-    }
+@media (max-width: 600px) {
+  .mat-toolbar{
+    max-height:50px;
+  }
 
+  $my-app-primary: mat-palette($smart-cyan);
+  $my-app-accent:  mat-palette($smart-red);
+  $my-app-warn:    mat-palette($mat-deep-orange);
 
-$my-app-primary: mat-palette($smart-cyan);
-$my-app-accent:  mat-palette($smart-red);
-$my-app-warn:    mat-palette($mat-deep-orange);
+  $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+  @include angular-material-theme($my-app-theme);
 
-@include angular-material-theme($my-app-theme);
-
-.primary-color {
-  background-color: mat-color($my-app-primary, 500, 1);
+  .primary-color {
+    background-color: mat-color($my-app-primary, 500, 1);
+  }
 }
+

@@ -35,3 +35,4 @@ export class UserAlertsListComponent implements OnInit {
   }
 
 }
+

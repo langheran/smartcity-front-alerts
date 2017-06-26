@@ -6,3 +6,4 @@ import {MdButtonModule, MdCheckboxModule, MaterialModule} from '@angular/materia
   exports: [MdButtonModule, MdCheckboxModule]
 })
 export class CustomMaterialModule { }
+

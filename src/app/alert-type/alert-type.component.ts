@@ -21,3 +21,4 @@ export class AlertTypeComponent implements OnInit {
   ngOnInit() {
   }
 }
+

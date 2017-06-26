@@ -11,3 +11,4 @@ import "rxjs/add/operator/pairwise";
 export class AlertsAppComponent {
   constructor(public router: Router){}
 }
+

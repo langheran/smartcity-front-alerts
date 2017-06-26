@@ -66,3 +66,4 @@ export class LocationService {
     return this.coordinatesObservable;
   }
 }
+

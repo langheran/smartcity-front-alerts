@@ -81,3 +81,4 @@ export class AlertThanksDialog {
   constructor(public dialogRef: MdDialogRef<AlertThanksDialog>) {
   }
 }
+

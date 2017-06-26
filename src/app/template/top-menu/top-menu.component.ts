@@ -14,3 +14,4 @@ export class TopMenuComponent implements OnInit {
     dom.classList.toggle('push-right');
   }
 }
+

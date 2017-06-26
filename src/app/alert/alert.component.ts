@@ -27,3 +27,4 @@ export class AlertComponent implements OnInit {
     this.onSelect.emit(this.alert);
   }
 }
+

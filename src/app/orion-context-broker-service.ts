@@ -141,3 +141,4 @@ export class OrionContextBrokerService {
     return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert").map((val, i) => <Alert[]>val.json());
   }
 }
+

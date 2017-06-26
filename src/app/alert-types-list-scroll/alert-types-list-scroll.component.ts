@@ -29,3 +29,4 @@ export class AlertTypesListScrollComponent implements OnInit {
     this.selectedAlertType=alertType;
   }
 }
+

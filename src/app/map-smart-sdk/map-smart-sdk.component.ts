@@ -59,3 +59,4 @@ export class MapSmartSDKComponent implements OnInit {
     this.mapContent.gotoCenter();
   }
 }
+

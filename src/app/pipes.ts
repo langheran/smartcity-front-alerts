@@ -18,3 +18,4 @@ export class TruncatePipe {
     return value.length > limit ? value.substring(0, limit) + trail : value;
   }
 }
+
