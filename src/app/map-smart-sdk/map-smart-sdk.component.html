@@ -1,0 +1,27 @@
+<div class="main-container" [ngStyle]="{'padding':'0'}">
+  <app-top-menu></app-top-menu>
+  <app-main-menu></app-main-menu>
+  <div class="container-fluid" [ngStyle]="{'padding':'0'}">
+    <div class="section-container">
+      <div (click)="hideAlerts()" class="fill-content" #fillContentDiv>
+        <sebm-google-map [style.height.px]="height" #map [latitude]="lat" [longitude]="lng" [zoom]="16"
+                         [zoomControl]="false"
+                         [streetViewControl]="false">
+          <sebm-google-map-marker [latitude]="mapContent.lat" [longitude]="mapContent.lng"></sebm-google-map-marker>
+          <app-map-content #mapContent></app-map-content>
+        </sebm-google-map>
+        <span class="done">
+      <button (click)="gotoCenter()" md-fab md-fab-bottom-right>
+        <md-icon>filter_center_focus</md-icon>
+      </button>
+    </span>
+      </div>
+      <div class="footer">
+        <app-alert-types-list-scroll (onAlertTypeSelected)="onResize(null)" ></app-alert-types-list-scroll>
+        <router-outlet (activate)="componentAdded($event)"></router-outlet>
+        <div class="logos">
+          <app-footer></app-footer>
+        </div>
+      </div>
+    </div>
+  </div>

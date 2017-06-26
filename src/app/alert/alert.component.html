@@ -1,0 +1,16 @@
+<md-card [style.background]="'lightBlue'"
+         [style.minHeight]="'100%'"
+         [style.minWidth]="'100%'"
+         [style.cursor]="'pointer'"
+         fxLayoutAlign="center center"
+         (click)="alertClick()"
+>
+  <!--<md-card-title>{{alertType.display}}</md-card-title>-->
+  <md-card-content fxLayout="column" fxLayoutAlign="center center">
+    <button md-fab>
+      <md-icon>{{alert.icon}}</md-icon>
+    </button>
+    <br>
+    <div align="center">{{alert.display}}</div>
+  </md-card-content>
+</md-card>

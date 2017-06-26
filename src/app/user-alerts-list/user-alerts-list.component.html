@@ -1,0 +1,9 @@
+<div *ngIf="userAlerts">
+  <div *ngFor="let userAlert of userAlerts" style="border: solid 1px black; margin: 10px; padding: 10px">
+    <p *ngIf="userAlert.dateTime">{{userAlert.dateTime.value}}</p>
+    <p *ngIf="userAlert.alertType">{{userAlert.alertType.value}}</p>
+    <p *ngIf="userAlert.eventObserved">{{userAlert.eventObserved.value}}</p>
+    <p *ngIf="userAlert.address">{{userAlert.address.value}}</p>
+    <p *ngIf="userAlert.description">{{userAlert.description.value}}</p>
+  </div>
+</div>

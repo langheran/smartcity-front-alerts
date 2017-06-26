@@ -1,0 +1,83 @@
+@import "../node_modules/@angular/material/_theming.scss";
+@include mat-core();
+
+$smart-cyan: (
+  50: #e0ebf3,
+  100: #b3cee1,
+  200: #80adce,
+  300: #4d8cba,
+  400: #2673ab,
+  500: #00D3DE,
+  600: #005294,
+  700: #00488a,
+  800: #003f80,
+  A200: #6a9bff,
+  A400: #3778ff,
+  A700: #1e67ff,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  )
+);
+
+
+$smart-red: (
+  50: #fef3e4,
+  100: #fde0bb,
+  200: #fccc8e,
+  300: #fab861,
+  400: #f9a83f,
+  500: #c9302c,
+  600: #f7911a,
+  700: #f68615,
+  800: #f57c11,
+  900: #f36b0a,
+  A100: #ffffff,
+  A200: #fff1e9,
+  A400: #ffd1b6,
+  A700: #ffc19c,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  )
+);
+
+@media (max-width: 600px) .mat-toolbar{
+      max-height:50px;
+    }
+
+
+$my-app-primary: mat-palette($smart-cyan);
+$my-app-accent:  mat-palette($smart-red);
+$my-app-warn:    mat-palette($mat-deep-orange);
+
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+@include angular-material-theme($my-app-theme);
+
+.primary-color {
+  background-color: mat-color($my-app-primary, 500, 1);
+}

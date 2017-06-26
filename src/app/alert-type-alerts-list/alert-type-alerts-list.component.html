@@ -1,0 +1,50 @@
+<md-sidenav-container>
+  <!--<md-toolbar color="primary" (window:resize)="onResize($event)">-->
+  <!--<button md-icon-button [routerLink]="['../']">-->
+  <!--<md-icon>backspace</md-icon>-->
+  <!--</button>-->
+  <!--<h4>{{alertType.display}}</h4>-->
+  <!--</md-toolbar>-->
+  <div style="position: relative; display: block">
+    <div class="header">
+      <!--pos-f-t fixed-top header-->
+      <nav class="navbar navbar-inverse navbar-toggleable-md topnav">
+        <a class="navbar-brand" [routerLink]="['/']" style="display: block;">{{alertType.display}}
+          <span [routerLink]="['/']"
+              style="cursor: pointer; font-size: 1.8em; color: white; float: right; position: absolute; right: 5px; top: -2px; margin: 0; padding: 0">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </span>
+        </a>
+      </nav>
+    </div>
+  </div>
+  <md-grid-list *ngIf="alertsList" [cols]="colNumber" gutterSize="5px">
+    <md-grid-tile *ngFor="let alert of alertsList">
+      <app-alert [alert]="alert" (onSelect)="onAlertSelect($event)"></app-alert>
+    </md-grid-tile>
+  </md-grid-list>
+  <md-sidenav #sidenav align="end">
+    <div *ngIf="currentAlert">
+      <md-toolbar>
+        <h2>{{currentAlert.display | truncate: 20}}</h2>
+      </md-toolbar>
+      <div>
+        <form>
+          <md-input-container>
+            <label for="descriptionInput">Description</label>
+            <input mdInput type="text" id="descriptionInput" #alertDescription md-autofocus
+                   (keyup.enter)="onAlertSubmit(alertDescription.value)">
+          </md-input-container>
+        </form>
+        <md-grid-list cols="2">
+          <button md-button (click)="sidenav.close()" flex="50">
+            Cancel
+          </button>
+          <button md-button (click)="onAlertSubmit(alertDescription.value)" type="submit" flex="grow">
+            Send
+          </button>
+        </md-grid-list>
+      </div>
+    </div>
+  </md-sidenav>
+</md-sidenav-container>

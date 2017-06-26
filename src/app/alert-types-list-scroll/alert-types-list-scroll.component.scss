@@ -1,0 +1,28 @@
+@import "../../assets/bootstrap/bootstrap.scss";
+
+div.scrollmenu {
+  padding: 0;
+  background-color:$brand-sidebar;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.mat-card{
+  outline:none !important;
+}
+
+div.scrollmenu li {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu li:hover {
+  background-color: $brand-bluedark;
+}
+
+.active{
+  background-color: $brand-bluedark;
+}

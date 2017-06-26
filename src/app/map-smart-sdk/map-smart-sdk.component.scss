@@ -1,0 +1,51 @@
+@import "../../assets/bootstrap/bootstrap.scss";
+
+.sebm-google-map-container {
+  //min-height: 100%;
+  min-height: 100% !important;
+  min-width: 100% !important;
+}
+
+.section-container{
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  height: calc(100vh - 50px);
+}
+
+.fill-content{
+  flex: 1 1 auto;
+  overflow: auto;
+  position: relative;
+}
+
+.footer {
+  flex: 0 1 0px;
+  .logos {
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+}
+
+.done {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+}
+
+.avatar {
+  /* make a square container */
+  /*width: 16px;*/
+  /*height: 16px;*/
+
+  /* fill the container, preserving aspect ratio, and cropping to fit */
+  background-size: contain;
+
+  /* center the image vertically and horizontally */
+  background-position: center;
+
+  /* round the edges to a circle with border radius 1/2 container size */
+  border-radius: 50%;
+}

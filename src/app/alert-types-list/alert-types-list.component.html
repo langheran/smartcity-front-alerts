@@ -1,0 +1,11 @@
+<md-toolbar color="primary" (window:resize)="onResize($event)">
+  <button md-icon-button [routerLink]="['']">
+    <md-icon>backspace</md-icon>
+  </button>
+  <h2>Alert type</h2>
+</md-toolbar>
+<md-grid-list [style.min-height]="'100%'" [cols]="colNumber" colWidth="100px" gutterSize="10px">
+  <md-grid-tile *ngFor="let alertType of alertTypesList">
+    <app-alert-type [alertType]="alertType" [routerLink]="['/alertTypes', alertType.name]"></app-alert-type>
+  </md-grid-tile>
+</md-grid-list>
