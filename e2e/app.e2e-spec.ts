@@ -14,3 +14,4 @@ describe('alerts-smart-sdk App', () => {
       .then(done, done.fail);
   });
 });
+
