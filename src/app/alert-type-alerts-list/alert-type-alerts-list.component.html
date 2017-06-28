@@ -8,17 +8,17 @@
   <div style="position: relative; display: block">
     <div class="header">
       <!--pos-f-t fixed-top header-->
-      <nav class="navbar navbar-inverse navbar-toggleable-md topnav">
-        <a class="navbar-brand" [routerLink]="['/']" style="display: block;">{{alertType.display}}
-          <span [routerLink]="['/']"
-              style="cursor: pointer; font-size: 1.8em; color: white; float: right; position: absolute; right: 5px; top: -2px; margin: 0; padding: 0">
-            <i class="fa fa-times" aria-hidden="true"></i>
-          </span>
+      <nav class="navbar navbar-inverse navbar-toggleable-md topnav" class="warn-color">
+        <a class="navbar-brand" [routerLink]="['/']" style="display: block;" [style.color]="'white'" [style.decorator]="'none'">{{alertType.display}}
+          <!--<span [routerLink]="['/']"-->
+              <!--style="cursor: pointer; font-size: 1.8em; color: white; float: right; position: absolute; right: 5px; top: -2px; margin: 0; padding: 0">-->
+            <!--<i class="fa fa-times" aria-hidden="true"></i>-->
+          <!--</span>-->
         </a>
       </nav>
     </div>
   </div>
-  <md-grid-list *ngIf="alertsList" [cols]="colNumber" gutterSize="5px">
+  <md-grid-list *ngIf="alertsList" [cols]="colNumber" gutterSize="0px" class="sidebar-color">
     <md-grid-tile *ngFor="let alert of alertsList">
       <app-alert [alert]="alert" (onSelect)="onAlertSelect($event)"></app-alert>
     </md-grid-tile>

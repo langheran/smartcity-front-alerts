@@ -28,11 +28,15 @@
   }
 }
 
-.done {
+.center-button {
   position: absolute;
   bottom: 20px;
   right: 20px;
   color: white;
+  .mat-icon{
+    position: relative;
+    bottom: 4px;
+  }
 }
 
 .avatar {

@@ -6031,11 +6031,14 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
     .footer .logos {
       display: none; } }
 
-.done {
+.center-button {
   position: absolute;
   bottom: 20px;
   right: 20px;
   color: white; }
+  .center-button .mat-icon {
+    position: relative;
+    bottom: 4px; }
 
 .avatar {
   /* make a square container */
