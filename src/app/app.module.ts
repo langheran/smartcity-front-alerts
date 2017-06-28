@@ -32,6 +32,7 @@ import { FooterComponent } from './template/footer/footer.component';
 import { AlertTypesListScrollComponent } from './alert-types-list-scroll/alert-types-list-scroll.component';
 import {CommunicationService} from "./services/communication-service";
 import {HttpService} from "./services/http-service";
+import { BackTopMenuComponent } from './template/back-top-menu/back-top-menu.component';
 
 UtilityService.initToISOString();
 
@@ -51,7 +52,8 @@ UtilityService.initToISOString();
     TopMenuComponent,
     FooterComponent,
     AlertTypesListScrollComponent,
-    TruncatePipe
+    TruncatePipe,
+    BackTopMenuComponent
   ],
   imports: [
     BrowserModule,
