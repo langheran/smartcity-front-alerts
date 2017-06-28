@@ -23,7 +23,11 @@
         "assets/sass/smart.scss",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "assets/js/spin.js",
+        "assets/js/jquery.spin.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

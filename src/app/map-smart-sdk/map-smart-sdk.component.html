@@ -11,14 +11,14 @@
           <app-map-content #mapContent></app-map-content>
         </sebm-google-map>
         <span class="done">
-      <button (click)="gotoCenter()" md-fab md-fab-bottom-right>
+      <button (click)="gotoCenter()" md-fab md-fab-bottom-right a>
         <md-icon>filter_center_focus</md-icon>
       </button>
     </span>
       </div>
       <div class="footer">
-        <app-alert-types-list-scroll (onAlertTypeSelected)="onResize(null)" ></app-alert-types-list-scroll>
-        <router-outlet (activate)="componentAdded($event)"></router-outlet>
+        <app-alert-types-list-scroll #alertTypesListScroll (onAlertTypeSelected)="onResize(null)" ></app-alert-types-list-scroll>
+        <router-outlet (activate)="componentAdded($event)" (deactivate)="componentAdded($event)"></router-outlet>
         <div class="logos">
           <app-footer></app-footer>
         </div>

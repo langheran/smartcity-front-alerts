@@ -1,8 +1,8 @@
 import {Injectable, OnInit} from '@angular/core';
-import {AlertType} from "./alert-type";
-import {Alert} from "./alert";
+import {AlertType} from "../alert-type";
+import {Alert} from "../alert";
 import {Http, RequestOptions, Response, Headers} from "@angular/http";
-import {UtilityService} from "./utility-service";
+import {UtilityService} from "../utility-service";
 import {Observable} from "rxjs/Observable";
 import {LocationService} from "./location-service";
 import {log} from "util";
@@ -138,7 +138,7 @@ export class OrionContextBrokerService {
 
   getAlertsByUser():Observable<Alert[]>
   {
-    return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert").map((val, i) => <Alert[]>val.json());
+    return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=100&orderBy=!dateCreated").map((val, i) => <Alert[]>val.json());
   }
 }
 

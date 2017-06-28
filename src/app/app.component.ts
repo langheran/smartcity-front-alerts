@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertType} from "./alert-type";
-import {NavigationEnd, NavigationStart, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import "rxjs/add/operator/pairwise";
 
 @Component({

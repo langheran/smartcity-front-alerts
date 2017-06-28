@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Inject, NgZone, OnInit} from '@angular/core';
 import {AlertType} from "../alert-type";
-import {OrionContextBrokerService} from "../orion-context-broker-service";
+import {OrionContextBrokerService} from "../services/orion-context-broker-service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({

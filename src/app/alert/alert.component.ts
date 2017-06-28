@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, EventEmitter, HostListener, OnInit, ViewChild} from '@angular/core';
 import {Alert} from "../alert";
 
 @Component({
@@ -16,11 +16,23 @@ import {Alert} from "../alert";
 export class AlertComponent implements OnInit {
   alert: Alert
   onSelect: EventEmitter<Alert> = new EventEmitter();
+  truncateLength: number;
+  @ViewChild('mdCardContent') mdCardContent;
 
   constructor() {
   }
 
   ngOnInit() {
+    this.changeTruncate();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.changeTruncate();
+  }
+
+  changeTruncate(){
+    this.truncateLength = this.mdCardContent.nativeElement.offsetWidth > 126 ? 1000 : 25;
   }
 
   alertClick(){

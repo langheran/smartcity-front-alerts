@@ -10,7 +10,7 @@ import {RoutesRoutingModule} from "./routes/routes-routing.module";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CustomMaterialModule} from "./material/material.module";
 import {MaterialModule, MdDialogModule} from "@angular/material";
-import { OrionContextBrokerService } from './orion-context-broker-service';
+import { OrionContextBrokerService } from './services/orion-context-broker-service';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {
   AlertThanksDialog,
@@ -20,17 +20,18 @@ import { AlertComponent } from './alert/alert.component';
 import {AgmCoreModule} from 'angular2-google-maps/core';
 
 import {FormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
+import {Http, HttpModule, RequestOptions, XHRBackend} from "@angular/http";
 import { MapContentComponent } from './map-content/map-content.component';
 import {UtilityService} from "./utility-service";
-import {LocationService} from "./location-service";
+import {LocationService} from "./services/location-service";
 import {UserAlertsListComponent} from './user-alerts-list/user-alerts-list.component';
 import {NewlinePipe, TruncatePipe} from "app/pipes";
 import { MainMenuComponent } from './template/main-menu/main-menu.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { AlertTypesListScrollComponent } from './alert-types-list-scroll/alert-types-list-scroll.component';
-import {CommunicationService} from "./communication-service";
+import {CommunicationService} from "./services/communication-service";
+import {HttpService} from "./services/http-service";
 
 UtilityService.initToISOString();
 
@@ -69,8 +70,21 @@ UtilityService.initToISOString();
   entryComponents: [
     AlertThanksDialog
   ],
-  providers: [ LocationService, { provide: 'OrionContextBroker', useClass: OrionContextBrokerService }, CommunicationService ],
+  providers: [
+    LocationService,
+    { provide: 'OrionContextBroker', useClass: OrionContextBrokerService },
+    CommunicationService,
+    {
+      provide: Http,
+      useFactory: HttpServiceFactory
+      , deps: [XHRBackend, RequestOptions]
+    }
+  ],
   bootstrap: [AlertsAppComponent]
 })
 export class AlertsAppModule { }
+
+export function HttpServiceFactory(backend: XHRBackend, options: RequestOptions) {
+  return new HttpService(backend, options);
+}
 

@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {OrionContextBrokerService} from "../orion-context-broker-service";
+import {OrionContextBrokerService} from "../services/orion-context-broker-service";
 import {PlatformLocation} from "@angular/common";
 import {Router} from "@angular/router";
 

@@ -1,8 +1,8 @@
 import {Component, NgModule, OnInit, ViewChild, ElementRef, ChangeDetectorRef, HostListener} from '@angular/core';
 import {GoogleMapsAPIWrapper} from "angular2-google-maps/core";
-import {LocationService} from "../location-service";
-import {CommunicationService} from "../communication-service";
-import {Router} from "@angular/router";
+import {LocationService} from "../services/location-service";
+import {CommunicationService} from "../services/communication-service";
+import {ActivatedRoute, NavigationEnd, Router, CanActivate} from "@angular/router";
 import {PlatformLocation} from "@angular/common";
 import {logger} from "codelyzer/util/logger";
 
@@ -18,8 +18,9 @@ export class MapSmartSDKComponent implements OnInit {
   height: number;
   @ViewChild('mapContent') mapContent;
   @ViewChild('fillContentDiv') fillContentDiv;
+  @ViewChild('alertTypesListScroll') alertTypesListScroll;
 
-  constructor(private locationService: LocationService, private el: ElementRef, private cd: ChangeDetectorRef, private _communicationService: CommunicationService, private _router: Router, location: PlatformLocation) {
+  constructor(private locationService: LocationService, private el: ElementRef, private cd: ChangeDetectorRef, private _communicationService: CommunicationService, private _router: Router, private _route: ActivatedRoute, location: PlatformLocation) {
     location.onPopState(() => {
       document.querySelector('body').classList.remove('push-right');
     });
@@ -27,6 +28,14 @@ export class MapSmartSDKComponent implements OnInit {
       text => {
         this.onResize(null);
       });
+    this._router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        setTimeout(() => this.onResize(null), 100);
+        if(event.url==="/")
+          this.alertTypesListScroll.selectedAlertType=null;
+        // console.log(event);
+      }
+    });
   }
 
   ngOnDestroy() {

@@ -2,7 +2,7 @@ import {Component, NgZone, OnInit} from '@angular/core';
 
 import {GoogleMapsAPIWrapper} from 'angular2-google-maps/core';
 import {Observable} from "rxjs/Observable";
-import {LocationService} from "../location-service";
+import {LocationService} from "../services/location-service";
 import {PlatformLocation} from "@angular/common";
 
 declare var google: any;

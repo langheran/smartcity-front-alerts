@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {AlertType} from "../alert-type";
-import {OrionContextBrokerService} from "../orion-context-broker-service";
+import {OrionContextBrokerService} from "../services/orion-context-broker-service";
 
 @Component({
   selector: 'app-alert-types-list',

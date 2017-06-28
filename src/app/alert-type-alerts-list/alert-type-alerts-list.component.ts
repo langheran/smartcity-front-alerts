@@ -1,10 +1,10 @@
 import {Component, OnInit, Inject, ViewChild, HostListener} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Alert} from "../alert";
-import {OrionContextBrokerService} from "app/orion-context-broker-service";
+import {OrionContextBrokerService} from "app/services/orion-context-broker-service";
 import {AlertType} from "../alert-type";
 import {MdDialog, MdDialogRef} from "@angular/material";
-import {CommunicationService} from "../communication-service";
+import {CommunicationService} from "../services/communication-service";
 import {Observable} from "rxjs/Observable";
 
 @Component({
@@ -52,7 +52,8 @@ export class AlertTypeAlertsListComponent implements OnInit {
   onAlertSubmit(description: string) {
     this._communicationService.mapContent.getCurrentAddress().subscribe((address: string) => {
         this.orion.submitAlert(this.alertType, this.currentAlert, description, address);
-        this.router.navigate(['']);
+        this.router.navigate(['/'], {relativeTo: this.route});
+        // console.log(this.router);
       }
     );
   }
