@@ -51,11 +51,10 @@ export class AlertTypeAlertsListComponent implements OnInit {
 
   onAlertSubmit(description: string) {
     this._communicationService.mapContent.getCurrentAddress().subscribe((address: string) => {
-        this.orion.submitAlert(this.alertType, this.currentAlert, description, address);
-        this.router.navigate(['/'], {relativeTo: this.route});
-        // console.log(this.router);
+        this.orion.submitAlert(this.alertType, this.currentAlert, description, address).subscribe(r=>{});
       }
     );
+    this.router.navigate(['../']);
   }
 
   ngAfterViewChecked() {

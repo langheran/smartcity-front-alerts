@@ -117,23 +117,13 @@ export class OrionContextBrokerService {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
 
-    this.http.post(
+    return this.http.post(
       "https://207.249.127.228:1027/v2/entities",
       JSON.stringify(
         json
       ),
       options
-    )
-      .subscribe(r=>{});
-      // .map(
-      //   (res: Response) =>
-      //     res.json()
-      // )
-      // .catch
-      // (
-      //   (error: any) =>
-      //     Observable.throw(error.json().error || "Server error")
-      // );
+    );
   }
 
   getAlertsByUser():Observable<Alert[]>
