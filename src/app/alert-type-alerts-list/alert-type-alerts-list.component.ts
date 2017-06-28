@@ -35,6 +35,7 @@ export class AlertTypeAlertsListComponent implements OnInit {
       this.alertTypeName = p.name;
       this.alertType = this.orion.getAlertTypeByName(this.alertTypeName);
       this.alertsList = this.orion.getAlertsByAlertType(this.alertTypeName);
+      this.sidenav.close();
       this.onResize(null);
     });
   }

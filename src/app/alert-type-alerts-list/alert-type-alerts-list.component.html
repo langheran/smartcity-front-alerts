@@ -5,16 +5,12 @@
   <!--</button>-->
   <!--<h4>{{alertType.display}}</h4>-->
   <!--</md-toolbar>-->
-  <div style="position: relative; display: block">
+  <div style="position: relative; display: block" #container>
     <div class="header">
       <!--pos-f-t fixed-top header-->
       <nav class="navbar navbar-inverse navbar-toggleable-md topnav" class="warn-color">
-        <a class="navbar-brand" [routerLink]="['/']" style="display: block;" [style.color]="'white'" [style.decorator]="'none'">{{alertType.display}}
-          <!--<span [routerLink]="['/']"-->
-              <!--style="cursor: pointer; font-size: 1.8em; color: white; float: right; position: absolute; right: 5px; top: -2px; margin: 0; padding: 0">-->
-            <!--<i class="fa fa-times" aria-hidden="true"></i>-->
-          <!--</span>-->
-        </a>
+        <a class="navbar-brand" [routerLink]="['/']" style="display: block;" [style.color]="'white'"
+           [style.decorator]="'none'">{{alertType.display}}</a>
       </nav>
     </div>
   </div>
@@ -23,27 +19,42 @@
       <app-alert [alert]="alert" (onSelect)="onAlertSelect($event)"></app-alert>
     </md-grid-tile>
   </md-grid-list>
-  <md-sidenav #sidenav align="end">
+  <md-sidenav #sidenav align="end" [style.width]="container.offsetWidth.toString()+'px'">
     <div *ngIf="currentAlert">
-      <md-toolbar>
-        <h2>{{currentAlert.display | truncate: 20}}</h2>
-      </md-toolbar>
-      <div>
-        <form>
-          <md-input-container>
-            <!--<label for="descriptionInput">Description</label>-->
-            <input mdInput type="text" id="descriptionInput" #alertDescription md-autofocus
-                   (keyup.enter)="onAlertSubmit(alertDescription.value)">
-          </md-input-container>
-        </form>
-        <md-grid-list cols="2">
-          <button md-button (click)="sidenav.close()" flex="50">
-            Cancel
-          </button>
-          <button md-button (click)="onAlertSubmit(alertDescription.value)" type="submit" flex="grow">
-            Send
-          </button>
-        </md-grid-list>
+      <nav class="navbar navbar-inverse navbar-toggleable-md topnav" class="warn-color" [style.minWeight]="'512px'">
+        <a class="navbar-brand" style="display: block;" [style.color]="'white'" [style.decorator]="'none'">{{currentAlert.display
+          | truncate: 20}}</a>
+      </nav>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="centering text-center">
+            <div class="container">
+              <div class="row">
+                <div class="container-fluid">
+                  <div class="row-fluid">
+                    <div class="centering text-center">
+                      <form>
+                        <md-input-container>
+                          <!--<label for="descriptionInput">Description</label>-->
+                          <input mdInput type="text" id="descriptionInput" #alertDescription md-autofocus
+                                 (keyup.enter)="onAlertSubmit(alertDescription.value)">
+                        </md-input-container>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <md-grid-list cols="2" class="row">
+                <button md-button (click)="sidenav.close()" flex="50">
+                  Cancel
+                </button>
+                <button md-button (click)="onAlertSubmit(alertDescription.value)" type="submit" flex="grow">
+                  Send
+                </button>
+              </md-grid-list>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </md-sidenav>

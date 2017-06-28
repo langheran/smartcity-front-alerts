@@ -1,10 +1,15 @@
-import {Component, NgModule, OnInit, ViewChild, ElementRef, ChangeDetectorRef, HostListener} from '@angular/core';
+import {
+  Component, NgModule, OnInit, ViewChild, ElementRef, ChangeDetectorRef, HostListener,
+  Inject
+} from '@angular/core';
 import {GoogleMapsAPIWrapper} from "angular2-google-maps/core";
 import {LocationService} from "../services/location-service";
 import {CommunicationService} from "../services/communication-service";
 import {ActivatedRoute, NavigationEnd, Router, CanActivate} from "@angular/router";
 import {PlatformLocation} from "@angular/common";
 import {logger} from "codelyzer/util/logger";
+import {OrionContextBrokerService} from "../services/orion-context-broker-service";
+import {AlertType} from "../alert-type";
 
 declare var google: any;
 
@@ -19,8 +24,9 @@ export class MapSmartSDKComponent implements OnInit {
   @ViewChild('mapContent') mapContent;
   @ViewChild('fillContentDiv') fillContentDiv;
   @ViewChild('alertTypesListScroll') alertTypesListScroll;
+  selectedAlertTypeName:string;
 
-  constructor(private locationService: LocationService, private el: ElementRef, private cd: ChangeDetectorRef, private _communicationService: CommunicationService, private _router: Router, private _route: ActivatedRoute, location: PlatformLocation) {
+  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private locationService: LocationService, private el: ElementRef, private cd: ChangeDetectorRef, private _communicationService: CommunicationService, private router: Router, private route: ActivatedRoute, location: PlatformLocation) {
     location.onPopState(() => {
       document.querySelector('body').classList.remove('push-right');
     });
@@ -28,11 +34,11 @@ export class MapSmartSDKComponent implements OnInit {
       text => {
         this.onResize(null);
       });
-    this._router.events.subscribe((event) => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         setTimeout(() => this.onResize(null), 100);
-        if(event.url==="/")
-          this.alertTypesListScroll.selectedAlertType=null;
+        if (event.url === "/")
+          this.alertTypesListScroll.selectedAlertType = null;
         // console.log(event);
       }
     });
@@ -47,11 +53,18 @@ export class MapSmartSDKComponent implements OnInit {
   }
 
   hideAlerts() {
-    this._router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 
   ngAfterContentChecked() {
     this.onResize(null);
+    if (this.route.firstChild)
+      this.route.firstChild.params.subscribe(p => {
+        if(p.name!=this.selectedAlertTypeName) {
+          this.alertTypesListScroll.selectAlertTypeByName(p.name);
+          this.selectedAlertTypeName=p.name;
+        }
+      });
   }
 
   componentAdded($event) {

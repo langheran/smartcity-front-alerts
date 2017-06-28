@@ -6093,7 +6093,7 @@ a:hover {
     background: #040E2A !important;
     border: 0;
     border-radius: 0;
-    color: #fff;
+    color: #fff !important;
     text-decoration: none; }
   .sidebar .list-group a:hover {
     background: #081e59 !important;

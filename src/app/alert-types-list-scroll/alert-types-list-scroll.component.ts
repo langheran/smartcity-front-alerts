@@ -23,6 +23,11 @@ export class AlertTypesListScrollComponent implements OnInit {
     this.alertTypesList = this.orion.getAlertTypes();
   }
 
+  selectAlertTypeByName(alertTypeName:string)
+  {
+    this.selectedAlertType=this.orion.getAlertTypeByName(alertTypeName);
+  }
+
   selectAlertType(alertType:AlertType)
   {
     this.onAlertTypeSelected.emit(alertType);
