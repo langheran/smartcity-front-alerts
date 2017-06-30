@@ -59,6 +59,10 @@ export class MapSmartSDKComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  onErrorDialogClosed(){
+    this.router.navigate(['/about/HowToEnableGeolocation'])
+  }
+
   ngAfterContentChecked() {
     this.onResize(null);
     if (this.route.firstChild)

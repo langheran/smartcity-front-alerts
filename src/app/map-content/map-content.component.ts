@@ -1,4 +1,4 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {Component, EventEmitter, NgZone, OnInit} from '@angular/core';
 
 import {GoogleMapsAPIWrapper} from 'angular2-google-maps/core';
 import {Observable} from "rxjs/Observable";
@@ -10,7 +10,8 @@ declare var google: any;
 
 @Component({
   selector: 'app-map-content',
-  template: ' '
+  template: ' ',
+  outputs:['onErrorDialogClosed']
 })
 export class MapContentComponent implements OnInit {
   map: any;
@@ -18,6 +19,7 @@ export class MapContentComponent implements OnInit {
   lat: number;
   lng: number;
   originalPosition: Coordinates;
+  onErrorDialogClosed: EventEmitter<boolean> = new EventEmitter();
 
   constructor(public mapApiWrapper: GoogleMapsAPIWrapper,
               private locationService: LocationService, private dialogsService: DialogsService) {
@@ -41,7 +43,9 @@ export class MapContentComponent implements OnInit {
         console.log('error', error);
         this.dialogsService
           .confirm('Location tracking must be enabled in order to view this website', 'Do you want to view instructions on how to enable it?')
-          .subscribe(res => {});
+          .subscribe(res => {
+            this.onErrorDialogClosed.emit(res);
+          });
       },
       () => console.log('completed'));
   }

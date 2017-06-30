@@ -4,6 +4,8 @@ import {MapSmartSDKComponent} from "../map-smart-sdk/map-smart-sdk.component";
 import {AlertTypesListComponent} from "../alert-types-list/alert-types-list.component";
 import {AlertTypeAlertsListComponent} from "../alert-type-alerts-list/alert-type-alerts-list.component";
 import {UserAlertsListComponent} from "../user-alerts-list/user-alerts-list.component";
+import {AboutComponent} from "../about/about.component";
+import {HowToEnableGeolocationComponent} from "../about/how-to-enable-geolocation/how-to-enable-geolocation.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'map', pathMatch: 'full'},
@@ -12,6 +14,12 @@ const routes: Routes = [
     // {path: '', redirectTo: '', pathMatch: 'full'},
     {path: ':name', component: AlertTypeAlertsListComponent},
   ]
+  },
+  {path: 'about' , component: AboutComponent,
+    children:[
+      // {path: '', redirectTo: '', pathMatch: 'full'},
+      {path: 'HowToEnableGeolocation', component: HowToEnableGeolocationComponent},
+    ]
   },
   {path: 'userAlerts', component: UserAlertsListComponent},
   {path: '', component: UserAlertsListComponent}
