@@ -19,6 +19,7 @@ export class AlertTypeAlertsListComponent implements OnInit {
   alertsList: Alert[];
   currentAlert: Alert;
   @ViewChild('sidenav') sidenav;
+  @ViewChild('container') container;
 
   constructor(private router: Router, private route: ActivatedRoute, @Inject('OrionContextBroker') public orion: OrionContextBrokerService, public dialog: MdDialog, private _communicationService: CommunicationService) {
   }
@@ -36,13 +37,18 @@ export class AlertTypeAlertsListComponent implements OnInit {
       this.alertType = this.orion.getAlertTypeByName(this.alertTypeName);
       this.alertsList = this.orion.getAlertsByAlertType(this.alertTypeName);
       this.sidenav.close();
-      this.onResize(null);
     });
+  }
+
+  ngAfterContentChecked(){
+    this.onResize(null);
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.colNumber = window.innerWidth > window.innerHeight ? 6 : 3;
+    if(this.sidenav && this.container)
+      this.sidenav._elementRef.nativeElement.style.width=this.container.nativeElement.offsetWidth.toString()+'px'
   }
 
   onAlertSelect(event) {

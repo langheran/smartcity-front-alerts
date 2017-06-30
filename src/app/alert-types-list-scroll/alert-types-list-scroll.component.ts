@@ -11,27 +11,29 @@ import {ActivatedRoute, Router} from "@angular/router";
   outputs: ['onAlertTypeSelected']
 })
 export class AlertTypesListScrollComponent implements OnInit {
-  onAlertTypeSelected: EventEmitter<AlertType>=new EventEmitter();
+  onAlertTypeSelected: EventEmitter<AlertType> = new EventEmitter();
   alertTypesList: AlertType[];
   colNumber;
-  selectedAlertType:AlertType;
+  selectedAlertType: AlertType;
 
-  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private router:Router, private route: ActivatedRoute) {
+  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.alertTypesList = this.orion.getAlertTypes();
   }
 
-  selectAlertTypeByName(alertTypeName:string)
-  {
-    this.selectedAlertType=this.orion.getAlertTypeByName(alertTypeName);
+  selectAlertTypeByName(alertTypeName: string) {
+    if (!alertTypeName)
+      this.selectedAlertType = null;
+    else{
+        this.selectedAlertType = this.orion.getAlertTypeByName(alertTypeName);
+    }
   }
 
-  selectAlertType(alertType:AlertType)
-  {
+  selectAlertType(alertType: AlertType) {
     this.onAlertTypeSelected.emit(alertType);
-    this.selectedAlertType=alertType;
+    this.selectedAlertType = alertType;
   }
 }
 

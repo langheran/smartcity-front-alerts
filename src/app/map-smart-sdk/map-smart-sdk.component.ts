@@ -5,7 +5,7 @@ import {
 import {GoogleMapsAPIWrapper} from "angular2-google-maps/core";
 import {LocationService} from "../services/location-service";
 import {CommunicationService} from "../services/communication-service";
-import {ActivatedRoute, NavigationEnd, Router, CanActivate} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router, CanActivate, NavigationStart} from "@angular/router";
 import {PlatformLocation} from "@angular/common";
 import {logger} from "codelyzer/util/logger";
 import {OrionContextBrokerService} from "../services/orion-context-broker-service";
@@ -35,10 +35,13 @@ export class MapSmartSDKComponent implements OnInit {
         this.onResize(null);
       });
     this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.alertTypesListScroll.selectAlertTypeByName();
+      }
       if (event instanceof NavigationEnd) {
         setTimeout(() => this.onResize(null), 100);
         if (event.url === "/")
-          this.alertTypesListScroll.selectedAlertType = null;
+          this.alertTypesListScroll.selectAlertTypeByName();
         // console.log(event);
       }
     });
@@ -60,7 +63,7 @@ export class MapSmartSDKComponent implements OnInit {
     this.onResize(null);
     if (this.route.firstChild)
       this.route.firstChild.params.subscribe(p => {
-        if(p.name!=this.selectedAlertTypeName) {
+        if(!this.selectedAlertTypeName || p.name!=this.selectedAlertTypeName) {
           this.alertTypesListScroll.selectAlertTypeByName(p.name);
           this.selectedAlertTypeName=p.name;
         }

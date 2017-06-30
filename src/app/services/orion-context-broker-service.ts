@@ -79,7 +79,7 @@ export class OrionContextBrokerService {
       case "CarAccident":
         return new AlertType("CarAccident", "Car accident", "directions_car");
       case "WeatherCondition":
-        return new AlertType("WeatherCondition", "Wheater condition", "wb_sunny");
+        return new AlertType("WeatherCondition", "Weather condition", "wb_sunny");
       case "Pollution":
         return new AlertType("Pollution", "High level of pollution", "smoking_rooms");
       case "Pollen":
@@ -128,7 +128,10 @@ export class OrionContextBrokerService {
 
   getAlertsByUser():Observable<Alert[]>
   {
-    return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=100&orderBy=!dateCreated").map((val, i) => <Alert[]>val.json());
+    // Firefox requires Accept
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=10&orderBy=!dateCreated").map((val, i) => <Alert[]>val.json());
   }
 }
 

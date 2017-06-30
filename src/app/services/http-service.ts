@@ -57,7 +57,6 @@ export class HttpService extends Http {
         console.log("Caught error: " + err);
       })
       .finally(() => {
-        console.log("Finally.. delaying, though.")
         this.turnOffModal();
         // var timer = Observable.timer(1000000);
         // timer.subscribe(t => {
@@ -70,7 +69,7 @@ export class HttpService extends Http {
     if (!this.showLoading) {
       this.showLoading = true;
       $('body').spin("modal", "#FFFFFF", "rgba(51, 51, 51, 0.1)");
-      console.log("Turned on modal");
+      console.log("Loading REST API...");
     }
     this.showLoading = true;
   }
@@ -83,6 +82,6 @@ export class HttpService extends Http {
       }
       this.showLoading = false;
     }
-    console.log("Turned off modal");
+    console.log("Loading complete.");
   }
 }

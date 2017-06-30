@@ -19,7 +19,7 @@
       <app-alert [alert]="alert" (onSelect)="onAlertSelect($event)"></app-alert>
     </md-grid-tile>
   </md-grid-list>
-  <md-sidenav #sidenav align="end" [style.width]="container.offsetWidth.toString()+'px'">
+  <md-sidenav #sidenav align="end">
     <div *ngIf="currentAlert">
       <nav class="navbar navbar-inverse navbar-toggleable-md topnav" class="warn-color" [style.minWeight]="'512px'">
         <a class="navbar-brand" style="display: block;" [style.color]="'white'" [style.decorator]="'none'">{{currentAlert.display
@@ -37,7 +37,7 @@
                         <md-input-container>
                           <!--<label for="descriptionInput">Description</label>-->
                           <input mdInput type="text" id="descriptionInput" #alertDescription md-autofocus
-                                 (keyup.enter)="onAlertSubmit(alertDescription.value)">
+                                 (keyup.enter)="onAlertSubmit(alertDescription.value)" placeholder="Send your description!">
                         </md-input-container>
                       </form>
                     </div>

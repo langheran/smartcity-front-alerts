@@ -6026,8 +6026,5 @@ div.scrollmenu li {
   padding: 14px;
   text-decoration: none; }
 
-div.scrollmenu li:hover {
-  background-color: #002D67; }
-
 .active {
   background-color: #002D67; }
