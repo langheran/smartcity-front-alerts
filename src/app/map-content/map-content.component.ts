@@ -4,6 +4,7 @@ import {GoogleMapsAPIWrapper} from 'angular2-google-maps/core';
 import {Observable} from "rxjs/Observable";
 import {LocationService} from "../services/location-service";
 import {PlatformLocation} from "@angular/common";
+import {DialogsService} from "app/services/dialogs-service";
 
 declare var google: any;
 
@@ -19,7 +20,7 @@ export class MapContentComponent implements OnInit {
   originalPosition: Coordinates;
 
   constructor(public mapApiWrapper: GoogleMapsAPIWrapper,
-              private locationService: LocationService) {
+              private locationService: LocationService, private dialogsService: DialogsService) {
   }
 
   ngOnInit() {
@@ -36,7 +37,12 @@ export class MapContentComponent implements OnInit {
             this.map = map;
             this.gotoPosition(this.lat, this.lng);
           });
-      }, error => console.log('error', error),
+      }, error => {
+        console.log('error', error);
+        this.dialogsService
+          .confirm('Location tracking must be enabled in order to view this website', 'Do you want to view instructions on how to enable it?')
+          .subscribe(res => {});
+      },
       () => console.log('completed'));
   }
 
