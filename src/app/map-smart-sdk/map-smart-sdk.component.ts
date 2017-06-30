@@ -59,8 +59,9 @@ export class MapSmartSDKComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  onErrorDialogClosed(){
-    this.router.navigate(['/about/HowToEnableGeolocation'])
+  onErrorDialogClosed($event){
+    if($event)
+      this.router.navigate(['/about/HowToEnableGeolocation'])
   }
 
   ngAfterContentChecked() {

@@ -6,6 +6,7 @@ import {AlertTypeAlertsListComponent} from "../alert-type-alerts-list/alert-type
 import {UserAlertsListComponent} from "../user-alerts-list/user-alerts-list.component";
 import {AboutComponent} from "../about/about.component";
 import {HowToEnableGeolocationComponent} from "../about/how-to-enable-geolocation/how-to-enable-geolocation.component";
+import {ContactUsComponent} from "../about/contact-us/contact-us.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'map', pathMatch: 'full'},
@@ -15,9 +16,9 @@ const routes: Routes = [
     {path: ':name', component: AlertTypeAlertsListComponent},
   ]
   },
-  {path: 'about' , component: AboutComponent,
+  {path: 'about', component: AboutComponent,
     children:[
-      // {path: '', redirectTo: '', pathMatch: 'full'},
+      { path : '', component : ContactUsComponent },
       {path: 'HowToEnableGeolocation', component: HowToEnableGeolocationComponent},
     ]
   },

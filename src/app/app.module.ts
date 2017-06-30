@@ -37,6 +37,7 @@ import {DialogsService} from "./services/dialogs-service";
 import {ConfirmDialogComponent} from "./template/confirm-dialog/confirm-dialog.component";
 import { AboutComponent } from './about/about.component';
 import { HowToEnableGeolocationComponent } from './about/how-to-enable-geolocation/how-to-enable-geolocation.component';
+import { ContactUsComponent } from './about/contact-us/contact-us.component';
 
 UtilityService.initToISOString();
 
@@ -60,7 +61,8 @@ UtilityService.initToISOString();
     BackTopMenuComponent,
     ConfirmDialogComponent,
     AboutComponent,
-    HowToEnableGeolocationComponent
+    HowToEnableGeolocationComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

@@ -44,6 +44,8 @@ export class MapContentComponent implements OnInit {
         this.dialogsService
           .confirm('Location tracking must be enabled in order to view this website', 'Do you want to view instructions on how to enable it?')
           .subscribe(res => {
+            if("undefined" === typeof res)
+              res=false;
             this.onErrorDialogClosed.emit(res);
           });
       },
