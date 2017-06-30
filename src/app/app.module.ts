@@ -33,6 +33,8 @@ import { AlertTypesListScrollComponent } from './alert-types-list-scroll/alert-t
 import {CommunicationService} from "./services/communication-service";
 import {HttpService} from "./services/http-service";
 import { BackTopMenuComponent } from './template/back-top-menu/back-top-menu.component';
+import {DialogsService} from "./services/dialogs-service";
+import {ConfirmDialogComponent} from "./template/confirm-dialog/confirm-dialog.component";
 
 UtilityService.initToISOString();
 
@@ -53,7 +55,8 @@ UtilityService.initToISOString();
     FooterComponent,
     AlertTypesListScrollComponent,
     TruncatePipe,
-    BackTopMenuComponent
+    BackTopMenuComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ UtilityService.initToISOString();
     MdDialogModule
   ],
   entryComponents: [
-    AlertThanksDialog
+    AlertThanksDialog,
+    ConfirmDialogComponent,
   ],
   providers: [
     LocationService,
@@ -80,7 +84,8 @@ UtilityService.initToISOString();
       provide: Http,
       useFactory: HttpServiceFactory
       , deps: [XHRBackend, RequestOptions]
-    }
+    },
+    DialogsService
   ],
   bootstrap: [AlertsAppComponent]
 })
