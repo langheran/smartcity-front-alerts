@@ -30,24 +30,33 @@ export class MapContentComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.locationService.getLocation().subscribe(loc => {
+    this.locationService.getLocation().subscribe(loc=>{
+      this.lat = loc.latitude;
+      this.lng = loc.longitude;
+      this.originalPosition = loc;
+      this.mapApiWrapper.getNativeMap()
+        .then((map) => {
+          this.map = map;
+          this.gotoPosition(this.lat,this.lng);
+        });
+    }, error => {
+      console.log('error', error);
+      this.dialogsService
+        .confirm('Location tracking must be enabled in order to view this website', 'Do you want to view instructions on how to enable it?')
+        .subscribe(res => {
+          if("undefined" === typeof res)
+            res=false;
+          this.onErrorDialogClosed.emit(res);
+        });
+    },
+      () => console.log('completed'));
+
+    this.locationService.trackLocation().subscribe(loc => {
         this.lat = loc.latitude;
         this.lng = loc.longitude;
         this.originalPosition = loc;
-        this.mapApiWrapper.getNativeMap()
-          .then((map) => {
-            this.map = map;
-            this.gotoPosition(this.lat, this.lng);
-          });
       }, error => {
         console.log('error', error);
-        this.dialogsService
-          .confirm('Location tracking must be enabled in order to view this website', 'Do you want to view instructions on how to enable it?')
-          .subscribe(res => {
-            if("undefined" === typeof res)
-              res=false;
-            this.onErrorDialogClosed.emit(res);
-          });
       },
       () => console.log('completed'));
   }
