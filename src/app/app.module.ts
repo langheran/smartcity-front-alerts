@@ -89,7 +89,7 @@ UtilityService.initToISOString();
     {
       provide: Http,
       useFactory: HttpServiceFactory
-      , deps: [XHRBackend, RequestOptions]
+      , deps: [XHRBackend, RequestOptions, DialogsService]
     },
     DialogsService
   ],
@@ -97,7 +97,7 @@ UtilityService.initToISOString();
 })
 export class AlertsAppModule { }
 
-export function HttpServiceFactory(backend: XHRBackend, options: RequestOptions) {
-  return new HttpService(backend, options);
+export function HttpServiceFactory(backend: XHRBackend, options: RequestOptions, dialog: DialogsService) {
+  return new HttpService(backend, options, dialog);
 }
 

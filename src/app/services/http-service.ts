@@ -6,6 +6,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/finally';
 import { Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
 import "rxjs/add/observable/timer";
+import {DialogsService} from "./dialogs-service";
 declare var $: any;
 
 @Injectable()
@@ -13,7 +14,7 @@ export class HttpService extends Http {
   public pendingRequests: number = 0;
   public showLoading: boolean = false;
 
-  constructor(backend: XHRBackend, defaultOptions: RequestOptions) {
+  constructor(backend: XHRBackend, defaultOptions: RequestOptions, private dialogsService: DialogsService) {
     super(backend, defaultOptions);
   }
 
@@ -55,6 +56,16 @@ export class HttpService extends Http {
       }, (err: any) => {
         this.turnOffModal();
         console.log("Caught error: " + err);
+        this.dialogsService
+          .confirm('Communication error!', 'Do you want to reload the page?')
+          .subscribe(res => {
+            if ("undefined" === typeof res)
+              res = false;
+            if(res)
+            {
+              location.reload();
+            }
+          });
       })
       .finally(() => {
         this.turnOffModal();
