@@ -18,7 +18,10 @@
   overflow: auto;
   position: relative;
 }
-
+.contorno{
+  width: 50px;
+  height: 50px;
+}
 .footer {
   flex: 0 1 0px;
   .logos {
@@ -26,6 +29,10 @@
       display: none;
     }
   }
+}
+
+.header-style {
+  background-color: #00d6de;
 }
 
 .center-button {
@@ -53,4 +60,3 @@
   /* round the edges to a circle with border radius 1/2 container size */
   border-radius: 50%;
 }
-

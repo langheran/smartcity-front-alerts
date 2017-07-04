@@ -20,6 +20,7 @@ declare var google: any;
   providers: [GoogleMapsAPIWrapper]
 })
 export class MapSmartSDKComponent implements OnInit {
+  url_img: string;
   height: number;
   @ViewChild('mapContent') mapContent;
   @ViewChild('fillContentDiv') fillContentDiv;
@@ -52,6 +53,7 @@ export class MapSmartSDKComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.url_img = "../assets/img/big.svg";
     this._communicationService.mapContent = this.mapContent;
   }
 
@@ -89,4 +91,3 @@ export class MapSmartSDKComponent implements OnInit {
     this.mapContent.gotoCenter();
   }
 }
-

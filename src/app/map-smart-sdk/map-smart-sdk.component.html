@@ -11,13 +11,15 @@
           <app-map-content (onErrorDialogClosed)="onErrorDialogClosed($event)" #mapContent></app-map-content>
         </sebm-google-map>
         <span class="center-button">
-          <button (click)="gotoCenter()" md-fab md-fab-bottom-right a>
-            <md-icon>filter_center_focus</md-icon>
+          <button (click)="gotoCenter()" class="header-style" md-fab md-fab-bottom-right a>
+            <!--<md-icon>filter_center_focus</md-icon>-->
+            <img [src]="url_img" class="contorno">
           </button>
         </span>
       </div>
       <div class="footer">
-        <app-alert-types-list-scroll #alertTypesListScroll (onAlertTypeSelected)="onResize(null)" ></app-alert-types-list-scroll>
+        <app-alert-types-list-scroll #alertTypesListScroll (onAlertTypeSelected)="onResize(null)">
+        </app-alert-types-list-scroll>
         <router-outlet (activate)="componentAdded($event)" (deactivate)="componentAdded($event)"></router-outlet>
         <!--<div class="logos">
           <app-footer></app-footer>
@@ -25,4 +27,3 @@
       </div>
     </div>
   </div>
-
