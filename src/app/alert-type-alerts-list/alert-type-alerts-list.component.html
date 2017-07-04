@@ -15,9 +15,9 @@
     </div>
   </div>
   <md-grid-list *ngIf="alertsList" [cols]="colNumber" gutterSize="0px" class="sidebar-color">
-    <md-grid-tile *ngFor="let alert of alertsList">
-      <app-alert [alert]="alert" (onSelect)="onAlertSelect($event)"></app-alert>
-    </md-grid-tile>
+      <md-grid-tile *ngFor="let alert of alertsList">
+        <app-alert [alert]="alert" (onSelect)="onAlertSelect($event)"></app-alert>
+      </md-grid-tile>
   </md-grid-list>
   <md-sidenav #sidenav align="end">
     <div *ngIf="currentAlert">
@@ -59,4 +59,3 @@
     </div>
   </md-sidenav>
 </md-sidenav-container>
-

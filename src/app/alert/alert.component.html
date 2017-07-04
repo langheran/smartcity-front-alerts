@@ -11,12 +11,14 @@
          [style.lineHeight]="'1.125'"
 >
   <!--<md-card-title>{{alertType.display}}</md-card-title>-->
-  <md-card-content #mdCardContent [style.padding]="'5px'" fxLayout="column" fxLayoutAlign="center center">
-    <button md-fab class="contorno-fondo">
-      <!--<md-icon>{{alert.icon}}</md-icon>-->
-      <img [src]="url_img" class="contorno">
-    </button>
-    <br>
-    <div align="center" [style.minHeight]="'2.25em'" >{{alert.display | truncate: truncateLength}}</div>
-  </md-card-content>
+
+    <md-card-content #mdCardContent [style.padding]="'5px'" fxLayout="column" fxLayoutAlign="center center">
+      <button md-fab class="contorno-fondo">
+        <!--<md-icon>{{alert.icon}}</md-icon>-->
+        <img [src]="url_img" class="contorno">
+      </button>
+
+      <div align="center" [style.font-size]="'8pt'" [style.margin-top]="'10px'" [style.minHeight]="'2.25em'" >{{alert.display | truncate: truncateLength}}</div>
+    </md-card-content>
+
 </md-card>
