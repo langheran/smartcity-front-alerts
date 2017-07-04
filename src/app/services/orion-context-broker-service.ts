@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable, OnInit, Inject} from '@angular/core';
 import {AlertType} from "../alert-type";
 import {Alert} from "../alert";
 import {Http, RequestOptions, Response, Headers} from "@angular/http";
@@ -6,11 +6,13 @@ import {UtilityService} from "../utility-service";
 import {Observable} from "rxjs/Observable";
 import {LocationService} from "./location-service";
 import {log} from "util";
+import {DOCUMENT} from '@angular/platform-browser';
 
 @Injectable()
 export class OrionContextBrokerService {
+  baseHref: string;
 
-  constructor(public http: Http, private locationService: LocationService) {
+  constructor(public http: Http, private locationService: LocationService, @Inject(DOCUMENT) private document) {
 
   }
 
@@ -29,7 +31,7 @@ export class OrionContextBrokerService {
     var res: Observable<Alert[]>;
     switch (alertTypeName) {
       case "TrafficJam":
-        res = this.http.get("https://localhost:3000/api/alerts/TrafficJam").map((val, i) => <Alert[]>val.json());
+        res = this.http.get(document.location.protocol +'//'+ document.location.hostname + ':3000'  +'/api/alerts/TrafficJam').map((val, i) => <Alert[]>val.json());
         break;
       default:
         res = Observable.create(observer => {
