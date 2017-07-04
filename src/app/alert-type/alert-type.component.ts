@@ -19,6 +19,6 @@ export class AlertTypeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.url_img = "../assets/img/iconos_barra/HighLevelOfPollution.svg";
+    this.url_img = "../assets/img/iconos_barra/"+this.alertType.icon+".svg";
   }
 }

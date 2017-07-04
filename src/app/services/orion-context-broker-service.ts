@@ -18,12 +18,12 @@ export class OrionContextBrokerService {
 
   getAlertTypes(): AlertType[] {
     return [
-      new AlertType("TrafficJam", "Traffic jam", "traffic"),
-      new AlertType("CarAccident", "Car accident", "directions_car"),
-      new AlertType("WeatherCondition", "Wheater condition", "wb_sunny"),
-      new AlertType("Pollution", "High level of pollution", "smoking_rooms"),
-      new AlertType("Pollen", "Pollen", "local_florist"),
-      new AlertType("Asthma", "Asthma attacks", "local_pharmacy"),
+      new AlertType("TrafficJam", "Traffic jam", "TrafficJam"),
+      new AlertType("CarAccident", "Car accident", "CarAccident"),
+      new AlertType("WeatherCondition", "Wheater condition", "WeatherCondition"),
+      new AlertType("Pollution", "High level of pollution", "HighLevelOfPollution"),
+      new AlertType("Pollen", "Pollen", "Pollen"),
+      new AlertType("Asthma", "Asthma attacks", "AsthmaAttacks"),
     ];
   }
 
@@ -143,4 +143,3 @@ export class OrionContextBrokerService {
     return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=10&orderBy=!dateCreated").map((val, i) => <Alert[]>val.json());
   }
 }
-
