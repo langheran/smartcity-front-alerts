@@ -1,3 +1,33 @@
 @media screen and (min-width: 768px) {
   .navbar-brand {
     padding-left: 50px !important; } }
+
+
+#toggle-sidebar {
+  top: 4px !important; }
+
+.header-style {
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, #f6f6f6 92%, #00d6de 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, white), color-stop(97%, #f6f6f6), color-stop(100%, #00d6de));
+  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 92%, #00d6de 100%);
+  background: -o-linear-gradient(top, white 0%, #f6f6f6 92%, #00d6de 100%);
+  background: -ms-linear-gradient(top, white 0%, #f6f6f6 92%, #00d6de 100%);
+  background: linear-gradient(to bottom, white 0%, #f6f6f6 92%, #00d6de 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00d6de', GradientType=0 ); }
+
+.titulo-style {
+  color: #00d6de; }
+
+.top-iconos-stile {
+  color: #00d6de;
+  border-bottom-color: rgba(255, 255, 255, 0);
+  border-top-color: rgba(255, 255, 255, 0); }
+
+.titulo-style:hover, .titulo-style:focus {
+  color: #00d6de;
+  outline: none;
+  outline-offset: -2px; }
+
+.btn-style {
+  background: rgba(255, 255, 255, 0); }
