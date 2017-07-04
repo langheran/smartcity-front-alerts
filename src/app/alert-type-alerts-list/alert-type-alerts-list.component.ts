@@ -18,10 +18,16 @@ export class AlertTypeAlertsListComponent implements OnInit {
   alertType: AlertType;
   alertsList: Alert[];
   currentAlert: Alert;
+  display: string;
+  margentop: string;
+  comment: string;
   @ViewChild('sidenav') sidenav;
   @ViewChild('container') container;
 
   constructor(private router: Router, private route: ActivatedRoute, @Inject('OrionContextBroker') public orion: OrionContextBrokerService, public dialog: MdDialog, private _communicationService: CommunicationService) {
+    this.display = "none";
+    this.margentop = "50%";
+    this.comment = "Comment";
   }
 
   openDialog() {
@@ -29,6 +35,25 @@ export class AlertTypeAlertsListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       //this.selectedOption = result;
     });
+  }
+
+  showArea(){
+    switch (this.comment) {
+      case "Cancel":
+        this.comment = "Comment";
+        this.display = "none";
+        this.margentop = "50%";
+        break;
+     case "Comment":
+      this.margentop = "0px";
+      this.comment = "Cancel";
+      this.display = "block";
+     break;
+
+    }
+  //  this.display = "block";
+
+    //this.comment = "Cancel";
   }
 
   ngOnInit() {
@@ -90,4 +115,3 @@ export class AlertThanksDialog {
   constructor(public dialogRef: MdDialogRef<AlertThanksDialog>) {
   }
 }
-
