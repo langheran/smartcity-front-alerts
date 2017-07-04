@@ -1,5 +1,6 @@
 import {Component, EventEmitter, HostListener, OnInit, ViewChild} from '@angular/core';
 import {Alert} from "../alert";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-alert',
@@ -20,12 +21,13 @@ export class AlertComponent implements OnInit {
   truncateLength: number;
   @ViewChild('mdCardContent') mdCardContent;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
+    console.log(this.router.url.split('/'));
     console.log(this.alert.icon);
-    this.url_img =  "../assets/img/TrafficJam/"+this.alert.icon+".svg";
+    this.url_img =  "../assets/img/"+this.router.url.split('/')[2]+"/"+this.alert.icon+".svg";
     this.changeTruncate();
   }
 

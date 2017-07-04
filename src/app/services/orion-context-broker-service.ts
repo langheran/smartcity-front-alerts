@@ -53,41 +53,41 @@ export class OrionContextBrokerService {
             break;
             case "CarAccident":
               var arr = [
-                new Alert("MinorAccident", "Minor Accident", ""),
-                new Alert("CarAccident", "Car Accident", ""),
-                new Alert("Hazard On Road", "Hazard On Road", ""),
-                new Alert("Assaults", "Assaults", ""),
-                new Alert("Bikers injured", "Bikers injured", ""),
-                new Alert("CarCrashes", "Car crashes", ""),
+                new Alert("MinorAccident", "Minor Accident", "MinorAccident"),
+                new Alert("CarAccident", "Car Accident", "CarAccident"),
+                new Alert("Hazard On Road", "Hazard On Road", "HazardOnRoad"),
+                new Alert("Assaults", "Assaults", "Assaults"),
+                new Alert("Bikers injured", "Bikers injured", "BikersInjured"),
+                new Alert("CarCrashes", "Car crashes", "CarCrashes"),
               ];
               observer.next(arr);
               break;
             case "WeatherCondition":
               var arr = [
-                new Alert("Rain", "Rain", ""),
-                new Alert("Sunny", "Sunny", ""),
-                new Alert("Cloud", "Cloud", ""),
-                new Alert("Foggy", "Foggy", ""),
-                new Alert("HighTemperature", "High temperature", ""),
-                new Alert("LowTemperature", "Low temperature", ""),
+                new Alert("Rain", "Rain", "Rain"),
+                new Alert("Sunny", "Sunny", "Sunny"),
+                new Alert("Cloud", "Cloud", "Cloud"),
+                new Alert("Foggy", "Foggy", "Foggy"),
+                new Alert("HighTemperature", "High temperature", "HighTemperature"),
+                new Alert("LowTemperature", "Low temperature", "LowTemperature"),
               ];
               observer.next(arr);
               break;
             case "Pollution":
               var arr = [
-                new Alert("VisibleSmog", "Visible smog", ""),
+                new Alert("VisibleSmog", "Visible smog", "VisibleSmog"),
               ];
               observer.next(arr);
               break;
             case "Pollen":
               var arr = [
-                new Alert("Symptoms", "Symptoms or discomforts of users", ""),
+                new Alert("Symptoms", "Symptoms or discomforts of users", "Symptoms"),
               ];
               observer.next(arr);
               break;
             case "Asthma":
               var arr = [
-                new Alert("AsthmaAttack", "Asthma attack", ""),
+                new Alert("AsthmaAttack", "Asthma attack", "AsthmaAttack"),
               ];
               observer.next(arr);
             break;
