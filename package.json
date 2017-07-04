@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 443 --host 0.0.0.0 --disable-host-check  --ssl 1 --ssl-key 'key.pem' --ssl-cert 'cert.pem'",
-    "startserver":"node server.js",
+    "startserver": "node server.js",
     "build": "ng build",
     "buildprod": "ng build --environment=prod",
     "startprod": "sudo http-server ./dist -p 443 -S -C ./cert.pem",
@@ -35,6 +35,7 @@
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "jquery": "^3.2.1",
+    "mongoose": "^4.11.1",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.12"
   },

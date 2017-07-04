@@ -25,51 +25,59 @@ export class OrionContextBrokerService {
     ];
   }
 
-  getAlertsByAlertType(alertTypeName: string): Alert[] {
+  getAlertsByAlertType(alertTypeName: string): Observable<Alert[]> {
+    var res: Observable<Alert[]>;
     switch (alertTypeName) {
       case "TrafficJam":
-        return [
-          new Alert("StandstillTrafficJam", "Standstill Traffic Jam", ""),
-          new Alert("HeavyTrafficJam", "Heavy Traffic Jam", ""),
-          new Alert("BumperToBumperTraffic", "Bumper to bumper traffic", ""),
-          new Alert("ModerateTrafficJam", "Moderate Traffic Jam", ""),
-          new Alert("CarStoppedOnRoad", "Car Stopped On Road", ""),
-          new Alert("Roadworks", "Roadworks", ""),
-          new Alert("RoadClosed", "Road closed", ""),
-          new Alert("Pothole", "Pothole", ""),
-        ];
-      case "CarAccident":
-        return [
-          new Alert("MinorAccident", "Minor Accident", ""),
-          new Alert("CarAccident", "Car Accident", ""),
-          new Alert("Hazard On Road", "Hazard On Road", ""),
-          new Alert("Assaults", "Assaults", ""),
-          new Alert("Bikers injured", "Bikers injured", ""),
-          new Alert("CarCrashes", "Car crashes", ""),
-        ];
-      case "WeatherCondition":
-        return [
-          new Alert("Rain", "Rain", ""),
-          new Alert("Sunny", "Sunny", ""),
-          new Alert("Cloud", "Cloud", ""),
-          new Alert("Foggy", "Foggy", ""),
-          new Alert("HighTemperature", "High temperature", ""),
-          new Alert("LowTemperature", "Low temperature", ""),
-        ];
-      case "Pollution":
-        return [
-          new Alert("VisibleSmog", "Visible smog", ""),
-        ];
-      case "Pollen":
-        return [
-          new Alert("Symptoms", "Symptoms or discomforts of users", ""),
-        ];
-      case "Asthma":
-        return [
-          new Alert("AsthmaAttack", "Asthma attack", ""),
-        ];
+        res = this.http.get("https://localhost:3000/api/alerts/TrafficJam").map((val, i) => <Alert[]>val.json());
+        break;
+      default:
+        res = Observable.create(observer => {
+          switch (alertTypeName) {
+            case "CarAccident":
+              var arr = [
+                new Alert("MinorAccident", "Minor Accident", ""),
+                new Alert("CarAccident", "Car Accident", ""),
+                new Alert("Hazard On Road", "Hazard On Road", ""),
+                new Alert("Assaults", "Assaults", ""),
+                new Alert("Bikers injured", "Bikers injured", ""),
+                new Alert("CarCrashes", "Car crashes", ""),
+              ];
+              observer.next(arr);
+              break;
+            case "WeatherCondition":
+              var arr = [
+                new Alert("Rain", "Rain", ""),
+                new Alert("Sunny", "Sunny", ""),
+                new Alert("Cloud", "Cloud", ""),
+                new Alert("Foggy", "Foggy", ""),
+                new Alert("HighTemperature", "High temperature", ""),
+                new Alert("LowTemperature", "Low temperature", ""),
+              ];
+              observer.next(arr);
+              break;
+            case "Pollution":
+              var arr = [
+                new Alert("VisibleSmog", "Visible smog", ""),
+              ];
+              observer.next(arr);
+              break;
+            case "Pollen":
+              var arr = [
+                new Alert("Symptoms", "Symptoms or discomforts of users", ""),
+              ];
+              observer.next(arr);
+              break;
+            case "Asthma":
+              var arr = [
+                new Alert("AsthmaAttack", "Asthma attack", ""),
+              ];
+              observer.next(arr);
+              break;
+          }
+        });
     }
-
+    return res;
   }
 
   getAlertTypeByName(alertTypeName: string): AlertType {
@@ -94,24 +102,24 @@ export class OrionContextBrokerService {
     var json = {
       "id": UtilityService.guid(),
       "type": "Alert",
-      "alertType": {"type":"String", "value":alert.name},
-      "eventObserved": {"type":"String", "value":eventObserved.name},
-      "address":{
-        "type":"String",
-        "value":address
+      "alertType": {"type": "String", "value": alert.name},
+      "eventObserved": {"type": "String", "value": eventObserved.name},
+      "address": {
+        "type": "String",
+        "value": address
       },
       "location": {
-        "type" : "FIWARE::Location::NGSIv2",
+        "type": "FIWARE::Location::NGSIv2",
         "value": {
           "georel": ["near", "minDistance:13500"],
           "geometry": "point",
           "coords": [[this.locationService.latitude, this.locationService.longitude]]
         }
       },
-      "dateTime": {"type":"DateTime", "value":date.toISOString()},
-      "description": {"type":"String","value":description},
-      "refUser": {"type":"String", "value":"https://account.lab.fiware.org/users/8"},
-      "refDevice": {"type":"String","value":""}
+      "dateTime": {"type": "DateTime", "value": date.toISOString()},
+      "description": {"type": "String", "value": description},
+      "refUser": {"type": "String", "value": "https://account.lab.fiware.org/users/8"},
+      "refDevice": {"type": "String", "value": ""}
     }
 
     let headers = new Headers({'Content-Type': 'application/json'});
@@ -126,11 +134,10 @@ export class OrionContextBrokerService {
     );
   }
 
-  getAlertsByUser():Observable<Alert[]>
-  {
+  getAlertsByUser(): Observable<Alert[]> {
     // Firefox requires Accept
-    let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
+    let options = new RequestOptions({headers: headers});
     return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=10&orderBy=!dateCreated").map((val, i) => <Alert[]>val.json());
   }
 }

@@ -35,7 +35,9 @@ export class AlertTypeAlertsListComponent implements OnInit {
     this.route.params.subscribe(p => {
       this.alertTypeName = p.name;
       this.alertType = this.orion.getAlertTypeByName(this.alertTypeName);
-      this.alertsList = this.orion.getAlertsByAlertType(this.alertTypeName);
+      this.orion.getAlertsByAlertType(this.alertTypeName).subscribe(result=>{
+         this.alertsList = result;
+      });
       this.sidenav.close();
     });
   }
