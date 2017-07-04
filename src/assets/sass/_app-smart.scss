@@ -16,8 +16,9 @@ html, body{
   position: fixed;
   top: 0px;
   left: 5px;
-  color: $brand-bluedark;
-  background: $brand-bluelight;
+  color: $brand-bluelight;
+  /* $brand-bluedark */
+  background: transparent;
   font-size: 23px;
   z-index: 3;
   display: none;
