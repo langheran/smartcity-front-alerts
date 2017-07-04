@@ -42,7 +42,7 @@ export class HttpService extends Http {
   }
 
   intercept(observable: Observable<Response>): Observable<Response> {
-    console.log("In the intercept routine..");
+    // console.log("In the intercept routine..");
     this.pendingRequests++;
     return observable
       .catch((err, source) => {
@@ -50,7 +50,7 @@ export class HttpService extends Http {
         return Observable.throw(err);
       })
       .do((res: Response) => {
-        console.log("Response: " + res);
+        // console.log("Response: " + res);
         this.turnOnModal();
       }, (err: any) => {
         this.turnOffModal();
@@ -69,7 +69,7 @@ export class HttpService extends Http {
     if (!this.showLoading) {
       this.showLoading = true;
       $('body').spin("modal", "#FFFFFF", "rgba(51, 51, 51, 0.1)");
-      console.log("Loading REST API...");
+      // console.log("Loading REST API...");
     }
     this.showLoading = true;
   }
@@ -82,6 +82,6 @@ export class HttpService extends Http {
       }
       this.showLoading = false;
     }
-    console.log("Loading complete.");
+    // console.log("Loading complete.");
   }
 }
