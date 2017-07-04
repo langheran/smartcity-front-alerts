@@ -30,12 +30,27 @@ export class OrionContextBrokerService {
   getAlertsByAlertType(alertTypeName: string): Observable<Alert[]> {
     var res: Observable<Alert[]>;
     switch (alertTypeName) {
-      case "TrafficJam":
-        res = this.http.get(document.location.protocol +'//'+ document.location.hostname + ':3000'  +'/api/alerts/TrafficJam').map((val, i) => <Alert[]>val.json());
+      //LE PUSE PUROS NUMEROS PARA QUE NO SE CUMPLA LA CONDICION Y ENTRE EN AUTOMATICO AL DEFAUTL
+      //LO HICE PAR NO BORRAR CODIGO QUE YA HABIAN REALIZADO
+      case "TrafficJam1812721":
+        //res = this.http.get(document.location.protocol +'//'+ document.location.hostname + ':3000'  +'/api/alerts/TrafficJam').map((val, i) => <Alert[]>val.json());
         break;
       default:
         res = Observable.create(observer => {
           switch (alertTypeName) {
+            case "TrafficJam":
+              var arr =  [
+                 new Alert("StandstillTrafficJam", "Standstill Traffic Jam", "StandstillTrafficJam"),
+                 new Alert("HeavyTrafficJam", "Heavy Traffic Jam", "HeavyTrafficJam"),
+                 new Alert("BumperToBumperTraffic", "Bumper to bumper traffic", "BumperToBumperTraffic"),
+                 new Alert("ModerateTrafficJam", "Moderate Traffic Jam", "ModerateTrafficJam"),
+                 new Alert("CarStoppedOnRoad", "Car Stopped On Road", "CarStoppedOnRoad"),
+                 new Alert("Roadworks", "Roadworks", "Roadworks"),
+                 new Alert("RoadClosed", "Road closed", "RoadClosed"),
+                 new Alert("Pothole", "Pothole", "Pothole"),
+               ];
+               observer.next(arr);
+            break;
             case "CarAccident":
               var arr = [
                 new Alert("MinorAccident", "Minor Accident", ""),
@@ -75,7 +90,7 @@ export class OrionContextBrokerService {
                 new Alert("AsthmaAttack", "Asthma attack", ""),
               ];
               observer.next(arr);
-              break;
+            break;
           }
         });
     }

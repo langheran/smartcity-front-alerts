@@ -14,7 +14,8 @@ import {Alert} from "../alert";
   outputs:['onSelect']
 })
 export class AlertComponent implements OnInit {
-  alert: Alert
+  url_img: string;
+  alert: Alert;
   onSelect: EventEmitter<Alert> = new EventEmitter();
   truncateLength: number;
   @ViewChild('mdCardContent') mdCardContent;
@@ -23,6 +24,8 @@ export class AlertComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.alert.icon);
+    this.url_img =  "../assets/img/TrafficJam/"+this.alert.icon+".svg";
     this.changeTruncate();
   }
 
@@ -39,4 +42,3 @@ export class AlertComponent implements OnInit {
     this.onSelect.emit(this.alert);
   }
 }
-
