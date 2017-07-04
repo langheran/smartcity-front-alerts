@@ -6026,8 +6026,9 @@ html, body {
   position: fixed;
   top: 0px;
   left: 5px;
-  color: #002D67;
-  background: #00D3DE;
+  color: #00D3DE;
+  /* $brand-bluedark */
+  background: transparent;
   font-size: 23px;
   z-index: 3;
   display: none;
