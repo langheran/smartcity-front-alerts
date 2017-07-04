@@ -4,24 +4,24 @@
   height: 50px;
 }
 /*=======*/
-@media (min-width: 1024px){
-    .fixContent{
-        width: 153px;
-        /*background-color: green;*/
-    }
-}
+/*@media (min-width: 1024px){*/
+    /*.fixContent{*/
+        /*width: 153px;*/
+        /*!*background-color: green;*!*/
+    /*}*/
+/*}*/
 
-@media (min-width: 799px) and (max-width: 1023px){
-    .fixContent{
-        width: 100px;
-        /*background-color: red;*/
-    }
-}
+/*@media (min-width: 799px) and (max-width: 1023px){*/
+    /*.fixContent{*/
+        /*width: 100px;*/
+        /*!*background-color: red;*!*/
+    /*}*/
+/*}*/
 
-@media (min-width: 502px) and (max-width: 770px){
-    .fixContent{
-        width: 90px;
-        /*background-color: green;*/
-    }
-}
+/*@media (min-width: 502px) and (max-width: 770px){*/
+    /*.fixContent{*/
+        /*width: 90px;*/
+        /*!*background-color: green;*!*/
+    /*}*/
+/*}*/
 /*>>>>>>> 9014f7d4fec1cbfda156fe083bdc40a1f48ed729*/

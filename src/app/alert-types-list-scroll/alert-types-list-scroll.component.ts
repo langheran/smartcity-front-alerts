@@ -32,11 +32,8 @@ export class AlertTypesListScrollComponent implements OnInit {
   }
 
   selectAlertType(alertType: AlertType) {
-    // // console.log("click");
     this.onAlertTypeSelected.emit(alertType);
     this.selectedAlertType = alertType;
-
-    console.log(alertType);
   }
 }
 
