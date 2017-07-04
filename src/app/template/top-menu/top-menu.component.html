@@ -1,17 +1,19 @@
 <div class="pos-f-t fixed-top header">
-  <nav class="navbar navbar-inverse navbar-toggleable-md topnav">
-    <button class="btn btn-default" id="toggle-sidebar" type="button" (click)="toggleSidebar()">
+  <nav class="navbar navbar-inverse navbar-toggleable-md topnav header-style">
+
+    <button class="btn btn-default btn-sm" id="toggle-sidebar" type="button" (click)="toggleSidebar()">
       <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
-    <a class="navbar-brand" [routerLink]="['/']">Alerts - Smart Cities</a>
+
+    <a class="navbar-brand titulo-style" [routerLink]="['/']">Alerts - Smart Cities</a>
     <div class="collapse navbar-collapse">
 
       <ul class="navbar-nav ml-auto mt-2 mt-md-0" >
         <li class="dropdown nav-item" ngbDropdown>
           <!-- <div class="dropdown"> -->
-          <a href="javascript:;" id="name2" class="nav-link dropdown-toggle info-number" ngbDropdownToggle>
+          <!--<a href="javascript:;" id="name2" class="nav-link dropdown-toggle info-number" ngbDropdownToggle>
             <i  class="fa fa-bell"></i><span class="label-pill">3+</span> <b class="caret"></b><span class="sr-only">(current)</span>
-          </a>
+          </a>-->
           <ul class="dropdown-menu alert-dropdown" aria-labelledby="name2">
             <li class="dropdown-item" style="pointer-events: none;"> Alerts </li>
             <li class="dropdown-divider"></li>
@@ -40,7 +42,7 @@
           </ul>
           <!-- </div> -->
         </li>
-        <li class="dropdown nav-item" ngbDropdown>
+        <!--<li class="dropdown nav-item" ngbDropdown>
           <a href="javascript:;" id="single-button" class="nav-link dropdown-toggle" ngbDropdownToggle>
             admin<b class="caret"></b>
           </a>
@@ -70,7 +72,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li>-->
       </ul>
     </div>
   </nav>
