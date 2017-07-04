@@ -9,4 +9,3 @@ export class CommunicationService {
     this.emitWindowResize.next(change);
   }
 }
-
