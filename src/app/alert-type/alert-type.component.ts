@@ -14,11 +14,11 @@ import {AlertType} from "../alert-type";
 })
 export class AlertTypeComponent implements OnInit {
   alertType: AlertType
-
+  url_img: string
   constructor() {
   }
 
   ngOnInit() {
+    this.url_img = "../assets/img/iconos_barra/HighLevelOfPollution.svg";
   }
 }
-
