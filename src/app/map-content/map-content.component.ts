@@ -50,6 +50,7 @@ export class MapContentComponent implements OnInit {
           });
       }, error => {
         console.log('error', error);
+        if(!this.lng || !this.lat)
         this.dialogsService
           .confirm('Location tracking must be enabled in order to view this website', 'Do you want to view instructions on how to enable it?')
           .subscribe(res => {

@@ -8,6 +8,7 @@ import {LocationService} from "./location-service";
 import {log} from "util";
 import {DOCUMENT} from '@angular/platform-browser';
 import {DialogsService} from "app/services/dialogs-service";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Injectable()
 export class OrionContextBrokerService {
@@ -114,6 +115,7 @@ export class OrionContextBrokerService {
   }
 
   submitAlert(alert: AlertType, eventObserved: Alert, description: string, address: string) {
+    description=description.replace(/(?:\r\n|\r|\n)/g, '\\n');
     var date = new Date();
     var json = {
       "id": UtilityService.guid(),
@@ -167,6 +169,15 @@ export class OrionContextBrokerService {
     // Firefox requires Accept
     let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=10&orderBy=!dateCreated").map((val, i) => <Alert[]>val.json());
+    return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=10&orderBy=!dateCreated").map((val, i) => {
+      var res=<any[]>val.json();
+      if(res){
+        res.forEach((re)=>{
+          if(re.description && re.description.value)
+            re.description.value=re.description.value.replace("\\n", "\r\n");
+        });
+      }
+      return res;
+    });
   }
 }
