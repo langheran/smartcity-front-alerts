@@ -6026,8 +6026,8 @@ html, body {
   position: fixed;
   top: 0px;
   left: 5px;
-  color: #00D3DE;
-  /* $brand-bluedark */
+  color: #002D67;
+  /*$brand-bluelight $brand-bluedark */
   background: transparent;
   font-size: 23px;
   z-index: 3;
@@ -6492,8 +6492,8 @@ h4 {
   width: 25px;
   text-align: center; }
 
+/*border-top: solid 2px $brand-sidebar;*/
 footer {
-  border-top: solid 2px #040E2A;
   padding-top: 20px;
   margin-top: 50px; }
   footer img {

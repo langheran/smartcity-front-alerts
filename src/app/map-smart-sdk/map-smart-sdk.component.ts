@@ -10,6 +10,7 @@ import {PlatformLocation} from "@angular/common";
 import {logger} from "codelyzer/util/logger";
 import {OrionContextBrokerService} from "../services/orion-context-broker-service";
 import {AlertType} from "../alert-type";
+declare var $: any;
 
 declare var google: any;
 
@@ -25,6 +26,8 @@ export class MapSmartSDKComponent implements OnInit {
   @ViewChild('mapContent') mapContent;
   @ViewChild('fillContentDiv') fillContentDiv;
   @ViewChild('alertTypesListScroll') alertTypesListScroll;
+  @ViewChild('topMenu') topMenu;
+
   selectedAlertTypeName:string;
 
   constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private locationService: LocationService, private el: ElementRef, private cd: ChangeDetectorRef, private _communicationService: CommunicationService, private router: Router, private route: ActivatedRoute, location: PlatformLocation) {
@@ -61,6 +64,14 @@ export class MapSmartSDKComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  hideMenu($event){
+    if($(this.topMenu.toggleSidebarButton.nativeElement).css("display")!="none") {
+      const dom: any = document.querySelector('body');
+      dom.classList.remove('push-right');
+      $event.stopPropagation();
+    }
+  }
+
   onErrorDialogClosed($event){
     if($event)
       this.router.navigate(['/about/HowToEnableGeolocation'])
@@ -75,6 +86,11 @@ export class MapSmartSDKComponent implements OnInit {
           this.selectedAlertTypeName=p.name;
         }
       });
+  }
+
+  onAlertTypeSelected($event)
+  {
+    this.onResize(null);
   }
 
   componentAdded($event) {

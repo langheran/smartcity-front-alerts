@@ -18,4 +18,15 @@ export class DialogsService {
 
     return dialogRef.afterClosed();
   }
+
+  public timerMessage(title: string, message: string): Observable<boolean> {
+
+    let dialogRef: MdDialogRef<ConfirmDialogComponent>;
+
+    dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.componentInstance.title = title;
+    dialogRef.componentInstance.message = message;
+
+    return dialogRef.afterClosed();
+  }
 }

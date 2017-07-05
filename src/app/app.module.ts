@@ -38,6 +38,7 @@ import {ConfirmDialogComponent} from "./template/confirm-dialog/confirm-dialog.c
 import { AboutComponent } from './about/about.component';
 import { HowToEnableGeolocationComponent } from './about/how-to-enable-geolocation/how-to-enable-geolocation.component';
 import { ContactUsComponent } from './about/contact-us/contact-us.component';
+import { TimerMessageDialogComponent } from './template/timer-message-dialog/timer-message-dialog.component';
 
 UtilityService.initToISOString();
 
@@ -62,7 +63,8 @@ UtilityService.initToISOString();
     ConfirmDialogComponent,
     AboutComponent,
     HowToEnableGeolocationComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    TimerMessageDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -6012,9 +6012,18 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 
 div.scrollmenu {
   padding: 0;
-  background-color: #040E2A;
   overflow: auto;
   white-space: nowrap; }
+
+.header-style {
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, #f6f6f6 92%, #00d6de 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, white), color-stop(97%, #f6f6f6), color-stop(100%, #00d6de));
+  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 92%, #00d6de 100%);
+  background: -o-linear-gradient(top, white 0%, #f6f6f6 92%, #00d6de 100%);
+  background: -ms-linear-gradient(top, white 0%, #f6f6f6 92%, #00d6de 100%);
+  background: linear-gradient(to bottom, white 0%, #f6f6f6 92%, #00d6de 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00d6de', GradientType=0 ); }
 
 .mat-card {
   outline: none !important; }
@@ -6027,4 +6036,4 @@ div.scrollmenu li {
   text-decoration: none; }
 
 .active {
-  background-color: #002D67; }
+  background-color: rgba(82, 69, 69, 0.13); }
