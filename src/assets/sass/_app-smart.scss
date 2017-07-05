@@ -16,8 +16,8 @@ html, body{
   position: fixed;
   top: 0px;
   left: 5px;
-  color: $brand-bluelight;
-  /* $brand-bluedark */
+  color:$brand-bluedark ;
+  /*$brand-bluelight $brand-bluedark */
   background: transparent;
   font-size: 23px;
   z-index: 3;
@@ -652,9 +652,9 @@ h4 {
   width: 25px;
   text-align: center;
 }
-
+/*border-top: solid 2px $brand-sidebar;*/
 footer {
-  border-top: solid 2px $brand-sidebar;
+  
   padding-top: 20px;
   margin-top: 50px;
   img {
