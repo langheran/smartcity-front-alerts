@@ -21,15 +21,17 @@ export class DialogsService {
   }
 
   public timerMessage(title: string, message: string, seconds: number): Observable<boolean> {
-
     let dialogRef: MdDialogRef<MessageDialogComponent>;
-
     dialogRef = this.dialog.open(MessageDialogComponent);
     dialogRef.componentInstance.title = title;
     dialogRef.componentInstance.message = message;
     var timeoutId = window['__zone_symbol__setTimeout'](() => {
-      dialogRef.componentInstance.closeDialog();
-      dialogRef=null;
+      if(dialogRef.componentInstance) {
+        dialogRef.componentInstance.closeDialog();
+        dialogRef.close();
+      }
+      if(dialogRef)
+        dialogRef=null;
       window['__zone_symbol__clearTimeout'](timeoutId);
     }, seconds);
     return dialogRef.afterClosed();

@@ -13,7 +13,7 @@ import {DialogsService} from "app/services/dialogs-service";
 export class OrionContextBrokerService {
   baseHref: string;
 
-  constructor(public http: Http, private locationService: LocationService, @Inject(DOCUMENT) private document) {
+  constructor(public http: Http, private locationService: LocationService, @Inject(DOCUMENT) private document, private dialogsService: DialogsService) {
 
   }
 
@@ -147,7 +147,20 @@ export class OrionContextBrokerService {
         json
       ),
       options
+    ).finally(
+      ()=>{
+        this.showAutoCloseMessage('Alert sent!', 'Alert <b>'+alert.name+'</b> was sent. </br></br> Thanks! :)', 3000);
+      }
     );
+  }
+
+  showAutoCloseMessage(title, message, seconds) {
+    this.dialogsService
+      .timerMessage(title, message, seconds)
+      .subscribe(res => {
+        if ("undefined" === typeof res)
+          res = false;
+      });
   }
 
   getAlertsByUser(): Observable<Alert[]> {
