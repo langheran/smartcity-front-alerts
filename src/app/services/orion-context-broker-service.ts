@@ -7,6 +7,7 @@ import {Observable} from "rxjs/Observable";
 import {LocationService} from "./location-service";
 import {log} from "util";
 import {DOCUMENT} from '@angular/platform-browser';
+import {DialogsService} from "app/services/dialogs-service";
 
 @Injectable()
 export class OrionContextBrokerService {
@@ -30,8 +31,6 @@ export class OrionContextBrokerService {
   getAlertsByAlertType(alertTypeName: string): Observable<Alert[]> {
     var res: Observable<Alert[]>;
     switch (alertTypeName) {
-      //LE PUSE PUROS NUMEROS PARA QUE NO SE CUMPLA LA CONDICION Y ENTRE EN AUTOMATICO AL DEFAUTL
-      //LO HICE PAR NO BORRAR CODIGO QUE YA HABIAN REALIZADO
       case "TrafficJam1812721":
         //res = this.http.get(document.location.protocol +'//'+ document.location.hostname + ':3000'  +'/api/alerts/TrafficJam').map((val, i) => <Alert[]>val.json());
         break;
