@@ -74,6 +74,8 @@ export class MapSmartSDKComponent implements OnInit {
   onErrorDialogClosed($event){
     if($event)
       this.router.navigate(['/about/HowToEnableGeolocation'])
+    else
+      location.reload();
   }
 
   ngAfterContentChecked() {

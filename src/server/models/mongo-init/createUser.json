@@ -1,0 +1,7 @@
+use entities
+
+db.createUser({
+  user: 'langheran',
+  pwd: 'Tec2017',
+  roles: [{ role: 'readWrite', db:'entities'}]
+})

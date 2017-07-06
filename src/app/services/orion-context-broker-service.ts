@@ -32,8 +32,8 @@ export class OrionContextBrokerService {
   getAlertsByAlertType(alertTypeName: string): Observable<Alert[]> {
     var res: Observable<Alert[]>;
     switch (alertTypeName) {
-      case "TrafficJam1812721":
-        //res = this.http.get(document.location.protocol +'//'+ document.location.hostname + ':3000'  +'/api/alerts/TrafficJam').map((val, i) => <Alert[]>val.json());
+      case "TrafficJam":
+        res = this.http.get(document.location.protocol +'//'+ document.location.hostname + ':3000'  +'/api/alerts/TrafficJam').map((val, i) => <Alert[]>val.json());
         break;
       default:
         res = Observable.create(observer => {
