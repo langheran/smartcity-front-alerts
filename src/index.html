@@ -3,42 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>AlertsSmartSDK</title>
- <script>
-  	 var estado = 0;
-      function initElement() {
-     
-        var p = document.getElementById("oculta");
-        p.onclick = showAlert;
-        var p = document.getElementById("oculta2");
-        p.onclick = showAlert;
-        var t = document.getElementById("toggle-sidebar");
-        t.onclick = sidebarCambio;
-      };
-
-      function sidebarCambio(event) {
-        //alert("onclick Event detected!"+estado);
-    		if(estado==0){
-      		estado=1;
-      	}
-      	else {estado=0;}
-      }
-
-      function showAlert(event) {
-       // alert("onclick Event detected!"+estado);
-
-         var submitBtn = document.getElementById('toggle-sidebar');
-    		if(estado==1){
-      		submitBtn.click();
-      	}
-      }
-    </script>
+ 
   <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <base href="/">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--<link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />-->
 </head>
-<body onload="initElement();">
+<body >
   <alerts-app></alerts-app>
 </body>
 </html>

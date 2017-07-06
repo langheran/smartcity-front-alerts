@@ -1,7 +1,9 @@
-<div class="main-container" [ngStyle]="{'padding':'0'}">
-  <app-top-menu></app-top-menu>
+<div class="main-container"  [ngStyle]="{'padding':'0'}">
+  <app-top-menu #topMenu></app-top-menu>
   <app-main-menu></app-main-menu>
-  <div class="container-fluid" [ngStyle]="{'padding':'0'}"  id="oculta">
+
+  <div (click)="hideMenu($event)" class="container-fluid" [ngStyle]="{'padding':'0'}">
+
     <div class="section-container">
       <div (click)="hideAlerts()" class="fill-content" #fillContentDiv>
         <sebm-google-map  [style.height.px]="height" #map [latitude]="lat" [longitude]="lng" [zoom]="16"
@@ -17,8 +19,10 @@
           </button>
         </span>
       </div>
-      <div class="footer" >
-        <app-alert-types-list-scroll #alertTypesListScroll (onAlertTypeSelected)="onResize(null)">
+
+      <div class="footer">
+        <app-alert-types-list-scroll #alertTypesListScroll (onAlertTypeSelected)="onAlertTypeSelected($event)">
+
         </app-alert-types-list-scroll>
         <router-outlet (activate)="componentAdded($event)" (deactivate)="componentAdded($event)"></router-outlet>
         <!--<div class="logos">

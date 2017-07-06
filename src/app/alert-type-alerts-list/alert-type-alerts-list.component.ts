@@ -37,21 +37,21 @@ export class AlertTypeAlertsListComponent implements OnInit {
     });
   }
 
-  showArea(){
+  showArea() {
     switch (this.comment) {
       case "Cancel":
         this.comment = "Comment";
         this.display = "none";
         this.margentop = "50%";
         break;
-     case "Comment":
-      this.margentop = "0px";
-      this.comment = "Cancel";
-      this.display = "block";
-     break;
+      case "Comment":
+        this.margentop = "0px";
+        this.comment = "Cancel";
+        this.display = "block";
+        break;
 
     }
-  //  this.display = "block";
+    //  this.display = "block";
 
     //this.comment = "Cancel";
   }
@@ -60,22 +60,22 @@ export class AlertTypeAlertsListComponent implements OnInit {
     this.route.params.subscribe(p => {
       this.alertTypeName = p.name;
       this.alertType = this.orion.getAlertTypeByName(this.alertTypeName);
-      this.orion.getAlertsByAlertType(this.alertTypeName).subscribe(result=>{
-         this.alertsList = result;
+      this.orion.getAlertsByAlertType(this.alertTypeName).subscribe(result => {
+        this.alertsList = result;
       });
       this.sidenav.close();
     });
   }
 
-  ngAfterContentChecked(){
+  ngAfterContentChecked() {
     this.onResize(null);
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.colNumber = window.innerWidth > window.innerHeight ? 6 : 3;
-    if(this.sidenav && this.container)
-      this.sidenav._elementRef.nativeElement.style.width=this.container.nativeElement.offsetWidth.toString()+'px'
+    if (this.sidenav && this.container)
+      this.sidenav._elementRef.nativeElement.style.width = this.container.nativeElement.offsetWidth.toString() + 'px'
   }
 
   onAlertSelect(event) {
@@ -84,10 +84,8 @@ export class AlertTypeAlertsListComponent implements OnInit {
   }
 
   onAlertSubmit(description: string) {
-    this._communicationService.mapContent.getCurrentAddress().subscribe((address: string) => {
-        this.orion.submitAlert(this.alertType, this.currentAlert, description, address).subscribe(r=>{});
-      }
-    );
+    this.orion.submitAlert(this.alertType, this.currentAlert, description, this._communicationService.address).subscribe(r => {
+    });
     this.router.navigate(['../']);
   }
 

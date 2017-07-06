@@ -7,34 +7,33 @@ import {Observable} from "rxjs/Observable";
 import {LocationService} from "./location-service";
 import {log} from "util";
 import {DOCUMENT} from '@angular/platform-browser';
+import {DialogsService} from "app/services/dialogs-service";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Injectable()
 export class OrionContextBrokerService {
   baseHref: string;
 
-  constructor(public http: Http, private locationService: LocationService, @Inject(DOCUMENT) private document) {
+  constructor(public http: Http, private locationService: LocationService, @Inject(DOCUMENT) private document, private dialogsService: DialogsService) {
 
   }
 
   getAlertTypes(): AlertType[] {
     return [
-      new AlertType("Asthma", "Asthma attacks", "AsthmaAttacks"),
+      new AlertType("Asthma", "Asthma attacks", "AsthmaAttacks", true),
       new AlertType("TrafficJam", "Traffic jam", "TrafficJam"),
       new AlertType("CarAccident", "Car accident", "CarAccident"),
       new AlertType("WeatherCondition", "Wheater condition", "WeatherCondition"),
       new AlertType("Pollution", "High level of pollution", "HighLevelOfPollution"),
       new AlertType("Pollen", "Pollen", "Pollen"),
-      
     ];
   }
 
   getAlertsByAlertType(alertTypeName: string): Observable<Alert[]> {
     var res: Observable<Alert[]>;
     switch (alertTypeName) {
-      //LE PUSE PUROS NUMEROS PARA QUE NO SE CUMPLA LA CONDICION Y ENTRE EN AUTOMATICO AL DEFAUTL
-      //LO HICE PAR NO BORRAR CODIGO QUE YA HABIAN REALIZADO
-      case "TrafficJam1812721":
-        //res = this.http.get(document.location.protocol +'//'+ document.location.hostname + ':3000'  +'/api/alerts/TrafficJam').map((val, i) => <Alert[]>val.json());
+      case "TrafficJam":
+        res = this.http.get(document.location.protocol +'//'+ document.location.hostname + ':3000'  +'/api/alerts/TrafficJam').map((val, i) => <Alert[]>val.json());
         break;
       default:
         res = Observable.create(observer => {
@@ -111,11 +110,12 @@ export class OrionContextBrokerService {
       case "Pollen":
         return new AlertType("Pollen", "Pollen", "local_florist");
       case "Asthma":
-        return new AlertType("Asthma", "Asthma attacks", "local_pharmacy");
+        return new AlertType("Asthma", "Asthma attacks", "local_pharmacy", true);
     }
   }
 
   submitAlert(alert: AlertType, eventObserved: Alert, description: string, address: string) {
+    description=description.replace(/(?:\r\n|\r|\n)/g, '\\n');
     var date = new Date();
     var json = {
       "id": UtilityService.guid(),
@@ -149,13 +149,35 @@ export class OrionContextBrokerService {
         json
       ),
       options
+    ).finally(
+      ()=>{
+        this.showAutoCloseMessage('Alert sent!', 'Alert <b>'+alert.name+'</b> was sent. </br></br> Thanks! :)', 3000);
+      }
     );
+  }
+
+  showAutoCloseMessage(title, message, seconds) {
+    this.dialogsService
+      .timerMessage(title, message, seconds)
+      .subscribe(res => {
+        if ("undefined" === typeof res)
+          res = false;
+      });
   }
 
   getAlertsByUser(): Observable<Alert[]> {
     // Firefox requires Accept
     let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=10&orderBy=!dateCreated").map((val, i) => <Alert[]>val.json());
+    return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=10&orderBy=!dateCreated").map((val, i) => {
+      var res=<any[]>val.json();
+      if(res){
+        res.forEach((re)=>{
+          if(re.description && re.description.value)
+            re.description.value=re.description.value.replace("\\n", "\r\n");
+        });
+      }
+      return res;
+    });
   }
 }

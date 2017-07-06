@@ -12,11 +12,8 @@ import {CustomMaterialModule} from "./material/material.module";
 import {MaterialModule, MdDialogModule} from "@angular/material";
 import { OrionContextBrokerService } from './services/orion-context-broker-service';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {
-  AlertThanksDialog,
-  AlertTypeAlertsListComponent
-} from './alert-type-alerts-list/alert-type-alerts-list.component';
-import { AlertComponent } from './alert/alert.component';
+import {AlertTypeAlertsListComponent} from './alert-type-alerts-list/alert-type-alerts-list.component';
+import {AlertComponent } from './alert/alert.component';
 import {AgmCoreModule} from 'angular2-google-maps/core';
 
 import {FormsModule} from "@angular/forms";
@@ -34,10 +31,10 @@ import {CommunicationService} from "./services/communication-service";
 import {HttpService} from "./services/http-service";
 import { BackTopMenuComponent } from './template/back-top-menu/back-top-menu.component';
 import {DialogsService} from "./services/dialogs-service";
-import {ConfirmDialogComponent} from "./template/confirm-dialog/confirm-dialog.component";
 import { AboutComponent } from './about/about.component';
 import { HowToEnableGeolocationComponent } from './about/how-to-enable-geolocation/how-to-enable-geolocation.component';
 import { ContactUsComponent } from './about/contact-us/contact-us.component';
+import {DialogsModule} from "./services/dialogs-module";
 
 UtilityService.initToISOString();
 
@@ -50,7 +47,6 @@ UtilityService.initToISOString();
     AlertTypeAlertsListComponent,
     AlertComponent,
     MapContentComponent,
-    AlertThanksDialog,
     UserAlertsListComponent,
     NewlinePipe,
     MainMenuComponent,
@@ -59,7 +55,6 @@ UtilityService.initToISOString();
     AlertTypesListScrollComponent,
     TruncatePipe,
     BackTopMenuComponent,
-    ConfirmDialogComponent,
     AboutComponent,
     HowToEnableGeolocationComponent,
     ContactUsComponent
@@ -70,6 +65,7 @@ UtilityService.initToISOString();
     FormsModule,
     HttpModule,
 
+    DialogsModule,
     RoutesRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
@@ -77,10 +73,6 @@ UtilityService.initToISOString();
 
     FlexLayoutModule,
     MdDialogModule
-  ],
-  entryComponents: [
-    AlertThanksDialog,
-    ConfirmDialogComponent,
   ],
   providers: [
     LocationService,
