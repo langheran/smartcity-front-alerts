@@ -21,12 +21,17 @@ export class AlertTypeAlertsListComponent implements OnInit {
   display: string;
   margentop: string;
   comment: string;
+  address: string;
+  //VARIABLES PARA LO ANCHO Y ALTO DE LOS BOTONES COMMENT,DONE
+  BTNwidth: any;
+  BTNheight: any;
+
   @ViewChild('sidenav') sidenav;
   @ViewChild('container') container;
 
   constructor(private router: Router, private route: ActivatedRoute, @Inject('OrionContextBroker') public orion: OrionContextBrokerService, public dialog: MdDialog, private _communicationService: CommunicationService) {
     this.display = "none";
-    this.margentop = "50%";
+    this.margentop = (window.screen.height/3)+"px";
     this.comment = "Comment";
   }
 
@@ -42,7 +47,7 @@ export class AlertTypeAlertsListComponent implements OnInit {
       case "Cancel":
         this.comment = "Comment";
         this.display = "none";
-        this.margentop = "50%";
+        this.margentop = (window.screen.height/3)+"px";
         break;
      case "Comment":
       this.margentop = "0px";
@@ -57,13 +62,32 @@ export class AlertTypeAlertsListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(window.screen.width>=1000){
+      this.BTNwidth = ""+((window.screen.width/8)-10)+"px";
+      this.BTNheight = ""+(window.screen.height/4)+"px";
+    }else{
+      this.BTNwidth = ""+((window.screen.width/2)-30)+"px";
+      this.BTNheight = ""+((window.screen.height/4))+"px";
+    }
+
+
     this.route.params.subscribe(p => {
       this.alertTypeName = p.name;
+      this.address = p.address;
+
       this.alertType = this.orion.getAlertTypeByName(this.alertTypeName);
       this.orion.getAlertsByAlertType(this.alertTypeName).subscribe(result=>{
          this.alertsList = result;
       });
-      this.sidenav.close();
+      //COMPROBAMOS SI EL PRIMER VALOR DEL ARREGLO QUE RETORNA EL SERVICIO DE
+      //ORION QUE ESTA EN LA CARPETA SERVICE , ES NULL , SIGNIFICA QUE NO TIENE
+      //UNA SUBCATEGORIA Y ABRIMOS EN AUTOMATICO LA BARRA PARA ESCRIBIR UN COMENTARIO
+      if(this.alertsList[0]["name"] == "null"){
+          this.sidenav.open();
+      }else{
+          this.sidenav.close();
+      }
+
     });
   }
 
@@ -84,11 +108,8 @@ export class AlertTypeAlertsListComponent implements OnInit {
   }
 
   onAlertSubmit(description: string) {
-    this._communicationService.mapContent.getCurrentAddress().subscribe((address: string) => {
-        this.orion.submitAlert(this.alertType, this.currentAlert, description, address).subscribe(r=>{});
-      }
-    );
-    this.router.navigate(['../']);
+      this.orion.submitAlert(this.alertType, this.currentAlert, description, this.address).subscribe(r=>{});
+      this.router.navigate(['../']);
   }
 
   ngAfterViewChecked() {

@@ -1,65 +1,68 @@
-<md-sidenav-container>
-  <!--<md-toolbar color="primary" (window:resize)="onResize($event)">-->
-  <!--<button md-icon-button [routerLink]="['../']">-->
-  <!--<md-icon>backspace</md-icon>-->
-  <!--</button>-->
-  <!--<h4>{{alertType.display}}</h4>-->
-  <!--</md-toolbar>-->
-  <div style="position: relative; display: block" #container>
-    <div class="header">
-      <!--pos-f-t fixed-top header-->
-      <nav class="navbar navbar-inverse navbar-toggleable-md topnav" class="warn-color">
-        <a class="navbar-brand" [routerLink]="['/']" style="display: block;" [style.color]="'white'"
-           [style.decorator]="'none'">{{alertType.display}}</a>
-      </nav>
+<div class="alto sidebar-color">
+  <md-sidenav-container class="alto">
+    <!--<md-toolbar color="primary" (window:resize)="onResize($event)">-->
+    <!--<button md-icon-button [routerLink]="['../']">-->
+    <!--<md-icon>backspace</md-icon>-->
+    <!--</button>-->
+    <!--<h4>{{alertType.display}}</h4>-->
+    <!--</md-toolbar>-->
+    <div style="position: relative; display: block" #container>
+      <div class="header">
+        <!--pos-f-t fixed-top header-->
+        <nav class="navbar navbar-inverse navbar-toggleable-md topnav" class="warn-color">
+          <a class="navbar-brand" [routerLink]="['/']" style="display: block;" [style.color]="'white'"
+             [style.decorator]="'none'">{{alertType.display}}</a>
+        </nav>
+      </div>
     </div>
-  </div>
-  <md-grid-list *ngIf="alertsList" [cols]="colNumber" gutterSize="0px" class="sidebar-color">
-      <md-grid-tile *ngFor="let alert of alertsList">
-        <app-alert [alert]="alert" (onSelect)="onAlertSelect($event)"></app-alert>
-      </md-grid-tile>
-  </md-grid-list>
-  <md-sidenav #sidenav align="end">
-    <div *ngIf="currentAlert">
-      <nav class="navbar navbar-inverse navbar-toggleable-md topnav" class="warn-color" [style.minWeight]="'512px'">
-        <!--<a class="navbar-brand" class="letra" style="display: block;" [style.color]="'white'" [style.decorator]="'none'">{{currentAlert.display
-          | truncate: 20}}</a>-->
+    <md-grid-list *ngIf="alertsList" [cols]="colNumber" gutterSize="0px" class="sidebar-color">
+        <md-grid-tile *ngFor="let alert of alertsList">
+          <app-alert [alert]="alert" (onSelect)="onAlertSelect($event)"></app-alert>
+        </md-grid-tile>
+    </md-grid-list>
+    <md-sidenav #sidenav align="end" class="alto sidebar-color">
+      <div *ngIf="currentAlert">
+        <nav class="navbar navbar-inverse navbar-toggleable-md topnav" class="warn-color" [style.minWeight]="'512px'">
+          <!--<a class="navbar-brand" class="letra" style="display: block;" [style.color]="'white'" [style.decorator]="'none'">{{currentAlert.display
+            | truncate: 20}}</a>-->
 
-          <a class="navbar-brand" class="letra" style="display: block;" [style.color]="'white'" [style.decorator]="'none'">{{currentAlert.display}}</a>
-      </nav>
-      <div class="container-fluid">
-        <div class="row-fluid">
-          <div class="centering text-center">
-            <div class="container">
-              <div class="row" [style.display]='[display]'>
-                <div class="container-fluid">
-                  <div class="row-fluid">
-                    <div class="centering text-center">
-                      <form>
-                        <md-input-container>
-                          <!--<label for="descriptionInput">Description</label>-->
-                          <textarea rows="9" cols="50" mdInput type="text" id="descriptionInput" #alertDescription md-autofocus
-                                 (keyup.enter)="onAlertSubmit(alertDescription.value)" placeholder="Send your description!">
-                          </textarea>
-                        </md-input-container>
-                      </form>
+            <a class="navbar-brand" class="letra" style="display: block;" [style.color]="'white'" [style.decorator]="'none'">{{currentAlert.display}}</a>
+        </nav>
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="centering text-center">
+              <div class="container">
+                <div class="row" [style.display]='[display]'>
+                  <div class="container-fluid">
+                    <div class="row-fluid">
+                      <div class="centering text-center">
+                        <form>
+                          <md-input-container>
+                            <!--<label for="descriptionInput">Description</label>-->
+                            <textarea rows="9" cols="50" mdInput type="text" id="descriptionInput" #alertDescription md-autofocus
+                                   (keyup.enter)="onAlertSubmit(alertDescription.value)" placeholder="Send your description!">
+                            </textarea>
+                          </md-input-container>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <md-grid-list cols="2" class="row" [style.margin-top]="[margentop]">
+                  <!--<button class="backgroud-button" md-button (click)="sidenav.close()" flex="50">-->
+                  <button [style.height]="[BTNheight]" [style.width]="[BTNwidth]" class="backgroud-button" md-button (click)="showArea()">
+                    {{comment}}
+                  </button>
+                  <button [style.height]="[BTNheight]" [style.width]="[BTNwidth]"  class="backgroud-button" md-button (click)="onAlertSubmit(alertDescription.value)" type="submit" flex="grow">
+                    Done
+                  </button>
+                </md-grid-list>
               </div>
-              <md-grid-list cols="2" class="row" [style.margin-top]="[margentop]">
-                <!--<button class="backgroud-button" md-button (click)="sidenav.close()" flex="50">-->
-                <button class="backgroud-button" md-button (click)="showArea()" flex="50">
-                  {{comment}}
-                </button>
-                <button class="backgroud-button" md-button (click)="onAlertSubmit(alertDescription.value)" type="submit" flex="grow">
-                  Done
-                </button>
-              </md-grid-list>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </md-sidenav>
-</md-sidenav-container>
+    </md-sidenav>
+  </md-sidenav-container>
+
+</div>

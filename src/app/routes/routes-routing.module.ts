@@ -9,14 +9,17 @@ import {HowToEnableGeolocationComponent} from "../about/how-to-enable-geolocatio
 import {ContactUsComponent} from "../about/contact-us/contact-us.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'map', pathMatch: 'full'},
-  {path: 'map' , component: MapSmartSDKComponent,
-  children:[
-    // {path: '', redirectTo: '', pathMatch: 'full'},
-    {path: ':name', component: AlertTypeAlertsListComponent},
-  ]
+  {
+    path: '', redirectTo: 'map', pathMatch: 'full'
   },
-  {path: 'about', component: AboutComponent,
+  {
+    path: 'map' , component: MapSmartSDKComponent
+  },
+  {
+    path: 'AlertTypeAlertsList/:name/:address', component: AlertTypeAlertsListComponent
+  },
+  {
+    path: 'about', component: AboutComponent,
     children:[
       { path : '', component : ContactUsComponent },
       {path: 'HowToEnableGeolocation', component: HowToEnableGeolocationComponent},
@@ -31,4 +34,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class RoutesRoutingModule { }
-

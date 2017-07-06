@@ -10,6 +10,8 @@ import {PlatformLocation} from "@angular/common";
 import {logger} from "codelyzer/util/logger";
 import {OrionContextBrokerService} from "../services/orion-context-broker-service";
 import {AlertType} from "../alert-type";
+import {DialogsService} from "app/services/dialogs-service";
+
 
 declare var google: any;
 
@@ -27,7 +29,7 @@ export class MapSmartSDKComponent implements OnInit {
   @ViewChild('alertTypesListScroll') alertTypesListScroll;
   selectedAlertTypeName:string;
 
-  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private locationService: LocationService, private el: ElementRef, private cd: ChangeDetectorRef, private _communicationService: CommunicationService, private router: Router, private route: ActivatedRoute, location: PlatformLocation) {
+  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private locationService: LocationService, private el: ElementRef, private cd: ChangeDetectorRef, private _communicationService: CommunicationService, private router: Router, private route: ActivatedRoute, location: PlatformLocation,private dialogsService: DialogsService) {
     location.onPopState(() => {
       document.querySelector('body').classList.remove('push-right');
     });
@@ -36,6 +38,7 @@ export class MapSmartSDKComponent implements OnInit {
         this.onResize(null);
       });
     this.router.events.subscribe((event) => {
+
       if (event instanceof NavigationStart) {
         this.alertTypesListScroll.selectAlertTypeByName();
       }
@@ -43,6 +46,7 @@ export class MapSmartSDKComponent implements OnInit {
         setTimeout(() => this.onResize(null), 100);
         if (event.url === "/")
           this.alertTypesListScroll.selectAlertTypeByName();
+          //console.log(this.alertTypesListScroll.selectAlertTypeByName());
         // console.log(event);
       }
     });
@@ -50,6 +54,16 @@ export class MapSmartSDKComponent implements OnInit {
 
   ngOnDestroy() {
 
+  }
+
+  openDailog(){
+    this.dialogsService
+      .confirm('Location tracking must be enabled in order to view this website', 'Do you want to view instructions on how to enable it?')
+      .subscribe(res => {
+        if ("undefined" === typeof res)
+          res = false;
+
+      });
   }
 
   ngOnInit() {
