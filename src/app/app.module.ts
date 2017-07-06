@@ -35,6 +35,9 @@ import { AboutComponent } from './about/about.component';
 import { HowToEnableGeolocationComponent } from './about/how-to-enable-geolocation/how-to-enable-geolocation.component';
 import { ContactUsComponent } from './about/contact-us/contact-us.component';
 import {DialogsModule} from "./services/dialogs-module";
+import { CoordinateMarkerComponent } from './coordinate-marker/coordinate-marker.component';
+import { UserAlertComponent } from './user-alert/user-alert.component';
+import {SocialMediaGoogleMapMarkerDirective} from "app/social-media-google-map-marker-directive";
 
 UtilityService.initToISOString();
 
@@ -57,7 +60,10 @@ UtilityService.initToISOString();
     BackTopMenuComponent,
     AboutComponent,
     HowToEnableGeolocationComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    CoordinateMarkerComponent,
+    UserAlertComponent,
+    SocialMediaGoogleMapMarkerDirective
   ],
   imports: [
     BrowserModule,

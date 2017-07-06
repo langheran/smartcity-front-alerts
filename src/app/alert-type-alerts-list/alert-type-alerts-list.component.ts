@@ -30,13 +30,6 @@ export class AlertTypeAlertsListComponent implements OnInit {
     this.comment = "Comment";
   }
 
-  openDialog() {
-    let dialogRef = this.dialog.open(AlertThanksDialog);
-    dialogRef.afterClosed().subscribe(result => {
-      //this.selectedOption = result;
-    });
-  }
-
   showArea() {
     switch (this.comment) {
       case "Cancel":
@@ -91,25 +84,5 @@ export class AlertTypeAlertsListComponent implements OnInit {
 
   ngAfterViewChecked() {
     this._communicationService.windowResize(true);
-  }
-}
-
-@Component({
-  selector: 'dialog-result-example-dialog',
-  host: {
-    style: 'font-family: Roboto,"Helvetica Neue",sans-serif'
-  },
-  template: `
-    <h2 md-dialog-title>Thank you for sharing!</h2>
-    <md-dialog-content>Go to home screen?</md-dialog-content>
-    <md-dialog-actions>
-      <button md-button md-dialog-close>No</button>
-      <!-- Can optionally provide a result for the closing dialog. -->
-      <button md-button [md-dialog-close]="true" [routerLink]="['']">Ok</button>
-    </md-dialog-actions>
-  `,
-})
-export class AlertThanksDialog {
-  constructor(public dialogRef: MdDialogRef<AlertThanksDialog>) {
   }
 }

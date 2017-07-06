@@ -6,6 +6,7 @@ import {CommunicationService} from "../services/communication-service";
 import {DialogsService} from "../services/dialogs-service";
 import {tick} from "@angular/core/testing";
 import {fakeAsync} from "@angular/core/testing";
+import {Alert} from "../alert";
 
 @Component({
   selector: 'app-alert-types-list-scroll',
@@ -46,8 +47,10 @@ export class AlertTypesListScrollComponent implements OnInit {
       prevSelectedAlertTypeName = this.selectedAlertType.name;
     this.selectedAlertType = JSON.parse(JSON.stringify(alertType));
     if (this.selectedAlertType.sendImmediately) {
-      this.orion.submitAlert(alertType, alertType, '', this._communicationService.address).subscribe(r=>{
-        this.hideAlerts();
+      this.orion.getAlertsByAlertType(alertType.name).subscribe(eventObserved => {
+        this.orion.submitAlert(alertType, eventObserved[0], '', this._communicationService.address).subscribe(r=>{
+          this.hideAlerts();
+        });
       });
     }
     else {

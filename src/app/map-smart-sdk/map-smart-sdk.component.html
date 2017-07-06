@@ -8,6 +8,11 @@
                          [zoomControl]="false"
                          [streetViewControl]="false">
           <sebm-google-map-marker [latitude]="mapContent.lat" [longitude]="mapContent.lng"></sebm-google-map-marker>
+          <sebm-google-map-marker [latitude]="markerLatitude"
+                                  [longitude]="markerLongitude"
+                                  [appSocialMediaGoogleMapMarker]="appSocialMediaGoogleMapMarker" >
+
+          </sebm-google-map-marker>
           <app-map-content (onErrorDialogClosed)="onErrorDialogClosed($event)" #mapContent></app-map-content>
         </sebm-google-map>
         <span class="center-button">

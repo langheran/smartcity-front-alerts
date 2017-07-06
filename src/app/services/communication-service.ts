@@ -4,8 +4,13 @@ import { Subject } from 'rxjs/Subject';
 export class CommunicationService{
   address:string;
   private emitWindowResize = new Subject<any>();
+  private emitMapMarkerSet = new Subject<any>();
   windowResized$ = this.emitWindowResize.asObservable();
   windowResize(change: any) {
     this.emitWindowResize.next(change);
+  }
+  mapMarkerSet$ = this.emitMapMarkerSet.asObservable();
+  setMapMarker(marker: any) {
+    this.emitMapMarkerSet.next(marker);
   }
 }

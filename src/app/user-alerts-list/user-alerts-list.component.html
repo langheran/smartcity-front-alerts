@@ -3,15 +3,6 @@
   <div class="card" *ngFor="let userAlert of userAlerts"
        style="margin: 10px; padding: 10px"
   >
-    <!---->
-    <div class="card-header" *ngIf="userAlert.alertType">{{userAlert.alertType.value}}</div>
-    <div class="card-block">
-      <h4 class="card-title" *ngIf="userAlert.eventObserved">{{userAlert.eventObserved.value}}</h4>
-      <h6 class="card-subtitle mb-2 text-muted" *ngIf="userAlert.address" ><small>{{userAlert.address.value}}</small></h6>
-      <p class="card-text" *ngIf="userAlert.description">{{userAlert.description.value}}</p>
-      <!--<a href="#" class="card-link">Edit</a>-->
-      <a [routerLink]="['']" class="card-link">View in map</a>
-    </div>
-    <div class="card-footer text-muted" *ngIf="userAlert.dateTime">{{userAlert.dateTime.value}}</div>
+    <app-user-alert [userAlert]="userAlert"></app-user-alert>
   </div>
 </div>

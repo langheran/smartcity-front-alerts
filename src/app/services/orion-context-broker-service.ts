@@ -180,4 +180,14 @@ export class OrionContextBrokerService {
       return res;
     });
   }
+
+  getAlertsById(id:string): Observable<Alert> {
+    // Firefox requires Accept
+    let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=1&orderBy=!dateCreated&id="+id).map((val, i) => {
+      var res=val.json();
+      return res;
+    });
+  }
 }

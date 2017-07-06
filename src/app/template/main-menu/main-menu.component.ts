@@ -10,6 +10,7 @@ export class MainMenuComponent implements OnInit {
   showMenu = '';
   showSetting = '';
   showMenuManageSite = '';
+  newAlertsCount=3;
 
   constructor() { }
 
