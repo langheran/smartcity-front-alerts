@@ -25,10 +25,16 @@ export class AlertComponent implements OnInit {
   }
 
   ngOnInit() {
+<<<<<<< HEAD
 
     if(this.alert.icon != "null"){
       this.url_img =  "../assets/img/"+this.router.url.split('/')[2]+"/"+this.alert.icon+".svg";
     }
+=======
+    //console.log(this.router.url.split('/'));
+    //console.log(this.alert.icon);
+    this.url_img =  "../assets/img/"+this.router.url.split('/')[2]+"/"+this.alert.icon+".svg";
+>>>>>>> 80409101230b1413c8f773517b2aa1e844ad17f8
     this.changeTruncate();
 
 

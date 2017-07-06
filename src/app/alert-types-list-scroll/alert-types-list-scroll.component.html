@@ -3,8 +3,14 @@
   <!--<span class="scroller scroller-right"><i class="fa fa-chevron-right"></i></span>-->
   <div class="wrapper">
     <ul class="nav nav-tabs list" id="myTab" [style.width]="'0px'" [style.border]="'0px'">
+<<<<<<< HEAD
       <li *ngFor="let alertType of alertTypesList" class="{{selectedAlertType && alertType.name==selectedAlertType.name ? 'active' : ''}}">
         <app-alert-type [style.outline]="'none'" (click)="selectAlertType(alertType)" [alertType]="alertType"></app-alert-type>
+=======
+      <li *ngFor="let alertType of alertTypesList" [ngClass]="{'active':selectedAlertType && alertType.name==selectedAlertType.name}" >
+        <app-alert-type [style.outline]="'none'" (click)="selectAlertType(alertType)" [alertType]="alertType" [routerLink]="[alertType.sendImmediately?'/':alertType.name]">
+        </app-alert-type>
+>>>>>>> 80409101230b1413c8f773517b2aa1e844ad17f8
         <!--<app-alert-type [style.outline]="'none'" (click)="selectAlertType(alertType)" [alertType]="alertType"></app-alert-type>-->
       </li>
     </ul>

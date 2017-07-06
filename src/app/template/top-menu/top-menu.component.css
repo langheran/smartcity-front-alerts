@@ -12,15 +12,16 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00d6de', GradientType=0 ); }
 
 .titulo-style {
-  color: #00d6de; }
+  color: #002D67; }
 
+/*#00d6de;*/
 .top-iconos-stile {
   color: #00d6de;
   border-bottom-color: rgba(255, 255, 255, 0);
   border-top-color: rgba(255, 255, 255, 0); }
 
 .titulo-style:hover, .titulo-style:focus {
-  color: #00d6de;
+  color: #002D67;
   outline: none;
   outline-offset: -2px; }
 

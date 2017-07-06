@@ -2,6 +2,7 @@ import { Observable } from 'rxjs/Rx';
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Injectable } from '@angular/core';
 import {ConfirmDialogComponent} from "../template/confirm-dialog/confirm-dialog.component";
+import {MessageDialogComponent} from "../template/message-dialog/message-dialog.component";
 
 @Injectable()
 export class DialogsService {
@@ -16,6 +17,23 @@ export class DialogsService {
     dialogRef.componentInstance.title = title;
     dialogRef.componentInstance.message = message;
 
+    return dialogRef.afterClosed();
+  }
+
+  public timerMessage(title: string, message: string, seconds: number): Observable<boolean> {
+    let dialogRef: MdDialogRef<MessageDialogComponent>;
+    dialogRef = this.dialog.open(MessageDialogComponent);
+    dialogRef.componentInstance.title = title;
+    dialogRef.componentInstance.message = message;
+    var timeoutId = window['__zone_symbol__setTimeout'](() => {
+      if(dialogRef.componentInstance) {
+        dialogRef.componentInstance.closeDialog();
+        dialogRef.close();
+      }
+      if(dialogRef)
+        dialogRef=null;
+      window['__zone_symbol__clearTimeout'](timeoutId);
+    }, seconds);
     return dialogRef.afterClosed();
   }
 }

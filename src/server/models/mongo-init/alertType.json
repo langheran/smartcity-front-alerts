@@ -1,0 +1,2 @@
+db.alertTypes.createIndex({name:1},{collation:{locale:"en"}})
+db.alertTypes.insertMany([ {name:"TrafficJam", display:"Traffic jam", icon:"traffic"}, {name:"CarAccident", display:"Car accident", icon:"directions_car"}, {name:"WeatherCondition", display:"Wheater condition", icon:"wb_sunny"}, {name:"Pollution", display:"High level of pollution", icon:"smoking_rooms"}, {name:"Pollen", display:"Pollen", icon:"local_florist"}, {name:"Asthma", display:"Asthma attacks", icon:"local_pharmacy"}])

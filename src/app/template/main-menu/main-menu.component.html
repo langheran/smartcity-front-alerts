@@ -1,4 +1,4 @@
-<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}"  >
   <ul class="list-group">
     <div class="nested-menu">
       <a class="list-group-item" (click)="addExpandClass('sMenu1')" [ngClass]="{'expandMenu' : showMenu === 'sMenu1' }">
@@ -11,7 +11,7 @@
         </ul>
       </li>
       <a class="list-group-item" [routerLink]="['/userAlerts']"><span class="iBlock"><i class="fa fa-history" aria-hidden="true"></i></span>History</a>
-      <a class="list-group-item"><span class="iBlock"><i class="fa fa-group" aria-hidden="true"></i></span>Group History</a>
+      <a class="list-group-item"><span class="iBlock"><i class="fa fa-group" aria-hidden="true"></i></span>Group History<span class="label-pill">{{newAlertsCount==0?"":newAlertsCount.toString()+"+"}}</span></a>
       <a class="list-group-item" [routerLink]="['/about']"><span class="iBlock"><i class="fa fa-briefcase" aria-hidden="true"></i></span>About</a>
     </div>
   </ul>

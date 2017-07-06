@@ -35,28 +35,21 @@ export class AlertTypeAlertsListComponent implements OnInit {
     this.comment = "Comment";
   }
 
-  openDialog() {
-    let dialogRef = this.dialog.open(AlertThanksDialog);
-    dialogRef.afterClosed().subscribe(result => {
-      //this.selectedOption = result;
-    });
-  }
-
-  showArea(){
+  showArea() {
     switch (this.comment) {
       case "Cancel":
         this.comment = "Comment";
         this.display = "none";
         this.margentop = (window.screen.height/3)+"px";
         break;
-     case "Comment":
-      this.margentop = "0px";
-      this.comment = "Cancel";
-      this.display = "block";
-     break;
+      case "Comment":
+        this.margentop = "0px";
+        this.comment = "Cancel";
+        this.display = "block";
+        break;
 
     }
-  //  this.display = "block";
+    //  this.display = "block";
 
     //this.comment = "Cancel";
   }
@@ -76,8 +69,8 @@ export class AlertTypeAlertsListComponent implements OnInit {
       this.address = p.address;
 
       this.alertType = this.orion.getAlertTypeByName(this.alertTypeName);
-      this.orion.getAlertsByAlertType(this.alertTypeName).subscribe(result=>{
-         this.alertsList = result;
+      this.orion.getAlertsByAlertType(this.alertTypeName).subscribe(result => {
+        this.alertsList = result;
       });
       //COMPROBAMOS SI EL PRIMER VALOR DEL ARREGLO QUE RETORNA EL SERVICIO DE
       //ORION QUE ESTA EN LA CARPETA SERVICE , ES NULL , SIGNIFICA QUE NO TIENE
@@ -91,15 +84,15 @@ export class AlertTypeAlertsListComponent implements OnInit {
     });
   }
 
-  ngAfterContentChecked(){
+  ngAfterContentChecked() {
     this.onResize(null);
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.colNumber = window.innerWidth > window.innerHeight ? 6 : 3;
-    if(this.sidenav && this.container)
-      this.sidenav._elementRef.nativeElement.style.width=this.container.nativeElement.offsetWidth.toString()+'px'
+    if (this.sidenav && this.container)
+      this.sidenav._elementRef.nativeElement.style.width = this.container.nativeElement.offsetWidth.toString() + 'px'
   }
 
   onAlertSelect(event) {
@@ -114,25 +107,5 @@ export class AlertTypeAlertsListComponent implements OnInit {
 
   ngAfterViewChecked() {
     this._communicationService.windowResize(true);
-  }
-}
-
-@Component({
-  selector: 'dialog-result-example-dialog',
-  host: {
-    style: 'font-family: Roboto,"Helvetica Neue",sans-serif'
-  },
-  template: `
-    <h2 md-dialog-title>Thank you for sharing!</h2>
-    <md-dialog-content>Go to home screen?</md-dialog-content>
-    <md-dialog-actions>
-      <button md-button md-dialog-close>No</button>
-      <!-- Can optionally provide a result for the closing dialog. -->
-      <button md-button [md-dialog-close]="true" [routerLink]="['']">Ok</button>
-    </md-dialog-actions>
-  `,
-})
-export class AlertThanksDialog {
-  constructor(public dialogRef: MdDialogRef<AlertThanksDialog>) {
   }
 }
