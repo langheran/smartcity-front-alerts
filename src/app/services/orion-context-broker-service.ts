@@ -151,7 +151,7 @@ export class OrionContextBrokerService {
       options
     ).finally(
       ()=>{
-        this.showAutoCloseMessage('Alert sent!', 'Alert <b>'+alert.name+'</b> was sent. </br></br> Thanks! :)', 3000);
+        this.showAutoCloseMessage('Alert sent!', 'Alert <b>'+alert.display + ' - ' + eventObserved.display +'</b> was sent. </br></br> Thanks! :)', 3000);
       }
     );
   }
