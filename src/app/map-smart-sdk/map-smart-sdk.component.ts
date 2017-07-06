@@ -126,6 +126,8 @@ export class MapSmartSDKComponent implements OnInit {
   }
 
   gotoCenter() {
+    this.markerLatitude=-1;
+    this.markerLongitude=-1;
     this.mapContent.gotoCenter();
   }
 }
