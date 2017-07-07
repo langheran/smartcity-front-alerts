@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-back-top-menu',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./back-top-menu.component.scss']
 })
 export class BackTopMenuComponent implements OnInit {
+
+  @Input() name: string;
 
   constructor() { }
 
@@ -16,3 +18,4 @@ export class BackTopMenuComponent implements OnInit {
     window.history.back();
   }
 }
+

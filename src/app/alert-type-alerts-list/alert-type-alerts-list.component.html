@@ -1,3 +1,4 @@
+<app-back-top-menu name="{{alertTypeName}}"></app-back-top-menu>
 <div class="alto sidebar-color">
   <md-sidenav-container class="alto">
     <!--<md-toolbar color="primary" (window:resize)="onResize($event)">-->
@@ -6,15 +7,6 @@
     <!--</button>-->
     <!--<h4>{{alertType.display}}</h4>-->
     <!--</md-toolbar>-->
-    <div style="position: relative; display: block" #container>
-      <div class="header">
-        <!--pos-f-t fixed-top header-->
-        <nav class="navbar navbar-inverse navbar-toggleable-md topnav" class="warn-color">
-          <a class="navbar-brand" [routerLink]="['/']" style="display: block;" [style.color]="'white'"
-             [style.decorator]="'none'">{{alertType.display}}</a>
-        </nav>
-      </div>
-    </div>
     <md-grid-list *ngIf="alertsList" [cols]="colNumber" gutterSize="0px" class="sidebar-color">
         <md-grid-tile *ngFor="let alert of alertsList">
           <app-alert [alert]="alert" (onSelect)="onAlertSelect($event)"></app-alert>
@@ -22,12 +14,6 @@
     </md-grid-list>
     <md-sidenav #sidenav align="end" class="alto sidebar-color">
       <div *ngIf="currentAlert">
-        <nav class="navbar navbar-inverse navbar-toggleable-md topnav" class="warn-color" [style.minWeight]="'512px'">
-          <!--<a class="navbar-brand" class="letra" style="display: block;" [style.color]="'white'" [style.decorator]="'none'">{{currentAlert.display
-            | truncate: 20}}</a>-->
-
-            <a class="navbar-brand" class="letra" style="display: block;" [style.color]="'white'" [style.decorator]="'none'">{{currentAlert.display}}</a>
-        </nav>
         <div class="container-fluid">
           <div class="row-fluid">
             <div class="centering text-center">

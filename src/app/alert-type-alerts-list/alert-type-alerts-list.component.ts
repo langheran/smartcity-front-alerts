@@ -93,6 +93,7 @@ export class AlertTypeAlertsListComponent implements OnInit {
 
   onAlertSelect(event) {
     this.currentAlert = event;
+    this.alertTypeName = this.currentAlert.display;
     this.sidenav.open();
   }
 
