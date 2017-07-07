@@ -3,13 +3,11 @@ import {AlertType} from "../alert-type";
 import {OrionContextBrokerService} from "../services/orion-context-broker-service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CommunicationService} from "../services/communication-service";
-<<<<<<< HEAD
-=======
+
 import {DialogsService} from "../services/dialogs-service";
 import {tick} from "@angular/core/testing";
 import {fakeAsync} from "@angular/core/testing";
 import {Alert} from "../alert";
->>>>>>> 80409101230b1413c8f773517b2aa1e844ad17f8
 
 @Component({
   selector: 'app-alert-types-list-scroll',
@@ -23,11 +21,7 @@ export class AlertTypesListScrollComponent implements OnInit {
   alertTypesList: AlertType[];
   selectedAlertType: AlertType;
 
-<<<<<<< HEAD
   constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private router: Router, private route: ActivatedRoute,private _communicationService: CommunicationService) {
-=======
-  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private router: Router, private route: ActivatedRoute, private _communicationService: CommunicationService) {
->>>>>>> 80409101230b1413c8f773517b2aa1e844ad17f8
   }
 
   ngOnInit() {
@@ -49,14 +43,16 @@ export class AlertTypesListScrollComponent implements OnInit {
 
   selectAlertType(alertType: AlertType) {
 
-    this._communicationService.mapContent.getCurrentAddress().subscribe((address: string) => {
+    /*this._communicationService.mapContent.getCurrentAddress().subscribe((address: string) => {
         //this.orion.submitAlert(this.alertType, this.currentAlert, description, address).subscribe(r=>{});
         //this.dir = address;
         this.router.navigate(['../AlertTypeAlertsList/'+alertType.name+'/'+address]);
       }
-    );
+    );*/
+
+
     this.onAlertTypeSelected.emit(alertType);
-    var prevSelectedAlertTypeName = "";
+    let prevSelectedAlertTypeName = ' ';
     if (this.selectedAlertType)
       prevSelectedAlertTypeName = this.selectedAlertType.name;
     this.selectedAlertType = JSON.parse(JSON.stringify(alertType));
@@ -66,11 +62,13 @@ export class AlertTypesListScrollComponent implements OnInit {
           this.hideAlerts();
         });
       });
-    }
-    else {
-      if (prevSelectedAlertTypeName && prevSelectedAlertTypeName == alertType.name) {
+    } else {
+      console.log("maickol rodriguez");
+      console.log( this._communicationService.address );
+      /*if (prevSelectedAlertTypeName && prevSelectedAlertTypeName == alertType.name) {
         this.hideAlerts();
-      }
+      }*/
+     this.router.navigate(['../AlertTypeAlertsList/'+ alertType.name + '/' + this._communicationService.address]);
     }
   }
 }

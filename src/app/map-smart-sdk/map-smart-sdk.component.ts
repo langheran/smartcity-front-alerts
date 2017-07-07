@@ -34,8 +34,8 @@ export class MapSmartSDKComponent implements OnInit {
   @ViewChild('alertTypesListScroll') alertTypesListScroll;
   @ViewChild('topMenu') topMenu;
   appSocialMediaGoogleMapMarker:string;
-  markerLatitude:number=0;
-  markerLongitude:number=0;
+  markerLatitude: number=0;
+  markerLongitude: number=0;
 
   selectedAlertTypeName:string;
 
@@ -43,11 +43,11 @@ export class MapSmartSDKComponent implements OnInit {
     location.onPopState(() => {
       document.querySelector('body').classList.remove('push-right');
     });
-    communicationService.windowResized$.subscribe(
+    _communicationService.windowResized$.subscribe(
       change => {
         this.onResize(null);
       });
-    communicationService.mapMarkerSet$.subscribe(
+    _communicationService.mapMarkerSet$.subscribe(
       marker => {
         this.setAlertMarker(marker);
       });
@@ -59,7 +59,7 @@ export class MapSmartSDKComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         document.querySelector('body').classList.remove('push-right');
         setTimeout(() => this.onResize(null), 100);
-        if (event.url === "/")
+        if (event.url === ' / ')
         {
           this.alertTypesListScroll.selectAlertTypeByName();
         }

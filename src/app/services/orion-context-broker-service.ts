@@ -20,20 +20,12 @@ export class OrionContextBrokerService {
 
   getAlertTypes(): AlertType[] {
     return [
-<<<<<<< HEAD
-      new AlertType("Asthma", "Asthma attacks", "AsthmaAttack"),
-=======
       new AlertType("Asthma", "Asthma attacks", "AsthmaAttacks", true),
->>>>>>> 80409101230b1413c8f773517b2aa1e844ad17f8
       new AlertType("TrafficJam", "Traffic jam", "TrafficJam"),
       new AlertType("CarAccident", "Car accident", "CarAccident"),
       new AlertType("WeatherCondition", "Wheater condition", "WeatherCondition"),
       new AlertType("Pollution", "High level of pollution", "HighLevelOfPollution"),
       new AlertType("Pollen", "Pollen", "Pollen"),
-<<<<<<< HEAD
-
-=======
->>>>>>> 80409101230b1413c8f773517b2aa1e844ad17f8
     ];
   }
 
