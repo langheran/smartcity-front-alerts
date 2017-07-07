@@ -59,8 +59,7 @@ export class MapSmartSDKComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         document.querySelector('body').classList.remove('push-right');
         setTimeout(() => this.onResize(null), 100);
-        if (event.url === ' / ')
-        {
+        if (event.url === ' / '){
           this.alertTypesListScroll.selectAlertTypeByName();
         }
         // console.log(event);

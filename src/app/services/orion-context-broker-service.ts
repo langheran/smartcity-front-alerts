@@ -70,7 +70,7 @@ export class OrionContextBrokerService {
                 new Alert("TropicalStorm","Tropical Storm","TropicalStorm"),
                 new Alert("Tornado","Tornado","Tornado"),
                 new Alert("Hurricane","Hurricane","Hurricane"),
-                new Alert("Foggy", "Foggy", "Floggy"),
+                new Alert("Foggy", "Foggy", "Foggy"),
                 new Alert("HighTemperature", "High temperature", "HighTemperature"),
                 new Alert("LowTemperature", "Low temperature", "LowTemperature"),
               ];
@@ -89,6 +89,11 @@ export class OrionContextBrokerService {
             case "Pollen":
               var arr = [
                 new Alert("Symptoms", "Symptoms or discomforts of users", "Symptoms"),
+                new Alert("Sinuspressure","Sinus pressure","Sinuspressure"),
+                new Alert("Runnynose","Runny nose","Runnynose"),
+                new Alert("Wateryeyes","Watery eyes","Watereyes"),
+                new Alert("Cough","Cough","Cough"),
+                new Alert("Nasalcongestion","Nasal congestion","Nasalcongestion")
               ];
               observer.next(arr);
               break;
