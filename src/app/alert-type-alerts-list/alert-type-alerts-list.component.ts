@@ -68,9 +68,13 @@ export class AlertTypeAlertsListComponent implements OnInit {
       this.alertTypeName = p.name;
       this.address = p.address;
 
+      console.log(p.name);
+      console.log(p.address);
+
       this.alertType = this.orion.getAlertTypeByName(this.alertTypeName);
       this.orion.getAlertsByAlertType(this.alertTypeName).subscribe(result => {
         this.alertsList = result;
+        console.log(this.alertsList);
       });
 
     });

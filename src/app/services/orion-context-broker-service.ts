@@ -22,7 +22,7 @@ export class OrionContextBrokerService {
     return [
       new AlertType("Asthma", "Asthma attacks", "AsthmaAttacks", true),
       new AlertType("TrafficJam", "Traffic jam", "TrafficJam"),
-      new AlertType("CarAccident", "Car accident", "CarAccident"),
+      new AlertType("CarAccident", "accident", "CarAccident"),
       new AlertType("WeatherCondition", "Wheater condition", "WeatherCondition"),
       new AlertType("Pollution", "High level of pollution", "HighLevelOfPollution"),
       new AlertType("Pollen", "Pollen", "Pollen"),
@@ -59,6 +59,7 @@ export class OrionContextBrokerService {
                 new Alert("Assaults", "Assaults", "Assaults"),
                 new Alert("Bikers injured", "Bikers injured", "BikersInjured"),
                 new Alert("CarCrashes", "Car crashes", "CarCrashes"),
+                new Alert("Personanimalrunover","Person/animal run over","MinorAccident")
               ];
               observer.next(arr);
               break;
@@ -69,7 +70,7 @@ export class OrionContextBrokerService {
                 new Alert("TropicalStorm","Tropical Storm","TropicalStorm"),
                 new Alert("Tornado","Tornado","Tornado"),
                 new Alert("Hurricane","Hurricane","Hurricane"),
-                new Alert("Foggy", "Foggy", "Foggy"),
+                new Alert("Foggy", "Foggy", "Floggy"),
                 new Alert("HighTemperature", "High temperature", "HighTemperature"),
                 new Alert("LowTemperature", "Low temperature", "LowTemperature"),
               ];
