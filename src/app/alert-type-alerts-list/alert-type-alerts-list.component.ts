@@ -72,14 +72,6 @@ export class AlertTypeAlertsListComponent implements OnInit {
       this.orion.getAlertsByAlertType(this.alertTypeName).subscribe(result => {
         this.alertsList = result;
       });
-      //COMPROBAMOS SI EL PRIMER VALOR DEL ARREGLO QUE RETORNA EL SERVICIO DE
-      //ORION QUE ESTA EN LA CARPETA SERVICE , ES NULL , SIGNIFICA QUE NO TIENE
-      //UNA SUBCATEGORIA Y ABRIMOS EN AUTOMATICO LA BARRA PARA ESCRIBIR UN COMENTARIO
-      if(this.alertsList[0]["name"] == "null"){
-          this.sidenav.open();
-      }else{
-          this.sidenav.close();
-      }
 
     });
   }

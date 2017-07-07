@@ -64,9 +64,11 @@ export class OrionContextBrokerService {
               break;
             case "WeatherCondition":
               var arr = [
-                new Alert("Rain", "Rain", "Rain"),
-                new Alert("Sunny", "Sunny", "Sunny"),
-                new Alert("Cloud", "Cloud", "Cloud"),
+                new Alert("Rainfall", "Rain Fall", "Rain"),
+                new Alert("TropicalDeression","Tropical Depresion","TropicalDepression"),
+                new Alert("TropicalStorm","Tropical Storm","TropicalStorm"),
+                new Alert("Tornado","Tornado","Tornado"),
+                new Alert("Hurricane","Hurricane","Hurricane"),
                 new Alert("Foggy", "Foggy", "Foggy"),
                 new Alert("HighTemperature", "High temperature", "HighTemperature"),
                 new Alert("LowTemperature", "Low temperature", "LowTemperature"),
@@ -75,7 +77,11 @@ export class OrionContextBrokerService {
               break;
             case "Pollution":
               var arr = [
-                new Alert("VisibleSmog", "Visible smog", "VisibleSmog"),
+                new Alert("Smog", "Visible smog", "VisibleSmog"),
+                new Alert("volcanoes/industrial processes","volcanoes/industrial processes","Volcan"),
+                new Alert("Aerosols, ash, dust, and fecal matter","Aerosols, ash, dust, and fecal matter","GasVehicular"),
+                new Alert("Odors","Odors","OdorsGarbaage"),
+                new Alert("Radioactive","Radioactive","RadioactiveNuclear")
               ];
               observer.next(arr);
               break;

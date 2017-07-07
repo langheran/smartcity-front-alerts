@@ -7158,6 +7158,7 @@ input.mat-input-element:-webkit-autofill + .mat-input-placeholder .mat-placehold
 .warn-color {
   background-color: #002d67;
   color: white;
+
 }
 .alto{
   position: fixed;
