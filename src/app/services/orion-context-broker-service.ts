@@ -22,7 +22,7 @@ export class OrionContextBrokerService {
     return [
       new AlertType("Asthma", "Asthma attacks", "AsthmaAttacks", true),
       new AlertType("TrafficJam", "Traffic jam", "TrafficJam"),
-      new AlertType("CarAccident", "accident", "CarAccident"),
+      new AlertType("Accident", "accident", "Accident"),
       new AlertType("WeatherCondition", "Wheater condition", "WeatherCondition"),
       new AlertType("Pollution", "High level of pollution", "HighLevelOfPollution"),
       new AlertType("Pollen", "Pollen", "Pollen"),
@@ -51,10 +51,10 @@ export class OrionContextBrokerService {
                ];
                observer.next(arr);
             break;
-            case "CarAccident":
+            case "Accident":
               var arr = [
                 new Alert("MinorAccident", "Minor Accident", "MinorAccident"),
-                new Alert("CarAccident", "Car Accident", "CarAccident"),
+                new Alert("CarAccident", "Accident", "CarAccident"),
                 new Alert("Hazard On Road", "Hazard On Road", "HazardOnRoad"),
                 new Alert("Assaults", "Assaults", "Assaults"),
                 new Alert("Bikers injured", "Bikers injured", "BikersInjured"),
