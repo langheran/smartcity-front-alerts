@@ -99,7 +99,7 @@ export class OrionContextBrokerService {
               break;
             case "Asthma":
               var arr = [
-                new Alert("null", "null", "null"),
+                new Alert("null", "Asthma attack", "null"),
               ];
               observer.next(arr);
             break;
