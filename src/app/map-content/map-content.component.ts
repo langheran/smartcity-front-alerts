@@ -12,7 +12,8 @@ declare var google: any;
 @Component({
   selector: 'app-map-content',
   template: ' ',
-  outputs: ['onErrorDialogClosed']
+  outputs: ['onErrorDialogClosed'],
+  inputs:['gotToCenterOnInit']
 })
 export class MapContentComponent implements OnInit {
   map: any;
@@ -21,7 +22,7 @@ export class MapContentComponent implements OnInit {
   lng: number;
   originalPosition: Coordinates;
   onErrorDialogClosed: EventEmitter<boolean> = new EventEmitter();
-  gotToCenter:boolean=false;
+  gotToCenterOnInit:boolean=false;
 
   constructor(public mapApiWrapper: GoogleMapsAPIWrapper,
               private locationService: LocationService, private dialogsService: DialogsService, private _communicationService: CommunicationService, public _loader: MapsAPILoader) {
@@ -39,9 +40,9 @@ export class MapContentComponent implements OnInit {
         this.mapApiWrapper.getNativeMap()
           .then((map) => {
             this.map = map;
-            if(!this.gotToCenter) {
+            if(this.gotToCenterOnInit) {
               this.gotoPosition(this.lat, this.lng);
-              this.gotToCenter=true;
+              this.gotToCenterOnInit=false;
             }
             this.getCurrentAddress().subscribe((address: string) => {
                 this._communicationService.address = address;

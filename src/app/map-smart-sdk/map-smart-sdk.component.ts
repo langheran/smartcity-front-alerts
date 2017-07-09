@@ -36,6 +36,7 @@ export class MapSmartSDKComponent implements OnInit {
   appSocialMediaGoogleMapMarker:string;
   markerLatitude: number=0;
   markerLongitude: number=0;
+  centerMap:boolean=false;
 
   selectedAlertTypeName:string;
 
@@ -59,8 +60,11 @@ export class MapSmartSDKComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         document.querySelector('body').classList.remove('push-right');
         setTimeout(() => this.onResize(null), 100);
-        if (event.url === ' / '){
+        if (event.url === '/' || event.url === '/map'){
           this.alertTypesListScroll.selectAlertTypeByName();
+          this.centerMap=true;
+        }else{
+          this.centerMap=false;
         }
         // console.log(event);
       }
