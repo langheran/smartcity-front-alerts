@@ -1,6 +1,6 @@
 import {Component, EventEmitter, NgZone, OnInit} from '@angular/core';
 
-import {GoogleMapsAPIWrapper} from 'angular2-google-maps/core';
+import {GoogleMapsAPIWrapper, MapsAPILoader} from 'angular2-google-maps/core';
 import {Observable} from "rxjs/Observable";
 import {LocationService} from "../services/location-service";
 import {PlatformLocation} from "@angular/common";
@@ -24,7 +24,7 @@ export class MapContentComponent implements OnInit {
   gotToCenter:boolean=false;
 
   constructor(public mapApiWrapper: GoogleMapsAPIWrapper,
-              private locationService: LocationService, private dialogsService: DialogsService, private _communicationService: CommunicationService) {
+              private locationService: LocationService, private dialogsService: DialogsService, private _communicationService: CommunicationService, public _loader: MapsAPILoader) {
   }
 
   ngOnInit() {
@@ -96,26 +96,28 @@ export class MapContentComponent implements OnInit {
   }
 
   gotoPosition(lat: number, lng: number, showCircle?: Boolean) {
-    if ("undefined" === typeof google)
-      return;
-    let position = new google.maps.LatLng(lat, lng);
-    this.map.setCenter(position);
-    if (this.cityCircle || !showCircle) {
-      if (this.cityCircle)
-        this.cityCircle.setMap(null);
-      this.cityCircle = null;
-    }
-    else {
-      this.cityCircle = new google.maps.Circle({
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-        map: this.map,
-        center: position,
-        radius: (10000 / (this.map.getZoom()))
-      });
-    }
+    this._loader.load().then(() => {
+      if ("undefined" === typeof google)
+        return;
+      let position = new google.maps.LatLng(lat, lng);
+      this.map.setCenter(position);
+      if (this.cityCircle || !showCircle) {
+        if (this.cityCircle)
+          this.cityCircle.setMap(null);
+        this.cityCircle = null;
+      }
+      else {
+        this.cityCircle = new google.maps.Circle({
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          map: this.map,
+          center: position,
+          radius: (10000 / (this.map.getZoom()))
+        });
+      }
+    });
   }
 }
