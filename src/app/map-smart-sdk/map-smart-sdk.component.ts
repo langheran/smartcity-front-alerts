@@ -2,7 +2,7 @@ import {
   Component, NgModule, OnInit, ViewChild, ElementRef, ChangeDetectorRef, HostListener,
   Inject
 } from '@angular/core';
-import {GoogleMapsAPIWrapper} from "angular2-google-maps/core";
+import {GoogleMapsAPIWrapper, MapsAPILoader} from "angular2-google-maps/core";
 import {LocationService} from "../services/location-service";
 import {CommunicationService} from "../services/communication-service";
 import {ActivatedRoute, NavigationEnd, Router, CanActivate, NavigationStart} from "@angular/router";
@@ -13,7 +13,7 @@ import {OrionContextBrokerService} from "../services/orion-context-broker-servic
 import {AlertType} from "../alert-type";
 import {DialogsService} from "app/services/dialogs-service";
 
-import { SocialMediaGoogleMapMarkerDirective } from '../social-media-google-map-marker-directive';
+import {SocialMediaGoogleMapMarkerDirective} from '../social-media-google-map-marker-directive';
 
 declare var $: any;
 
@@ -33,13 +33,25 @@ export class MapSmartSDKComponent implements OnInit {
   @ViewChild('fillContentDiv') fillContentDiv;
   @ViewChild('alertTypesListScroll') alertTypesListScroll;
   @ViewChild('topMenu') topMenu;
-  appSocialMediaGoogleMapMarker:string;
-  markerLatitude: number=0;
-  markerLongitude: number=0;
+  appSocialMediaGoogleMapMarker: string;
+  markerLatitude: number = 0;
+  markerLongitude: number = 0;
+  marker: any;
+  centerMap: boolean = true;
+  mapAlreadyLoaded:boolean=false;
 
-  selectedAlertTypeName:string;
+  selectedAlertTypeName: string;
 
-  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private locationService: LocationService, private el: ElementRef, private cd: ChangeDetectorRef, private _communicationService: CommunicationService, private router: Router, private route: ActivatedRoute, location: PlatformLocation,private dialogsService: DialogsService) {
+  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService,
+              private locationService: LocationService,
+              private el: ElementRef,
+              private cd: ChangeDetectorRef,
+              private _communicationService: CommunicationService,
+              private router: Router,
+              private route: ActivatedRoute,
+              location: PlatformLocation,
+              private dialogsService: DialogsService,
+              public _loader: MapsAPILoader) {
     location.onPopState(() => {
       document.querySelector('body').classList.remove('push-right');
     });
@@ -47,19 +59,25 @@ export class MapSmartSDKComponent implements OnInit {
       change => {
         this.onResize(null);
       });
-    _communicationService.mapMarkerSet$.subscribe(
+    this._communicationService.mapMarkerSet$.subscribe(
       marker => {
-        this.setAlertMarker(marker);
+        this.marker = marker;
+        if(this.mapAlreadyLoaded)
+          this.setAlertMarker(marker);
       });
     this.router.events.subscribe((event) => {
-
       if (event instanceof NavigationStart) {
         this.alertTypesListScroll.selectAlertTypeByName();
+        if (event.url === '/' || event.url === '/map') {
+          this.centerMap = true;
+        } else {
+          this.centerMap = false;
+        }
       }
       if (event instanceof NavigationEnd) {
         document.querySelector('body').classList.remove('push-right');
         setTimeout(() => this.onResize(null), 100);
-        if (event.url === ' / '){
+        if (event.url === '/' || event.url === '/map') {
           this.alertTypesListScroll.selectAlertTypeByName();
         }
         // console.log(event);
@@ -71,7 +89,7 @@ export class MapSmartSDKComponent implements OnInit {
 
   }
 
-  openDailog(){
+  openDailog() {
     this.dialogsService
       .confirm('Location tracking must be enabled in order to view this website', 'Do you want to view instructions on how to enable it?')
       .subscribe(res => {
@@ -89,44 +107,50 @@ export class MapSmartSDKComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  hideMenu($event){
-    if($(this.topMenu.toggleSidebarButton.nativeElement).css("display")!="none") {
+  hideMenu($event) {
+    if ($(this.topMenu.toggleSidebarButton.nativeElement).css("display") != "none") {
       const dom: any = document.querySelector('body');
       dom.classList.remove('push-right');
       $event.stopPropagation();
     }
   }
 
-  onErrorDialogClosed($event){
-    if($event)
+  onErrorDialogClosed($event) {
+    if ($event)
       this.router.navigate(['/about/HowToEnableGeolocation'])
     else
       location.reload();
+  }
+
+  mapLoaded() {
+    this.mapAlreadyLoaded=true;
+    if (this.marker) {
+      this.setAlertMarker(this.marker);
+      this.marker = null;
+    }
   }
 
   ngAfterContentChecked() {
     this.onResize(null);
     if (this.route.firstChild)
       this.route.firstChild.params.subscribe(p => {
-        if(p.name)
-        if(!this.selectedAlertTypeName || p.name!=this.selectedAlertTypeName) {
-          this.alertTypesListScroll.selectAlertTypeByName(p.name);
-          this.selectedAlertTypeName=p.name;
-        }
+        if (p.name)
+          if (!this.selectedAlertTypeName || p.name != this.selectedAlertTypeName) {
+            this.alertTypesListScroll.selectAlertTypeByName(p.name);
+            this.selectedAlertTypeName = p.name;
+          }
       });
   }
 
-  setAlertMarker($marker){
-     setTimeout(()=>{
-      this.appSocialMediaGoogleMapMarker=$marker.icon;
-      this.markerLatitude=$marker.lat;
-      this.markerLongitude=$marker.lng;
-      this.mapContent.gotoPosition($marker.lat, $marker.lng)
-     },500);
+  setAlertMarker($marker) {
+    if ($marker.icon)
+      this.appSocialMediaGoogleMapMarker = $marker.icon;
+    this.markerLatitude = $marker.lat;
+    this.markerLongitude = $marker.lng;
+    this.mapContent.gotoPosition($marker.lat, $marker.lng);
   }
 
-  onAlertTypeSelected($event)
-  {
+  onAlertTypeSelected($event) {
     this.onResize(null);
   }
 
@@ -141,8 +165,8 @@ export class MapSmartSDKComponent implements OnInit {
   }
 
   gotoCenter() {
-    this.markerLatitude=-1;
-    this.markerLongitude=-1;
+    this.markerLatitude = -1;
+    this.markerLongitude = -1;
     this.mapContent.gotoCenter();
   }
 }

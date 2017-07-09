@@ -83,7 +83,10 @@ UtilityService.initToISOString();
   providers: [
     LocationService,
     { provide: 'OrionContextBroker', useClass: OrionContextBrokerService },
-    CommunicationService,
+    {
+      provide: CommunicationService,
+      useFactory: CommunicationServiceFactory
+    },
     {
       provide: Http,
       useFactory: HttpServiceFactory
@@ -99,3 +102,6 @@ export function HttpServiceFactory(backend: XHRBackend, options: RequestOptions,
   return new HttpService(backend, options, dialog);
 }
 
+export function CommunicationServiceFactory() {
+  return new CommunicationService();
+}
