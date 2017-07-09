@@ -12,7 +12,7 @@ declare var google: any;
 @Component({
   selector: 'app-map-content',
   template: ' ',
-  outputs: ['onErrorDialogClosed'],
+  outputs: ['onErrorDialogClosed', 'onNgAfterViewInit'],
   inputs:['gotToCenterOnInit']
 })
 export class MapContentComponent implements OnInit {
@@ -22,6 +22,7 @@ export class MapContentComponent implements OnInit {
   lng: number;
   originalPosition: Coordinates;
   onErrorDialogClosed: EventEmitter<boolean> = new EventEmitter();
+  onNgAfterViewInit: EventEmitter<any> = new EventEmitter();
   gotToCenterOnInit:boolean=false;
 
   constructor(public mapApiWrapper: GoogleMapsAPIWrapper,
@@ -48,6 +49,7 @@ export class MapContentComponent implements OnInit {
                 this._communicationService.address = address;
               }
             );
+            this.onNgAfterViewInit.emit();
           });
       }, error => {
         console.log('error', error);

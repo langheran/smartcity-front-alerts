@@ -15,7 +15,7 @@
                                   [appSocialMediaGoogleMapMarker]="appSocialMediaGoogleMapMarker" >
 
           </sebm-google-map-marker>
-          <app-map-content [gotToCenterOnInit]="centerMap" (onErrorDialogClosed)="onErrorDialogClosed($event)" #mapContent></app-map-content>
+          <app-map-content [gotToCenterOnInit]="centerMap" (onErrorDialogClosed)="onErrorDialogClosed($event)" (onNgAfterViewInit)="mapLoaded($event)" #mapContent></app-map-content>
         </sebm-google-map>
         <span class="center-button" >
           <button (click)="gotoCenter()" class="header-style" md-fab md-fab-bottom-right a>
