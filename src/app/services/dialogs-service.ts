@@ -20,6 +20,23 @@ export class DialogsService {
     return dialogRef.afterClosed();
   }
 
+  public timerConfirm(title: string, message: string, seconds: number): Observable<boolean> {
+    let dialogRef: MdDialogRef<ConfirmDialogComponent>;
+    dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.componentInstance.title = title;
+    dialogRef.componentInstance.message = message;
+    var timeoutId = window['__zone_symbol__setTimeout'](() => {
+      if(dialogRef.componentInstance) {
+        dialogRef.componentInstance.confirmDialog();
+        dialogRef.close();
+      }
+      if(dialogRef)
+        dialogRef=null;
+      window['__zone_symbol__clearTimeout'](timeoutId);
+    }, seconds);
+    return dialogRef.afterClosed();
+  }
+
   public timerMessage(title: string, message: string, seconds: number): Observable<boolean> {
     let dialogRef: MdDialogRef<MessageDialogComponent>;
     dialogRef = this.dialog.open(MessageDialogComponent);

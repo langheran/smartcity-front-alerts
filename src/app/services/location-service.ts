@@ -26,8 +26,8 @@ export class LocationService {
           },
           {
             enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 1000
+            timeout: 10000,
+            maximumAge: 5000
           }
         );
       } else {
@@ -57,8 +57,8 @@ export class LocationService {
           },
           {
             enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 1000
+            timeout: 10000,
+            maximumAge: 5000
           });
       } else {
         observer.error('Unsupported Browser');

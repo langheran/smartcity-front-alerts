@@ -20,7 +20,7 @@ export class AlertTypesListScrollComponent implements OnInit {
   alertTypesList: AlertType[];
   selectedAlertType: AlertType;
 
-  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private router: Router, private route: ActivatedRoute, private _communicationService: CommunicationService) {
+  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private router: Router, private route: ActivatedRoute, private _communicationService: CommunicationService, private dialogsService: DialogsService) {
   }
 
   ngOnInit() {
@@ -48,9 +48,17 @@ export class AlertTypesListScrollComponent implements OnInit {
     this.selectedAlertType = JSON.parse(JSON.stringify(alertType));
     if (this.selectedAlertType.sendImmediately) {
       this.orion.getAlertsByAlertType(alertType.name).subscribe(eventObserved => {
-        this.orion.submitAlert(alertType, eventObserved[0], '', this._communicationService.address).subscribe(r=>{
-          this.hideAlerts();
-        });
+        this.dialogsService
+          .timerConfirm(eventObserved[0].display+' alert will be sent in 5 seconds!', 'Are you agree?', 5000)
+          .subscribe(res => {
+            if ("undefined" === typeof res)
+              res = false;
+            if (res) {
+              this.orion.submitAlert(alertType, eventObserved[0], '', this._communicationService.address).subscribe(r => {
+                this.hideAlerts();
+              });
+            }
+          });
       });
     }
     else {
