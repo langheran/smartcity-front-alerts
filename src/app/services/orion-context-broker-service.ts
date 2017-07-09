@@ -22,7 +22,7 @@ export class OrionContextBrokerService {
     return [
       new AlertType("Asthma", "Asthma attacks", "AsthmaAttacks", true),
       new AlertType("TrafficJam", "Traffic jam", "TrafficJam"),
-      new AlertType("CarAccident", "Car accident", "CarAccident"),
+      new AlertType("CarAccident", "accident", "CarAccident"),
       new AlertType("WeatherCondition", "Wheater condition", "WeatherCondition"),
       new AlertType("Pollution", "High level of pollution", "HighLevelOfPollution"),
       new AlertType("Pollen", "Pollen", "Pollen"),
@@ -59,14 +59,17 @@ export class OrionContextBrokerService {
                 new Alert("Assaults", "Assaults", "Assaults"),
                 new Alert("Bikers injured", "Bikers injured", "BikersInjured"),
                 new Alert("CarCrashes", "Car crashes", "CarCrashes"),
+                new Alert("Personanimalrunover","Person/animal run over","MinorAccident")
               ];
               observer.next(arr);
               break;
             case "WeatherCondition":
               var arr = [
-                new Alert("Rain", "Rain", "Rain"),
-                new Alert("Sunny", "Sunny", "Sunny"),
-                new Alert("Cloud", "Cloud", "Cloud"),
+                new Alert("Rainfall", "Rain Fall", "Rain"),
+                new Alert("TropicalDeression","Tropical Depresion","TropicalDepression"),
+                new Alert("TropicalStorm","Tropical Storm","TropicalStorm"),
+                new Alert("Tornado","Tornado","Tornado"),
+                new Alert("Hurricane","Hurricane","Hurricane"),
                 new Alert("Foggy", "Foggy", "Foggy"),
                 new Alert("HighTemperature", "High temperature", "HighTemperature"),
                 new Alert("LowTemperature", "Low temperature", "LowTemperature"),
@@ -75,19 +78,28 @@ export class OrionContextBrokerService {
               break;
             case "Pollution":
               var arr = [
-                new Alert("VisibleSmog", "Visible smog", "VisibleSmog"),
+                new Alert("Smog", "Visible smog", "VisibleSmog"),
+                new Alert("volcanoes/industrial processes","volcanoes/industrial processes","Volcan"),
+                new Alert("Aerosols, ash, dust, and fecal matter","Aerosols, ash, dust, and fecal matter","GasVehicular"),
+                new Alert("Odors","Odors","OdorsGarbaage"),
+                new Alert("Radioactive","Radioactive","RadioactiveNuclear")
               ];
               observer.next(arr);
               break;
             case "Pollen":
               var arr = [
                 new Alert("Symptoms", "Symptoms or discomforts of users", "Symptoms"),
+                new Alert("Sinuspressure","Sinus pressure","Sinuspressure"),
+                new Alert("Runnynose","Runny nose","Runnynose"),
+                new Alert("Wateryeyes","Watery eyes","Watereyes"),
+                new Alert("Cough","Cough","Cough"),
+                new Alert("Nasalcongestion","Nasal congestion","Nasalcongestion")
               ];
               observer.next(arr);
               break;
             case "Asthma":
               var arr = [
-                new Alert("AsthmaAttack", "Asthma attack", "AsthmaAttack"),
+                new Alert("null", "null", "null"),
               ];
               observer.next(arr);
             break;

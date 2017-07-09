@@ -3,6 +3,7 @@ import {AlertType} from "../alert-type";
 import {OrionContextBrokerService} from "../services/orion-context-broker-service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CommunicationService} from "../services/communication-service";
+
 import {DialogsService} from "../services/dialogs-service";
 import {tick} from "@angular/core/testing";
 import {fakeAsync} from "@angular/core/testing";
@@ -41,6 +42,15 @@ export class AlertTypesListScrollComponent implements OnInit {
   }
 
   selectAlertType(alertType: AlertType) {
+
+    /*this._communicationService.mapContent.getCurrentAddress().subscribe((address: string) => {
+        //this.orion.submitAlert(this.alertType, this.currentAlert, description, address).subscribe(r=>{});
+        //this.dir = address;
+        this.router.navigate(['../AlertTypeAlertsList/'+alertType.name+'/'+address]);
+      }
+    );*/
+
+
     this.onAlertTypeSelected.emit(alertType);
     var prevSelectedAlertTypeName = "";
     if (this.selectedAlertType)
@@ -60,12 +70,13 @@ export class AlertTypesListScrollComponent implements OnInit {
             }
           });
       });
-    }
-    else {
+    } else {
+      console.log("maickol rodriguez");
+      console.log( this._communicationService.address );
       if (prevSelectedAlertTypeName && prevSelectedAlertTypeName == alertType.name) {
         this.hideAlerts();
       }
+     this.router.navigate(['../AlertTypeAlertsList/'+ alertType.name + '/' + this._communicationService.address]);
     }
   }
 }
-

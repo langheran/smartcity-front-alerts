@@ -25,10 +25,12 @@ export class AlertComponent implements OnInit {
   }
 
   ngOnInit() {
-    //console.log(this.router.url.split('/'));
-    //console.log(this.alert.icon);
-    this.url_img =  "../assets/img/"+this.router.url.split('/')[2]+"/"+this.alert.icon+".svg";
+    if (this.alert.icon !== 'null') {
+      this.url_img =  '../assets/img/' + this.router.url.split('/')[2] + '/' + this.alert.icon + '.svg';
+    }
     this.changeTruncate();
+
+
   }
 
   @HostListener('window:resize', ['$event'])

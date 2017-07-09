@@ -7157,8 +7157,23 @@ input.mat-input-element:-webkit-autofill + .mat-input-placeholder .mat-placehold
 
 .warn-color {
   background-color: #002d67;
-  color: white; }
+  color: white;
 
+}
+.alto{
+  position: fixed;
+ height: 100%;
+ min-height: 100%;
+ width: 100%;
+ min-width: 100%;
+}
 .sidebar-color {
-  background-color: #040E2A;
-  color: white; }
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, #f6f6f6 92%, #f6f6f6 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, white), color-stop(97%, #f6f6f6), color-stop(100%, #00d6de));
+  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 92%, #f6f6f6 100%);
+  background: -o-linear-gradient(top, white 0%, #f6f6f6 92%, #f6f6f6 100%);
+  background: -ms-linear-gradient(top, white 0%, #f6f6f6 92%, #f6f6f6 100%);
+  background: linear-gradient(to bottom, white 0%, #f6f6f6 92%, #f6f6f6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0 );
+}

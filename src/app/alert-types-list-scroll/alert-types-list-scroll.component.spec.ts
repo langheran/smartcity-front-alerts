@@ -23,4 +23,3 @@ describe('AlertTypesListScrollComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-

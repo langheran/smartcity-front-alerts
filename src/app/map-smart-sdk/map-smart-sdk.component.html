@@ -26,10 +26,11 @@
       </div>
 
       <div class="footer">
+
         <app-alert-types-list-scroll #alertTypesListScroll (onAlertTypeSelected)="onAlertTypeSelected($event)">
 
         </app-alert-types-list-scroll>
-        <router-outlet (activate)="componentAdded($event)" (deactivate)="componentAdded($event)"></router-outlet>
+        <!--<router-outlet (activate)="componentAdded($event)" (deactivate)="componentAdded($event)"></router-outlet>-->
         <!--<div class="logos">
           <app-footer></app-footer>
         </div>-->
