@@ -36,8 +36,9 @@ export class MapSmartSDKComponent implements OnInit {
   appSocialMediaGoogleMapMarker: string;
   markerLatitude: number = 0;
   markerLongitude: number = 0;
-  marker:any;
+  marker: any;
   centerMap: boolean = true;
+  mapAlreadyLoaded:boolean=false;
 
   selectedAlertTypeName: string;
 
@@ -60,7 +61,9 @@ export class MapSmartSDKComponent implements OnInit {
       });
     this._communicationService.mapMarkerSet$.subscribe(
       marker => {
-        this.marker=marker;
+        this.marker = marker;
+        if(this.mapAlreadyLoaded)
+          this.setAlertMarker(marker);
       });
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
@@ -119,10 +122,11 @@ export class MapSmartSDKComponent implements OnInit {
       location.reload();
   }
 
-  mapLoaded(){
-    if(this.marker) {
+  mapLoaded() {
+    this.mapAlreadyLoaded=true;
+    if (this.marker) {
       this.setAlertMarker(this.marker);
-      this.marker=null;
+      this.marker = null;
     }
   }
 
@@ -139,10 +143,11 @@ export class MapSmartSDKComponent implements OnInit {
   }
 
   setAlertMarker($marker) {
+    if ($marker.icon)
       this.appSocialMediaGoogleMapMarker = $marker.icon;
-      this.markerLatitude = $marker.lat;
-      this.markerLongitude = $marker.lng;
-      this.mapContent.gotoPosition($marker.lat, $marker.lng);
+    this.markerLatitude = $marker.lat;
+    this.markerLongitude = $marker.lng;
+    this.mapContent.gotoPosition($marker.lat, $marker.lng);
   }
 
   onAlertTypeSelected($event) {

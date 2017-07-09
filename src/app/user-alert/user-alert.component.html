@@ -7,7 +7,7 @@
     </h6>
     <p class="card-text" *ngIf="userAlert.description">{{userAlert.description.value}}</p>
     <!--<a href="#" class="card-link">Edit</a>-->
-    <a [routerLink]="['/map/viewAlert/'+userAlert.id]" class="card-link">View in map</a>
+    <a [routerLink]="['/map/viewAlert/'+userAlert.id]" class="card-link" (click)="gotoMarker()" >View in map</a>
   </div>
   <div class="card-footer text-muted" *ngIf="userAlert.dateTime">{{userAlert.dateTime.value}}</div>
 </div>
