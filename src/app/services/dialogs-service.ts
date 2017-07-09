@@ -28,7 +28,6 @@ export class DialogsService {
     var timeoutId = window['__zone_symbol__setTimeout'](() => {
       if(dialogRef.componentInstance) {
         dialogRef.componentInstance.confirmDialog();
-        dialogRef.close();
       }
       if(dialogRef)
         dialogRef=null;

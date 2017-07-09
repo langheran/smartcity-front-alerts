@@ -23,6 +23,5 @@ export class ConfirmDialogComponent {
 
   confirmDialog() {
     this.confirmButton._elementRef.nativeElement.click();
-    this.dialogRef.close(true);
   }
 }
