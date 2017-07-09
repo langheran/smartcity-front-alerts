@@ -20,7 +20,7 @@ export class OrionContextBrokerService {
 
   getAlertTypes(): AlertType[] {
     return [
-      new AlertType("Asthma", "Asthma attacks", "AsthmaAttacks", true),
+      new AlertType("Asthma", "Asthma attack", "AsthmaAttacks", true),
       new AlertType("TrafficJam", "Traffic jam", "TrafficJam"),
       new AlertType("CarAccident", "accident", "CarAccident"),
       new AlertType("WeatherCondition", "Wheater condition", "WeatherCondition"),
@@ -99,7 +99,7 @@ export class OrionContextBrokerService {
               break;
             case "Asthma":
               var arr = [
-                new Alert("null", "Asthma attack", "null"),
+                new Alert("Asthma", "Asthma attack", "null"),
               ];
               observer.next(arr);
             break;
@@ -122,8 +122,21 @@ export class OrionContextBrokerService {
       case "Pollen":
         return new AlertType("Pollen", "Pollen", "local_florist");
       case "Asthma":
-        return new AlertType("Asthma", "Asthma attacks", "local_pharmacy", true);
+        return new AlertType("Asthma", "Asthma attack", "local_pharmacy", true);
     }
+  }
+
+  getAlertEventObservedDisplay(alertTypeName:string, eventObserved: string): Observable<string>
+  {
+     return this.getAlertsByAlertType(alertTypeName).map((alerts)=>{
+       var display:string;
+       alerts.forEach((alert)=>{
+         if(alert.name==eventObserved)
+           display=alert.display;
+       });
+       return display;
+       }
+     );
   }
 
   submitAlert(alert: AlertType, eventObserved: Alert, description: string, address: string) {
@@ -163,7 +176,7 @@ export class OrionContextBrokerService {
       options
     ).finally(
       ()=>{
-        this.showAutoCloseMessage('Alert sent!', 'Alert <b>'+alert.display + ' - ' + eventObserved.display +'</b> was sent. </br></br> Thanks! :)', 3000);
+        this.showAutoCloseMessage('Alert sent!', 'Alert <b>'+alert.display + (alert.sendImmediately?'':' - ' + eventObserved.display) +'</b> was sent. </br></br> Thanks! :)', 3000);
       }
     );
   }
