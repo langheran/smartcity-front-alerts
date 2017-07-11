@@ -38,6 +38,7 @@ import {DialogsModule} from "./services/dialogs-module";
 import { CoordinateMarkerComponent } from './coordinate-marker/coordinate-marker.component';
 import { UserAlertComponent } from './user-alert/user-alert.component';
 import {SocialMediaGoogleMapMarkerDirective} from "app/social-media-google-map-marker-directive";
+import { LoginComponent } from './login/login.component';
 
 UtilityService.initToISOString();
 
@@ -63,7 +64,8 @@ UtilityService.initToISOString();
     ContactUsComponent,
     CoordinateMarkerComponent,
     UserAlertComponent,
-    SocialMediaGoogleMapMarkerDirective
+    SocialMediaGoogleMapMarkerDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
