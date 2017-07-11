@@ -1,3 +1,47 @@
-<p>
-  login works!
-</p>
+<!--<app-top-menu></app-top-menu>-->
+<!--<div class="contenedor">-->
+<div class="contenedor">
+  <div class="col-md-6 center">
+    <!--<md-toolbar style="background-color:transparent;">
+      <form class="example-full-width">
+        <md-toolbar-row>
+          <md-input-container class="example-full-width">
+            <input mdInput #username placeholder="Username" required/>
+          </md-input-container>
+        </md-toolbar-row>
+        <md-toolbar-row style="padding-top:80px;">
+          <md-input-container class="example-full-width">
+            <input mdInput #password placeholder="Password" required/>
+          </md-input-container>
+        </md-toolbar-row><br><br>
+        <md-toolbar-row>
+          <div class="example-full-width">
+            <button md-raised-button style="width:100%;">Sign in</button><br><br>
+            <a md-button [routerLink]="['/registerUser']" style="width:100%;">Register</a>
+          </div>
+        </md-toolbar-row>
+      </form>
+    </md-toolbar>-->
+    <md-card class="example-card">
+      <md-card-header>
+        <md-card-title><img src="../assets/img/LoginLogo.svg" class="img-fluid"></md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <p>
+          <md-input-container class="example-full-width">
+            <input mdInput #username placeholder="Username" required/>
+            <md-icon mdSuffix>perm_identity</md-icon>
+          </md-input-container><br><br>
+          <md-input-container class="example-full-width">
+            <input mdInput #password placeholder="Password" required/>
+            <md-icon mdSuffix>https</md-icon>
+          </md-input-container>
+        </p>
+      </md-card-content>
+      <md-card-actions>
+       <button md-raised-button style="width:100%; background-color:#00d6de; color:white;">Sign in</button><br><br>
+       <a md-button [routerLink]="['/registerUser']" style="width:100%;">Register</a>
+      </md-card-actions>
+    </md-card>
+  </div>
+</div>
