@@ -10,16 +10,24 @@ import {ContactUsComponent} from "../about/contact-us/contact-us.component";
 import {CoordinateMarkerComponent} from "../coordinate-marker/coordinate-marker.component";
 
 const routes: Routes = [
+
   {path: '', redirectTo: 'map', pathMatch: 'full'},
-  {path: 'map' , component: MapSmartSDKComponent,
-  children:[
+  {
+    path: 'map' , component: MapSmartSDKComponent,
+  children : [
     // {path: '', redirectTo: '', pathMatch: 'full'},
-    {path: ':name', component: AlertTypeAlertsListComponent},
     {path: 'viewAlert/:alertId', component: CoordinateMarkerComponent},
   ]
   },
-  {path: 'about', component: AboutComponent,
-    children:[
+  {
+    path: 'map' , component: MapSmartSDKComponent
+  },
+  {
+    path: 'AlertTypeAlertsList/:name/:address', component: AlertTypeAlertsListComponent
+  },
+  {
+    path: 'about', component: AboutComponent,
+    children : [
       { path : '', component : ContactUsComponent },
       {path: 'HowToEnableGeolocation', component: HowToEnableGeolocationComponent},
     ]
@@ -33,4 +41,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class RoutesRoutingModule { }
-

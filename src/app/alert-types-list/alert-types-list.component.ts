@@ -25,4 +25,3 @@ export class AlertTypesListComponent implements OnInit {
     this.colNumber = window.innerWidth > window.innerHeight ? 3 : 2;
   }
 }
-

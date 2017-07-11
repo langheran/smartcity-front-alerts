@@ -1,6 +1,6 @@
 import {Component, EventEmitter, NgZone, OnInit} from '@angular/core';
 
-import {GoogleMapsAPIWrapper} from 'angular2-google-maps/core';
+import {GoogleMapsAPIWrapper, MapsAPILoader} from 'angular2-google-maps/core';
 import {Observable} from "rxjs/Observable";
 import {LocationService} from "../services/location-service";
 import {PlatformLocation} from "@angular/common";
@@ -12,7 +12,8 @@ declare var google: any;
 @Component({
   selector: 'app-map-content',
   template: ' ',
-  outputs: ['onErrorDialogClosed']
+  outputs: ['onErrorDialogClosed', 'onNgAfterViewInit'],
+  inputs:['gotToCenterOnInit']
 })
 export class MapContentComponent implements OnInit {
   map: any;
@@ -21,10 +22,11 @@ export class MapContentComponent implements OnInit {
   lng: number;
   originalPosition: Coordinates;
   onErrorDialogClosed: EventEmitter<boolean> = new EventEmitter();
-  gotToCenter:boolean=false;
+  onNgAfterViewInit: EventEmitter<any> = new EventEmitter();
+  gotToCenterOnInit:boolean=false;
 
   constructor(public mapApiWrapper: GoogleMapsAPIWrapper,
-              private locationService: LocationService, private dialogsService: DialogsService, private _communicationService: CommunicationService) {
+              private locationService: LocationService, private dialogsService: DialogsService, private _communicationService: CommunicationService, public _loader: MapsAPILoader) {
   }
 
   ngOnInit() {
@@ -39,14 +41,15 @@ export class MapContentComponent implements OnInit {
         this.mapApiWrapper.getNativeMap()
           .then((map) => {
             this.map = map;
-            if(!this.gotToCenter) {
+            if(this.gotToCenterOnInit) {
               this.gotoPosition(this.lat, this.lng);
-              this.gotToCenter=true;
+              this.gotToCenterOnInit=false;
             }
             this.getCurrentAddress().subscribe((address: string) => {
                 this._communicationService.address = address;
               }
             );
+            this.onNgAfterViewInit.emit();
           });
       }, error => {
         console.log('error', error);
@@ -96,27 +99,28 @@ export class MapContentComponent implements OnInit {
   }
 
   gotoPosition(lat: number, lng: number, showCircle?: Boolean) {
-    if ("undefined" === typeof google)
-      return;
-    let position = new google.maps.LatLng(lat, lng);
-    this.map.setCenter(position);
-    if (this.cityCircle || !showCircle) {
-      if (this.cityCircle)
-        this.cityCircle.setMap(null);
-      this.cityCircle = null;
-    }
-    else {
-      this.cityCircle = new google.maps.Circle({
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-        map: this.map,
-        center: position,
-        radius: (10000 / (this.map.getZoom()))
-      });
-    }
+    this._loader.load().then(() => {
+      if ("undefined" === typeof google)
+        return;
+      let position = new google.maps.LatLng(lat, lng);
+      this.map.setCenter(position);
+      if (this.cityCircle || !showCircle) {
+        if (this.cityCircle)
+          this.cityCircle.setMap(null);
+        this.cityCircle = null;
+      }
+      else {
+        this.cityCircle = new google.maps.Circle({
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          map: this.map,
+          center: position,
+          radius: (10000 / (this.map.getZoom()))
+        });
+      }
+    });
   }
 }
-
