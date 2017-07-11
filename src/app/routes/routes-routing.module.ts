@@ -9,7 +9,7 @@ import {HowToEnableGeolocationComponent} from "../about/how-to-enable-geolocatio
 import {ContactUsComponent} from "../about/contact-us/contact-us.component";
 import {CoordinateMarkerComponent} from "../coordinate-marker/coordinate-marker.component";
 import {LoginComponent} from "../login/login.component";
-import {registerUserComponent} from "../register-user/register-user.component";
+import {RegisterUserComponent} from "../register-user/register-user.component";
 
 const routes: Routes = [
 
@@ -23,7 +23,7 @@ const routes: Routes = [
   ]
   },
   {
-    path:'registerUser',component:registerUserComponent
+    path:'registerUser',component:RegisterUserComponent
   },
   {
     path:'login',component:LoginComponent
