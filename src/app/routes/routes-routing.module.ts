@@ -8,7 +8,7 @@ import {AboutComponent} from "../about/about.component";
 import {HowToEnableGeolocationComponent} from "../about/how-to-enable-geolocation/how-to-enable-geolocation.component";
 import {ContactUsComponent} from "../about/contact-us/contact-us.component";
 import {CoordinateMarkerComponent} from "../coordinate-marker/coordinate-marker.component";
-import {Login} from "../login/login.component";
+import {LoginComponent} from "../login/login.component";
 
 const routes: Routes = [
 
@@ -22,7 +22,7 @@ const routes: Routes = [
   ]
   },
   {
-    path:'login',component:Login
+    path:'login',component:LoginComponent
   },
   {
     path: 'map' , component: MapSmartSDKComponent
