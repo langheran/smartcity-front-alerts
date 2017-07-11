@@ -9,8 +9,7 @@ import {ActivatedRoute, NavigationEnd, Router, CanActivate, NavigationStart} fro
 import {PlatformLocation} from "@angular/common";
 import {logger} from "codelyzer/util/logger";
 import {OrionContextBrokerService} from "../services/orion-context-broker-service";
-import { SocialMediaGoogleMapMarkerDirective } from '../social-media-google-map-marker-directive';
-
+import {AlertType} from "../alert-type";
 declare var $: any;
 
 declare var google: any;
@@ -28,35 +27,25 @@ export class MapSmartSDKComponent implements OnInit {
   @ViewChild('fillContentDiv') fillContentDiv;
   @ViewChild('alertTypesListScroll') alertTypesListScroll;
   @ViewChild('topMenu') topMenu;
-  appSocialMediaGoogleMapMarker:string;
-  markerLatitude:number=0;
-  markerLongitude:number=0;
 
   selectedAlertTypeName:string;
 
-  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private locationService: LocationService, private el: ElementRef, private cd: ChangeDetectorRef, private communicationService: CommunicationService, private router: Router, private route: ActivatedRoute, location: PlatformLocation) {
+  constructor(@Inject('OrionContextBroker') public orion: OrionContextBrokerService, private locationService: LocationService, private el: ElementRef, private cd: ChangeDetectorRef, private _communicationService: CommunicationService, private router: Router, private route: ActivatedRoute, location: PlatformLocation) {
     location.onPopState(() => {
       document.querySelector('body').classList.remove('push-right');
     });
-    communicationService.windowResized$.subscribe(
-      change => {
+    _communicationService.windowResized$.subscribe(
+      text => {
         this.onResize(null);
-      });
-    communicationService.mapMarkerSet$.subscribe(
-      marker => {
-        this.setAlertMarker(marker);
       });
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.alertTypesListScroll.selectAlertTypeByName();
       }
       if (event instanceof NavigationEnd) {
-        document.querySelector('body').classList.remove('push-right');
         setTimeout(() => this.onResize(null), 100);
         if (event.url === "/")
-        {
           this.alertTypesListScroll.selectAlertTypeByName();
-        }
         // console.log(event);
       }
     });
@@ -82,6 +71,8 @@ export class MapSmartSDKComponent implements OnInit {
     }
   }
 
+  
+
   onErrorDialogClosed($event){
     if($event)
       this.router.navigate(['/about/HowToEnableGeolocation'])
@@ -93,21 +84,11 @@ export class MapSmartSDKComponent implements OnInit {
     this.onResize(null);
     if (this.route.firstChild)
       this.route.firstChild.params.subscribe(p => {
-        if(p.name)
         if(!this.selectedAlertTypeName || p.name!=this.selectedAlertTypeName) {
           this.alertTypesListScroll.selectAlertTypeByName(p.name);
           this.selectedAlertTypeName=p.name;
         }
       });
-  }
-
-  setAlertMarker($marker){
-     setTimeout(()=>{
-      this.appSocialMediaGoogleMapMarker=$marker.icon;
-      this.markerLatitude=$marker.lat;
-      this.markerLongitude=$marker.lng;
-      this.mapContent.gotoPosition($marker.lat, $marker.lng)
-     },500);
   }
 
   onAlertTypeSelected($event)
@@ -126,8 +107,6 @@ export class MapSmartSDKComponent implements OnInit {
   }
 
   gotoCenter() {
-    this.markerLatitude=-1;
-    this.markerLongitude=-1;
     this.mapContent.gotoCenter();
   }
 }
