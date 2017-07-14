@@ -4,6 +4,7 @@ import {Alert} from "../alert";
 import {Http, RequestOptions, Response, Headers} from "@angular/http";
 import {UtilityService} from "../utility-service";
 import {Observable} from "rxjs/Observable";
+import 'rxjs/add/observable/forkJoin';
 import {LocationService} from "./location-service";
 import {log} from "util";
 import {DOCUMENT} from '@angular/platform-browser';

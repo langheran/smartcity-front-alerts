@@ -1,5 +1,6 @@
-import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import 'rxjs/add/operator/share';
 
 @Injectable()
 export class LocationService {
