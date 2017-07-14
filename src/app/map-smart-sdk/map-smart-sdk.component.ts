@@ -10,14 +10,11 @@ import {PlatformLocation} from "@angular/common";
 import {logger} from "codelyzer/util/logger";
 import {OrionContextBrokerService} from "../services/orion-context-broker-service";
 
-import {AlertType} from "../alert-type";
 import {DialogsService} from "app/services/dialogs-service";
-
-import {SocialMediaGoogleMapMarkerDirective} from '../social-media-google-map-marker-directive';
+import {LoginService} from "../core/services/login/login.service";
+import {constants} from "../core/common/constants";
 
 declare var $: any;
-
-
 declare var google: any;
 
 @Component({
@@ -51,7 +48,9 @@ export class MapSmartSDKComponent implements OnInit {
               private route: ActivatedRoute,
               location: PlatformLocation,
               private dialogsService: DialogsService,
-              public _loader: MapsAPILoader) {
+              public _loader: MapsAPILoader,
+              private loginService: LoginService
+  ) {
     location.onPopState(() => {
       document.querySelector('body').classList.remove('push-right');
     });
@@ -101,6 +100,19 @@ export class MapSmartSDKComponent implements OnInit {
 
   ngOnInit() {
     this.url_img = "../assets/img/big.svg";
+
+    this.loginService.login("langheran@gmail.com", "Tecnologico2017").subscribe(
+      (result) => {
+        if (result && result.tokenInfo) {
+          // this.loginError = false;
+          this.router.navigate(constants.defaultLoggedRoute);
+        } else {
+          // this.loginError = true;
+        }
+      },
+      (error) => {
+        // this.loginError = true;
+      });
   }
 
   hideAlerts() {

@@ -40,6 +40,12 @@ import { UserAlertComponent } from './user-alert/user-alert.component';
 import {SocialMediaGoogleMapMarkerDirective} from "app/social-media-google-map-marker-directive";
 import { LoginComponent } from './login/login.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import {LoginService} from "./core/services/login/login.service";
+
+import { ReactiveFormsModule } from '@angular/forms';
+import {LoggedInUserGuard} from "./core/services/login/logged-in-user.guard";
+import {SignupService} from "./core/services/signup/signup.service";
+import {RemoteConnectionService} from "app/core/services/remote-connection/remote-connection.service";
 
 UtilityService.initToISOString();
 
@@ -82,7 +88,9 @@ UtilityService.initToISOString();
     AgmCoreModule.forRoot({apiKey: 'AIzaSyBk0YKTy49Sy8jpfqQzEqNLkb2Ju8-sWVk'}),
 
     FlexLayoutModule,
-    MdDialogModule
+    MdDialogModule,
+
+    ReactiveFormsModule
   ],
   providers: [
     LocationService,
@@ -96,7 +104,11 @@ UtilityService.initToISOString();
       useFactory: HttpServiceFactory
       , deps: [XHRBackend, RequestOptions, DialogsService]
     },
-    DialogsService
+    DialogsService,
+    LoginService,
+    LoggedInUserGuard,
+    SignupService,
+    RemoteConnectionService
   ],
   bootstrap: [AlertsAppComponent]
 })

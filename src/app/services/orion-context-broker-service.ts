@@ -9,18 +9,19 @@ import {log} from "util";
 import {DOCUMENT} from '@angular/platform-browser';
 import {DialogsService} from "app/services/dialogs-service";
 import {forEach} from "@angular/router/src/utils/collection";
+import {LoginService} from "../core/services/login/login.service";
 
 @Injectable()
 export class OrionContextBrokerService {
   baseHref: string;
 
-  constructor(public http: Http, private locationService: LocationService, @Inject(DOCUMENT) private document, private dialogsService: DialogsService) {
+  constructor(public http: Http, private locationService: LocationService, @Inject(DOCUMENT) private document, private dialogsService: DialogsService, private loginService: LoginService) {
 
   }
 
   getAlertTypes(): AlertType[] {
     return [
-      new AlertType("Asthma", "Asthma attack", "AsthmaAttacks", true),
+      new AlertType("AsthmaAttacks", "Asthma attack", "AsthmaAttacks", true),
       new AlertType("TrafficJam", "Traffic jam", "TrafficJam"),
       new AlertType("Accident", "accident", "Accident"),
       new AlertType("WeatherCondition", "Wheater condition", "WeatherCondition"),
@@ -97,9 +98,9 @@ export class OrionContextBrokerService {
               ];
               observer.next(arr);
               break;
-            case "Asthma":
+            case "AsthmaAttacks":
               var arr = [
-                new Alert("Asthma", "Asthma attack", "null"),
+                new Alert("AsthmaAttacks", "Asthma attack", "null"),
               ];
               observer.next(arr);
             break;
@@ -121,8 +122,8 @@ export class OrionContextBrokerService {
         return new AlertType("Pollution", "High level of pollution", "smoking_rooms");
       case "Pollen":
         return new AlertType("Pollen", "Pollen", "local_florist");
-      case "Asthma":
-        return new AlertType("Asthma", "Asthma attack", "local_pharmacy", true);
+      case "AsthmaAttacks":
+        return new AlertType("AsthmaAttacks", "Asthma attack", "local_pharmacy", true);
     }
   }
 
@@ -142,7 +143,29 @@ export class OrionContextBrokerService {
   submitAlert(alert: AlertType, eventObserved: Alert, description: string, address: string) {
     description=description.replace(/(?:\r\n|\r|\n)/g, '\\n');
     var date = new Date();
-    var json = {
+
+    var json={
+      "data": [
+        {
+          "id": UtilityService.guid(),
+          "type": "Alert",
+          "alertType": alert.name,
+          "eventObserved": eventObserved.name,
+          "locationDescription": address,
+          "location": {
+            "type" : "Point",
+            "coordinates": [this.locationService.latitude, this.locationService.longitude]
+          },
+          "dateTime": date.toISOString(),
+          "description": description,
+          "refUser": this.loginService.getLoggedUser().id,
+          "refDevice": "Device1"
+        }
+      ],
+      "subscriptionId": "57458eb60962ef754e7c0998"
+    };
+
+    var json2 = {
       "id": UtilityService.guid(),
       "type": "Alert",
       "alertType": {"type": "String", "value": alert.name},
@@ -163,22 +186,35 @@ export class OrionContextBrokerService {
       "description": {"type": "String", "value": description},
       "refUser": {"type": "String", "value": "https://account.lab.fiware.org/users/8"},
       "refDevice": {"type": "String", "value": ""}
-    }
+    };
 
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
 
-    return this.http.post(
-      "https://207.249.127.228:1027/v2/entities",
-      JSON.stringify(
-        json
-      ),
-      options
-    ).finally(
+    var source=
+      Observable.forkJoin(
+        this.http.post(
+          "https://207.249.127.67:8443/back-sdk/alerts",
+          JSON.stringify(
+            json
+          ),
+          options
+        ),
+        this.http.post(
+          "https://207.249.127.228:1027/v2/entities",
+          JSON.stringify(
+            json2
+          ),
+          options
+        ),
+        function (x) { return x; }
+      ).finally(
       ()=>{
         this.showAutoCloseMessage('Alert sent!', 'Alert <b>'+alert.display + (alert.sendImmediately?'':' - ' + eventObserved.display) +'</b> was sent. </br></br> Thanks! :)', 3000);
       }
     );
+
+    return source;
   }
 
   showAutoCloseMessage(title, message, seconds) {

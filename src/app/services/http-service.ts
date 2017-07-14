@@ -56,6 +56,7 @@ export class HttpService extends Http {
       }, (err: any) => {
         this.turnOffModal();
         console.log("Caught error: " + err);
+        if(err.status<400||err.status>499)
         this.dialogsService
           .confirm('Communication error!', 'Do you want to reload the page?')
           .subscribe(res => {

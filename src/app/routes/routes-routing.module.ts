@@ -10,6 +10,7 @@ import {ContactUsComponent} from "../about/contact-us/contact-us.component";
 import {CoordinateMarkerComponent} from "../coordinate-marker/coordinate-marker.component";
 import {LoginComponent} from "../login/login.component";
 import {RegisterUserComponent} from "../register-user/register-user.component";
+import {LoggedInUserGuard} from "app/core/services/login/logged-in-user.guard";
 
 const routes: Routes = [
 
@@ -20,16 +21,13 @@ const routes: Routes = [
   children : [
     // {path: '', redirectTo: '', pathMatch: 'full'},
     {path: 'viewAlert/:alertId', component: CoordinateMarkerComponent},
-  ]
+  ], canActivate: [ LoggedInUserGuard ]
   },
   {
     path:'registerUser',component:RegisterUserComponent
   },
   {
     path:'login',component:LoginComponent
-  },
-  {
-    path: 'map' , component: MapSmartSDKComponent
   },
   {
     path: 'AlertTypeAlertsList/:name/:address', component: AlertTypeAlertsListComponent
