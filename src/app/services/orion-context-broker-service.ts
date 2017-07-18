@@ -11,6 +11,7 @@ import {DOCUMENT} from '@angular/platform-browser';
 import {DialogsService} from "app/services/dialogs-service";
 import {forEach} from "@angular/router/src/utils/collection";
 import {LoginService} from "../core/services/login/login.service";
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class OrionContextBrokerService {
@@ -195,14 +196,14 @@ export class OrionContextBrokerService {
     var source=
       Observable.forkJoin(
         this.http.post(
-          "https://207.249.127.67:8443/back-sdk/alerts",
+          environment.backend_sdk+"/alerts",
           JSON.stringify(
             json
           ),
           options
         ),
         this.http.post(
-          "https://207.249.127.228:1027/v2/entities",
+          environment.backend_orion+":1027/v2/entities",
           JSON.stringify(
             json2
           ),
@@ -231,7 +232,7 @@ export class OrionContextBrokerService {
     // Firefox requires Accept
     let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=10&orderBy=!dateCreated").map((val, i) => {
+    return this.http.get(environment.backend_orion+":1027/v2/entities/?type=Alert&limit=10&orderBy=!dateCreated").map((val, i) => {
       var res=<any[]>val.json();
       if(res){
         res.forEach((re)=>{
@@ -247,7 +248,7 @@ export class OrionContextBrokerService {
     // Firefox requires Accept
     let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    return this.http.get("https://207.249.127.228:1026/v2/entities/?type=Alert&limit=1&orderBy=!dateCreated&id="+id).map((val, i) => {
+    return this.http.get(environment.backend_orion+":1027/v2/entities/?type=Alert&limit=1&orderBy=!dateCreated&id="+id).map((val, i) => {
       var res=val.json();
       return res;
     });

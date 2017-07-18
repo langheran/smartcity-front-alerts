@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./main-menu.component.scss']
 })
 export class MainMenuComponent implements OnInit {
-
+  isActive=true;
   showMenu = '';
   showSetting = '';
   showMenuManageSite = '';

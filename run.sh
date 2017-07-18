@@ -1,3 +1,3 @@
 #! /bin/sh
-nohup sudo npm start & disown
+nohup sudo npm run startprod & disown
 

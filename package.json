@@ -4,14 +4,15 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 443 --host 0.0.0.0 --disable-host-check  --ssl 1 --ssl-key 'key.pem' --ssl-cert 'cert.pem'",
     "startserver": "node server.js",
     "build": "ng build",
     "buildprod": "ng build --environment=prod",
-    "startprod": "sudo http-server ./dist -p 443 -S -C ./cert.pem",
-    "test": "ng test",
+    "startprodwebpack": "webpack-dev-server --prod --port=443 --https --info false --no-info --quiet --cert smartsdkitesm.crt.pem --key smartsdkitesm.key.pem",
+    "startprod": "ng serve --prod --port 443 --host 0.0.0.0 --live-reload false --disable-host-check  --ssl 1 --ssl-key smartsdkitesm.key.pem --ssl-cert smartsdkitesm.crt.pem",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "pree2e": "webdriver-manager update --standalone false --gecko false --quiet",
+    "startwebpack": "webpack-dev-server --port=443 --https --quiet --info false --no-info --quiet --cert smartsdkitesm.crt.pem --key smartsdkitesm.key.pem",
+    "start": "ng serve --port 443 --host 0.0.0.0 --disable-host-check  --ssl 1 --ssl-key smartsdkitesm.key.pem --ssl-cert smartsdkitesm.crt.pem"
   },
   "private": true,
   "dependencies": {

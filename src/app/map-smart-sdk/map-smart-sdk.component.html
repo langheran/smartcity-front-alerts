@@ -6,7 +6,7 @@
 
     <div class="section-container">
       <div (click)="hideAlerts()" class="fill-content" #fillContentDiv>
-        <sebm-google-map  [style.height.px]="height" #map [latitude]="lat" [longitude]="lng" [zoom]="16"
+        <sebm-google-map  [style.height.px]="height" #map [latitude]="mapContent.lat" [longitude]="mapContent.lng" [zoom]="16"
                          [zoomControl]="false"
                          [streetViewControl]="false">
           <sebm-google-map-marker [latitude]="mapContent.lat" [longitude]="mapContent.lng"></sebm-google-map-marker>

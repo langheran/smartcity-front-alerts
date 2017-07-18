@@ -14,8 +14,8 @@ app.get('*', function(req, res) {
 });
 const port = process.env.PORT || '3000';
 app.set('port', port);
-var privateKey = fs.readFileSync( 'key.pem' );
-var certificate = fs.readFileSync( 'cert.pem' );
+var privateKey = fs.readFileSync( 'smartsdkitesm.key.pem' );
+var certificate = fs.readFileSync( 'smartsdkitesm.crt.pem' );
 const server = https.createServer({
   key: privateKey,
   cert: certificate

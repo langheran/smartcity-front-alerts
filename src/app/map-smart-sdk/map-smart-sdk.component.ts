@@ -134,7 +134,7 @@ export class MapSmartSDKComponent implements OnInit {
       location.reload();
   }
 
-  mapLoaded() {
+  mapLoaded($event) {
     this.mapAlreadyLoaded=true;
     if (this.marker) {
       this.setAlertMarker(this.marker);
