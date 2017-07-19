@@ -25,9 +25,9 @@ export class OrionContextBrokerService {
     return [
       new AlertType("AsthmaAttacks", "Asthma attack", "AsthmaAttacks", true),
       new AlertType("TrafficJam", "Traffic jam", "TrafficJam"),
-      new AlertType("Accident", "accident", "Accident"),
-      new AlertType("WeatherCondition", "Wheater condition", "WeatherCondition"),
-      new AlertType("Pollution", "High level of pollution", "HighLevelOfPollution"),
+      new AlertType("Accidents", "Accidents", "Accident"),
+      new AlertType("WeatherConditions", "Wheater condition", "WeatherCondition"),
+      new AlertType("Pollutions", "High level of pollution", "HighLevelOfPollution"),
       new AlertType("Pollen", "Pollen", "Pollen"),
     ];
   }
@@ -54,10 +54,10 @@ export class OrionContextBrokerService {
                ];
                observer.next(arr);
             break;
-            case "Accident":
+            case "Accidents":
               var arr = [
                 new Alert("MinorAccident", "Minor Accident", "MinorAccident"),
-                new Alert("CarAccident", "Accident", "CarAccident"),
+                new Alert("CarAccident", "Car Accident", "CarAccident"),
                 new Alert("Hazard On Road", "Hazard On Road", "HazardOnRoad"),
                 new Alert("Assaults", "Assaults", "Assaults"),
                 new Alert("Bikers injured", "Bikers injured", "BikersInjured"),
@@ -66,7 +66,7 @@ export class OrionContextBrokerService {
               ];
               observer.next(arr);
               break;
-            case "WeatherCondition":
+            case "WeatherConditions":
               var arr = [
                 new Alert("Rainfall", "Rain Fall", "Rain"),
                 new Alert("TropicalDeression","Tropical Depresion","TropicalDepression"),
@@ -79,7 +79,7 @@ export class OrionContextBrokerService {
               ];
               observer.next(arr);
               break;
-            case "Pollution":
+            case "Pollutions":
               var arr = [
                 new Alert("Smog", "Visible smog", "VisibleSmog"),
                 new Alert("volcanoes/industrial processes","volcanoes/industrial processes","Volcan"),
@@ -116,12 +116,12 @@ export class OrionContextBrokerService {
     switch (alertTypeName) {
       case "TrafficJam":
         return new AlertType("TrafficJam", "Traffic jam", "traffic");
-      case "CarAccident":
-        return new AlertType("CarAccident", "Car accident", "directions_car");
-      case "WeatherCondition":
-        return new AlertType("WeatherCondition", "Weather condition", "wb_sunny");
-      case "Pollution":
-        return new AlertType("Pollution", "High level of pollution", "smoking_rooms");
+      case "Accidents":
+        return new AlertType("Accidents", "Accidents", "directions_car");
+      case "WeatherConditions":
+        return new AlertType("WeatherConditions", "Weather condition", "wb_sunny");
+      case "Pollutions":
+        return new AlertType("Pollutions", "High level of pollution", "smoking_rooms");
       case "Pollen":
         return new AlertType("Pollen", "Pollen", "local_florist");
       case "AsthmaAttacks":
@@ -161,7 +161,8 @@ export class OrionContextBrokerService {
           "dateTime": date.toISOString(),
           "description": description,
           "refUser": this.loginService.getLoggedUser().id,
-          "refDevice": "Device1"
+          "refDevice": "Device1",
+          "dataSource":"USER"
         }
       ],
       "subscriptionId": "57458eb60962ef754e7c0998"
@@ -186,7 +187,7 @@ export class OrionContextBrokerService {
       },
       "dateTime": {"type": "DateTime", "value": date.toISOString()},
       "description": {"type": "String", "value": description},
-      "refUser": {"type": "String", "value": "https://account.lab.fiware.org/users/8"},
+      "refUser": {"type": "String", "value": this.loginService.getLoggedUser().id},
       "refDevice": {"type": "String", "value": ""}
     };
 
@@ -232,7 +233,7 @@ export class OrionContextBrokerService {
     // Firefox requires Accept
     let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    return this.http.get(environment.backend_orion+":1027/v2/entities/?type=Alert&limit=10&orderBy=!dateCreated").map((val, i) => {
+    return this.http.get(environment.backend_orion+":1027/v2/entities/?type=Alert&limit=10&orderBy=!dateCreated&q=refUser=="+this.loginService.getLoggedUser().id).map((val, i) => {
       var res=<any[]>val.json();
       if(res){
         res.forEach((re)=>{

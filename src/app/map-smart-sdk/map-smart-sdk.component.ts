@@ -100,19 +100,6 @@ export class MapSmartSDKComponent implements OnInit {
 
   ngOnInit() {
     this.url_img = "../assets/img/big.svg";
-
-    this.loginService.login("langheran@gmail.com", "Tecnologico2017").subscribe(
-      (result) => {
-        if (result && result.tokenInfo) {
-          // this.loginError = false;
-          this.router.navigate(constants.defaultLoggedRoute);
-        } else {
-          // this.loginError = true;
-        }
-      },
-      (error) => {
-        // this.loginError = true;
-      });
   }
 
   hideAlerts() {
