@@ -12,6 +12,7 @@ import {SignupService} from "../core/services/signup/signup.service";
 export class RegisterUserComponent implements OnInit, OnDestroy {
   complexForm: FormGroup;
   private registerSubs: any;
+  public emailInUse:boolean=false;
 
   constructor(private signupService: SignupService, private router: Router, fb: FormBuilder) {
     const password: FormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
@@ -34,15 +35,18 @@ export class RegisterUserComponent implements OnInit, OnDestroy {
   }
 
   submitForm(form: FormGroup) {
+    this.emailInUse=false;
     this.unsusbcribe(this.registerSubs);
 
     this.registerSubs = this.signupService.register(form.value.email, form.value.password).subscribe(
       (res) => {
         alert('The token has been sent to your mail, please check your tray');
+        this.router.navigateByUrl('/');
+        location.reload();
       },
       (error) => {
         if (error.status && error.status === 409) {
-          alert('The email is already in use');
+          this.emailInUse=true;
         } else {
           alert('There was a communication error, please try later.');
           this.router.navigateByUrl('/');

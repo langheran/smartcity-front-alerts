@@ -32,6 +32,7 @@
     "angular-osm": "^1.2.2",
     "angular2-google-maps": "^0.16.0",
     "body-parser": "^1.17.2",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
     "express": "^4.15.3",
     "font-awesome": "^4.7.0",
@@ -40,6 +41,7 @@
     "mongoose": "^4.11.1",
     "ng2-validation": "^4.2.0",
     "rxjs": "^5.1.0",
+    "web-animations-js": "^2.2.5",
     "zone.js": "^0.8.12"
   },
   "devDependencies": {

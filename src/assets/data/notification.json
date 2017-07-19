@@ -1,0 +1,31 @@
+{
+	"_id": "TrafficJam",
+	"_class": "mx.infotec.smartcity.backend.model.Notification",
+	"name": "Traffic jam",
+	"subnotifications": ["Standstill Traffic Jam", "Heavy Traffic Jam", "Bumper to bumper traffic", "Moderate Traffic Jam", "Car Stopped On Road", "Roadworks", "Road closed", "Pothole", "Congestion on road", "Car in opposite way", "When a car suddenly stops", "Alligator cracking"]
+},{
+	"_id": "Accidents",
+	"_class": "mx.infotec.smartcity.backend.model.Notification",
+	"name": "Accidents",
+	"subnotifications": ["Minor Accident", "Car Accident", "Hazard on Road", "Assaults", "Bikers injured", "Car crashes", "Car Accident", "Suspicious activities", "Person/animal run over"]
+},{
+	"_id": "WeatherConditions",
+	"_class": "mx.infotec.smartcity.backend.model.Notification",
+	"name": "Weather conditions",
+	"subnotifications": ["Rain", "Sunny", "Cloud", "Foggy", "Temperature", "Relative humidity", "Heat alert", "Cold alert", "Wind chill alert", "Wind advisories", "Flood watch", "Flood warning", "Dense fog", "Tornado warning", "Tornado watch", "Severe storm warning", "Tropical cyclone", "Tropical depression", "Tropical storm", "Tornado", "Rainfall", "Hurricane"]
+},{
+	"_id": "Pollutions",
+	"_class": "mx.infotec.smartcity.backend.model.Notification",
+	"name": "Pollutions",
+	"subnotifications": ["Visible pollution (smog)", "Level of emissions", "Pre-contingency alert", "Contingency alert", "CO", "NO2", "SO2", "O3", "PM10", "Gas produced by volcanoes", "Gas produced by industrial processes", "Gas emitted from vehicular exhaust", "Gas emitted from agriculture, including animal husbandry and NH3-based fertilizer applications", "Odors from garbage, sewage, and industrial processes", "Radioactive pollutants produced by nuclear explosions and war explosives"]
+},{
+	"_id": "Pollen",
+	"_class": "mx.infotec.smartcity.backend.model.Notification",
+	"name": "Pollen",
+	"subnotifications": ["Symptoms or discomforts of users", "Level of pollen on air", "Pollen concentration", "Sinus pressure", "Runny nose", "Watery eyes", "Cough", "Nasal congestion"]
+},{
+	"_id": "AsthmaAttacks",
+	"_class": "mx.infotec.smartcity.backend.model.Notification",
+	"name": "Asthma attacks",
+	"subnotifications": ["People with asthma attacks at specific point"]
+}
