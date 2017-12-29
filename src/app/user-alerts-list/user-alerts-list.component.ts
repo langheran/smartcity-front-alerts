@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./user-alerts-list.component.scss']
 })
 export class UserAlertsListComponent implements OnInit {
-  userAlerts: Array<any>;
+  userAlerts: Array<any> = [];
 
   constructor(private router: Router, location: PlatformLocation, @Inject('OrionContextBroker') public orion: OrionContextBrokerService) {
     location.onPopState(() => {
@@ -17,22 +17,28 @@ export class UserAlertsListComponent implements OnInit {
       this.router.navigateByUrl("/");
       // history.back()
     });
+    // this.orion.getAlertsByUser().subscribe(j => {
+    //   this.userAlerts.push(j);
+    //   cd.detectChanges();
+    // });
   }
 
   ngOnInit() {
     this.orion.getAlertsByUser().subscribe(j => {
-      if (j)
-        this.userAlerts = j.sort((n1:any, n2:any) => {
-          if (n1.dateTime.value > n2.dateTime.value) {
-            return -1;
-          }
-          if (n1.dateTime.value < n2.dateTime.value) {
-            return 1;
-          }
-          return 0;
-        });
+      if (j) {
+        if (j.sort) {
+          this.userAlerts = j.sort((n1: any, n2: any) => {
+            if (n1.dateTime.value > n2.dateTime.value) {
+              return -1;
+            }
+            if (n1.dateTime.value < n2.dateTime.value) {
+              return 1;
+            }
+            return 0;
+          });
+        }
+      }
     });
   }
-
 }
 

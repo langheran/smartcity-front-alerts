@@ -21,17 +21,17 @@ export class UserAlertComponent implements OnInit {
 ) {}
 
   ngOnInit() {
-    this.orion.getAlertEventObservedDisplay(this.userAlert.alertType.value, this.userAlert.eventObserved.value).subscribe(r=> {
+    this.orion.getAlertEventObservedDisplay(this.userAlert.alertType, this.userAlert.eventObserved).subscribe(r=> {
         this.alertEventObservedDisplay =r;
       }
     );
-    this.alertType = this.orion.getAlertTypeByName(this.userAlert.alertType.value);
+    this.alertType = this.orion.getAlertTypeByName(this.userAlert.alertType);
   }
 
   gotoMarker(){
     this._communicationService.setMapMarker({
-      lat: this.userAlert.location.value.coords[0][0],
-      lng: this.userAlert.location.value.coords[0][1]
+      lat: this.userAlert.location.coordinates[0],
+      lng: this.userAlert.location.coordinates[1]
     });
   }
 }

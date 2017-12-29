@@ -1,13 +1,13 @@
 <div>
-  <div class="card-header" *ngIf="userAlert.alertType">{{userAlert.alertType.value}}</div>
+  <div class="card-header" *ngIf="userAlert.alertType">{{userAlert.alertType}}</div>
   <div class="card-block">
     <h4 class="card-title" *ngIf="userAlert.eventObserved && alertType && !alertType.sendImmediately">{{alertEventObservedDisplay}}</h4>
-    <h6 class="card-subtitle mb-2 text-muted" *ngIf="userAlert.address">
-      <small>{{userAlert.address.value}}</small>
+    <h6 class="card-subtitle mb-2 text-muted" *ngIf="userAlert.locationDescription">
+      <small>{{userAlert.locationDescription}}</small>
     </h6>
-    <p class="card-text" *ngIf="userAlert.description">{{userAlert.description.value}}</p>
+    <p class="card-text" *ngIf="userAlert.description">{{userAlert.description}}</p>
     <!--<a href="#" class="card-link">Edit</a>-->
     <a [routerLink]="['/map/viewAlert/'+userAlert.id]" class="card-link" (click)="gotoMarker()" >View in map</a>
   </div>
-  <div class="card-footer text-muted" *ngIf="userAlert.dateTime">{{userAlert.dateTime.value}}</div>
+  <div class="card-footer text-muted" *ngIf="userAlert.dateTime">{{userAlert.dateTime}}</div>
 </div>

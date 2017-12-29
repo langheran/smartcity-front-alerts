@@ -36,7 +36,7 @@ export class CoordinateMarkerComponent implements OnInit {
     this.orion.getAlertsById(id).subscribe(result => {
       this._loader.load().then(() => {
         var pinColor = "0000FF";
-        var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+        var pinImage = new google.maps.MarkerImage("https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
           new google.maps.Size(21, 34),
           new google.maps.Point(0, 0),
           new google.maps.Point(10, 34));
@@ -52,8 +52,8 @@ export class CoordinateMarkerComponent implements OnInit {
         // };
         // var pinImage="../assets/img/"+result[0].alertType.value+"/"+result[0].eventObserved.value+".svg";
         this.userAlert = result[0];
-        var latitude = result[0].location.value.coords[0][0];
-        var longitude = result[0].location.value.coords[0][1];
+        var latitude = result[0].location.coordinates[0];
+        var longitude = result[0].location.coordinates[1];
         this.communicationService.setMapMarker({
           lat: latitude,
           lng: longitude,

@@ -144,8 +144,13 @@ export class MapSmartSDKComponent implements OnInit {
   setAlertMarker($marker) {
     if ($marker.icon)
       this.appSocialMediaGoogleMapMarker = $marker.icon;
-    this.markerLatitude = $marker.lat;
-    this.markerLongitude = $marker.lng;
+    else
+      this.appSocialMediaGoogleMapMarker = new google.maps.MarkerImage("https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|0000FF",
+      new google.maps.Size(21, 34),
+      new google.maps.Point(0, 0),
+      new google.maps.Point(10, 34));
+    this.markerLatitude = parseFloat($marker.lat);
+    this.markerLongitude = parseFloat($marker.lng);
     this.mapContent.gotoPosition($marker.lat, $marker.lng);
   }
 
