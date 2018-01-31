@@ -12,7 +12,7 @@ app.use('/api', api);
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '3001';
 app.set('port', port);
 var privateKey = fs.readFileSync( 'smartsdkitesm.key.pem' );
 var certificate = fs.readFileSync( 'smartsdkitesm.crt.pem' );

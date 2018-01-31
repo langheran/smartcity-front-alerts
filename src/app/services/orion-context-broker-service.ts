@@ -188,6 +188,9 @@ export class OrionContextBrokerService {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
 
+    let headers2 = new Headers({'Content-Type': 'application/json', 'Fiware-Service': 'default', 'Fiware-ServicePath':'/'});
+    let options2 = new RequestOptions({headers: headers2});
+
 
     var source =
       this.submitEncryptedAlert(model)
@@ -206,7 +209,7 @@ export class OrionContextBrokerService {
                 JSON.stringify(
                   response.model
                 ),
-                options
+                options2
               )
               ,
               this.http.post(
