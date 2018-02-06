@@ -13,14 +13,8 @@ export class UserAlertsListComponent implements OnInit {
 
   constructor(private router: Router, location: PlatformLocation, @Inject('OrionContextBroker') public orion: OrionContextBrokerService) {
     location.onPopState(() => {
-      // this.router.navigate(['/']);
       this.router.navigateByUrl("/");
-      // history.back()
     });
-    // this.orion.getAlertsByUser().subscribe(j => {
-    //   this.userAlerts.push(j);
-    //   cd.detectChanges();
-    // });
   }
 
   ngOnInit() {
