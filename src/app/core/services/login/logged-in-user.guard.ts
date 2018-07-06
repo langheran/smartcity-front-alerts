@@ -18,5 +18,4 @@ export class LoggedInUserGuard implements CanActivate {
       return false;
     }
   }
-
 }

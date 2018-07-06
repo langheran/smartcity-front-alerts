@@ -19,27 +19,36 @@
             <div class="centering text-center">
               <div class="container">
                 <div class="row" [style.display]='[display]'>
+                  <form>
                   <div class="container-fluid">
+                    <select mdInput #alertSeverity>
+                      <option value="informational" selected="selected">informational</option>
+                      <option value="low">low</option>
+                      <option value="medium">medium</option>
+                      <option value="high">high</option>
+                      <option value="critical">critical</option>
+                    </select>
                     <div class="row-fluid">
                       <div class="centering text-center">
-                        <form>
+
                           <md-input-container>
                             <!--<label for="descriptionInput">Description</label>-->
                             <textarea rows="9" cols="50" mdInput type="text" id="descriptionInput" #alertDescription md-autofocus
-                                   (keyup.enter)="onAlertSubmit(alertDescription.value)" placeholder="Send your description!">
+                                   (keyup.enter)="onAlertSubmit(alertDescription.value, alertSeverity.value)" placeholder="Send your description!">
                             </textarea>
                           </md-input-container>
-                        </form>
+
                       </div>
                     </div>
                   </div>
+                  </form>
                 </div>
                 <md-grid-list cols="2" class="row" [style.margin-top]="[margentop]">
                   <!--<button class="backgroud-button" md-button (click)="sidenav.close()" flex="50">-->
                   <button [style.height]="[BTNheight]" [style.width]="[BTNwidth]" class="backgroud-button" md-button (click)="showArea()">
                     {{comment}}
                   </button>
-                  <button [style.height]="[BTNheight]" [style.width]="[BTNwidth]"  class="backgroud-button" md-button (click)="onAlertSubmit(alertDescription.value)" type="submit" flex="grow">
+                  <button [style.height]="[BTNheight]" [style.width]="[BTNwidth]"  class="backgroud-button" md-button (click)="onAlertSubmit(alertDescription.value, alertSeverity.value)" type="submit" flex="grow">
                     Done
                   </button>
                 </md-grid-list>

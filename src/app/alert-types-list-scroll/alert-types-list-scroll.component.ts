@@ -64,7 +64,7 @@ export class AlertTypesListScrollComponent implements OnInit {
             if ("undefined" === typeof res)
               res = false;
             if (res) {
-              this.orion.submitAlert(alertType, eventObserved[0], '', this._communicationService.address).subscribe(r => {
+              this.orion.submitAlert(alertType, eventObserved[0], '', this._communicationService.address, 'high').subscribe(r => {
                 this.hideAlerts();
               });
             }

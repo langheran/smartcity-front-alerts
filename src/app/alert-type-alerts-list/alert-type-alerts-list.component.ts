@@ -97,8 +97,8 @@ export class AlertTypeAlertsListComponent implements OnInit {
     this.sidenav.open();
   }
 
-  onAlertSubmit(description: string) {
-      this.orion.submitAlert(this.alertType, this.currentAlert, description, this.address).subscribe(r=>{});
+  onAlertSubmit(description: string, severity: string) {
+      this.orion.submitAlert(this.alertType, this.currentAlert, description, this.address, severity).subscribe(r=>{});
       this.router.navigate(['../']);
   }
 

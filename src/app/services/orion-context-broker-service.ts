@@ -31,110 +31,138 @@ export class OrionContextBrokerService {
 
   getAlertTypes(): AlertType[] {
     return [
+      new AlertType("HeartAttack", "Heart attack", "HeartAttack", true),
       new AlertType("AsthmaAttacks", "Asthma attack", "AsthmaAttacks", true),
-      new AlertType("TrafficJam", "Traffic jam", "TrafficJam"),
-      new AlertType("Accidents", "Accidents", "Accident"),
-      new AlertType("WeatherConditions", "Wheater condition", "WeatherCondition"),
-      new AlertType("Pollutions", "High level of pollution", "HighLevelOfPollution"),
+      new AlertType("TrafficJam", "Traffic", "TrafficJam"),
+      new AlertType("WeatherConditions", "Weather", "WeatherCondition"),
+      new AlertType("Environment", "Environment", "VehicularGas"),
       new AlertType("Pollen", "Pollen", "Pollen"),
+      new AlertType("Health", "Health", "Health"),
+      new AlertType("Security", "Security", "Assaults"),
+      new AlertType("SOSAlerts", "SOSAlerts", "BikersInjured"),
     ];
+  }
+
+  getAlertList(){
+    return {
+      "AsthmaAttacks": this.getAlertTypes().filter(e => e.name === "AsthmaAttacks"),
+      "HeartAttack": this.getAlertTypes().filter(e => e.name === "HeartAttack"),
+      "TrafficJam": [
+        new Alert("TrafficJam", "Traffic jam", "TrafficJam"),
+        new Alert("ModerateTrafficJam", "Moderate Traffic Jam", "ModerateTrafficJam"),
+        new Alert("StandstillTrafficJam", "Standstill Traffic Jam", "StandstillTrafficJam"),
+        new Alert("HeavyTrafficJam", "Heavy Traffic Jam", "HeavyTrafficJam"),
+        new Alert("MinorAccident", "Minor Accident", "MinorAccident"),
+        new Alert("CarAccident", "Car Accident", "CarAccident"),
+        new Alert("CarInWrongDirection", "Car in wrong direction", "CarAccident"),
+        new Alert("CarStopped", "Car Stopped On Road", "CarStoppedOnRoad"),
+        new Alert("Roadworks", "Roadworks", "Roadworks"),
+        new Alert("RoadClosed", "Road closed", "RoadClosed"),
+        new Alert("Hazard On Road", "Hazard On Road", "HazardOnRoad"),
+        new Alert("Pothole", "Pothole", "Pothole"),
+        new Alert("CongestionOnRoad", "Congestion on road", "BumperToBumperTraffic"),
+        new Alert("BikersInjured", "Bikers injured", "BikersInjured"),
+        new Alert("AlligatorCracking", "Alligator cracking", "HazardOnRoad"),
+      ],
+      "WeatherConditions": [
+        new Alert("Rainfall", "Rain Fall", "Rain"),
+        new Alert("Temperature", "Temperature", "HighTemperature"),
+        new Alert("HighTemperature", "High temperature", "HighTemperature"),
+        new Alert("LowTemperature", "Low temperature", "LowTemperature"),
+        new Alert("HeatWave", "Heat wave", "Foggy"),
+        new Alert("Ice", "Ice", "Ice"),
+        new Alert("RelativeHumidity", "Relative humidity", "RelativeHumidity"),
+        new Alert("Wind", "Wind", "Wind"),
+        new Alert("Flood", "Flood", "Flood"),
+        new Alert("Fog", "Fog", "Foggy"),
+        new Alert("Tornado", "Tornado", "Tornado"),
+        new Alert("Tsunami", "Tsunami", "Tsunami"),
+        new Alert("Snow", "Snow", "Snow"),
+        new Alert("Storm", "Storm", "TropicalStorm"),
+        new Alert("TropicalCyclone", "Tropical cyclone", "Hurricane"),
+        new Alert("TropicalStorm", "Tropical Storm", "TropicalStorm"),
+        new Alert("Hurricane", "Hurricane", "TropicalDepression")
+      ],
+      "Environment": [
+        new Alert("Smog", "Visible smog", "VisibleSmog"),
+        new Alert("AirPollution", "Air pollution", "VehicularGas"),
+        new Alert("PreContingencyAlert", "Pre-contingency alert", "Cough"),
+        new Alert("ContingencyAlert", "Contingency alert", "Cough"),
+        new Alert("CO", "CO", "Cough"),
+        new Alert("NO2", "NO2", "Cough"),
+        new Alert("SO2", "SO2", "Cough"),
+        new Alert("O3", "O3", "Cough"),
+        new Alert("PM10", "PM10", "Cough"),
+        new Alert("VolcanoGas", "Gas produced by volcanoes", "Volcan"),
+        new Alert("IndustrialGas", "Gas produced by industrial processes", "AgricultureGas"),
+        new Alert("VehicularGas", "Gas emitted from vehicular exhaust", "VehicularGas"),
+        new Alert("AgricultureGas", "Gas emitted from agriculture, including animal husbandry and NH3-based fertilizer applications", "AgricultureGas"),
+        new Alert("Odors", "Odors from garbage, sewage, and industrial processes", "OdorsGarbaage"),
+        new Alert("Radioactive", "Radioactive pollutants produced by nuclear explosions and war explosives", "RadioactiveNuclear")
+      ],
+      "Pollen": [
+        new Alert("Symptoms", "Symptoms or discomforts of users", "Symptoms"),
+        new Alert("PollenLevel", "Level of pollen on air", "Runnynose"),
+        new Alert("PollenConcentration", "Pollen concentration", "Runnynose"),
+        new Alert("Sinuspressure", "Sinus pressure", "Sinuspressure"),
+        new Alert("Runnynose", "Runny nose", "Runnynose"),
+        new Alert("Wateryeyes", "Watery eyes", "Watereyes"),
+        new Alert("Cough", "Cough", "Cough"),
+        new Alert("Nasalcongestion", "Nasal congestion", "Nasalcongestion")
+      ],
+      "Health": [
+        new Alert("AsthmaAttacks", "Asthma attack", "AsthmaAttacks"),
+        new Alert("BumpedPatient", "Bumped patient", "AsthmaAttacks"),
+        new Alert("FallenPatient", "Fallen patient", "AsthmaAttacks"),
+        new Alert("HeartAttack", "Heart attack", "HeartAttack")
+      ],
+      "Security": [
+        new Alert("Assaults", "Assaults", "Assaults"),
+        new Alert("Robbery", "Robbery", "Assaults"),
+        new Alert("SuspiciousAction", "Suspicious action", "Assaults")
+      ],
+      "SOSAlerts": [
+        new Alert("Shelter", "Shelter", "Assaults"),
+        new Alert("CollectionCenter", "Collection center", "Assaults"),
+        new Alert("Hospital", "Hospital", "Assaults"),
+        new Alert("BloodBank", "Blood bank", "Assaults"),
+        new Alert("Earthquake", "Earthquake", "Assaults"),
+        new Alert("Collapse", "Collapse", "Assaults"),
+        new Alert("CollapsedBuilding", "Collapsed building", "Assaults"),
+        new Alert("BuildingOnTheVergeOfCollapse", "Building on the verge of collapse", "Assaults"),
+        new Alert("Sinking", "Sinking", "Assaults"),
+        new Alert("MajorCrack", "Major crack", "Assaults"),
+        new Alert("MinorCrack", "Minor crack", "Assaults"),
+        new Alert("LightTransformerDropped", "Light transformer dropped", "Assaults"),
+        new Alert("FallenLightPost", "Fallen light post", "Assaults"),
+        new Alert("Fire", "Fire", "Assaults"),
+        new Alert("WaterShortage", "Water shortage", "Assaults"),
+        new Alert("WithoutLightService", "Without light service", "Assaults"),
+        new Alert("GasLeak", "Gas leak", "Assaults")
+      ]
+    };
   }
 
   getAlertsByAlertType(alertTypeName: string): Observable<Alert[]> {
     var res: Observable<Alert[]>;
     switch (alertTypeName) {
-      case "TrafficJam1":
+      case "ReadFromMongo":
         res = this.http.get(document.location.protocol + '//' + document.location.hostname + ':3000' + '/api/alerts/TrafficJam').map((val, i) => <Alert[]>val.json());
         break;
       default:
         res = Observable.create(observer => {
-          switch (alertTypeName) {
-            case "TrafficJam":
-              var arr = [
-                new Alert("StandstillTrafficJam", "Standstill Traffic Jam", "StandstillTrafficJam"),
-                new Alert("HeavyTrafficJam", "Heavy Traffic Jam", "HeavyTrafficJam"),
-                new Alert("BumperToBumperTraffic", "Bumper to bumper traffic", "BumperToBumperTraffic"),
-                new Alert("ModerateTrafficJam", "Moderate Traffic Jam", "ModerateTrafficJam"),
-                new Alert("CarStoppedOnRoad", "Car Stopped On Road", "CarStoppedOnRoad"),
-                new Alert("Roadworks", "Roadworks", "Roadworks"),
-                new Alert("RoadClosed", "Road closed", "RoadClosed"),
-                new Alert("Pothole", "Pothole", "Pothole"),
-              ];
-              observer.next(arr);
-              break;
-            case "Accidents":
-              var arr = [
-                new Alert("MinorAccident", "Minor Accident", "MinorAccident"),
-                new Alert("CarAccident", "Car Accident", "CarAccident"),
-                new Alert("Hazard On Road", "Hazard On Road", "HazardOnRoad"),
-                new Alert("Assaults", "Assaults", "Assaults"),
-                new Alert("Bikers injured", "Bikers injured", "BikersInjured"),
-                new Alert("CarCrashes", "Car crashes", "CarCrashes"),
-                new Alert("Personanimalrunover", "Person/animal run over", "MinorAccident")
-              ];
-              observer.next(arr);
-              break;
-            case "WeatherConditions":
-              var arr = [
-                new Alert("Rainfall", "Rain Fall", "Rain"),
-                new Alert("TropicalDeression", "Tropical Depresion", "TropicalDepression"),
-                new Alert("TropicalStorm", "Tropical Storm", "TropicalStorm"),
-                new Alert("Tornado", "Tornado", "Tornado"),
-                new Alert("Hurricane", "Hurricane", "Hurricane"),
-                new Alert("Foggy", "Foggy", "Foggy"),
-                new Alert("HighTemperature", "High temperature", "HighTemperature"),
-                new Alert("LowTemperature", "Low temperature", "LowTemperature"),
-              ];
-              observer.next(arr);
-              break;
-            case "Pollutions":
-              var arr = [
-                new Alert("Smog", "Visible smog", "VisibleSmog"),
-                new Alert("volcanoes/industrial processes", "volcanoes/industrial processes", "Volcan"),
-                new Alert("Aerosols, ash, dust, and fecal matter", "Aerosols, ash, dust, and fecal matter", "GasVehicular"),
-                new Alert("Odors", "Odors", "OdorsGarbaage"),
-                new Alert("Radioactive", "Radioactive", "RadioactiveNuclear")
-              ];
-              observer.next(arr);
-              break;
-            case "Pollen":
-              var arr = [
-                new Alert("Symptoms", "Symptoms or discomforts of users", "Symptoms"),
-                new Alert("Sinuspressure", "Sinus pressure", "Sinuspressure"),
-                new Alert("Runnynose", "Runny nose", "Runnynose"),
-                new Alert("Wateryeyes", "Watery eyes", "Watereyes"),
-                new Alert("Cough", "Cough", "Cough"),
-                new Alert("Nasalcongestion", "Nasal congestion", "Nasalcongestion")
-              ];
-              observer.next(arr);
-              break;
-            case "AsthmaAttacks":
-              var arr = [
-                new Alert("AsthmaAttacks", "Asthma attack", "null"),
-              ];
-              observer.next(arr);
-              break;
-          }
+          observer.next(this.getAlertList()[alertTypeName]);
         });
     }
     return res;
   }
 
   getAlertTypeByName(alertTypeName: string): AlertType {
-    switch (alertTypeName) {
-      case "TrafficJam":
-        return new AlertType("TrafficJam", "Traffic jam", "traffic");
-      case "Accidents":
-        return new AlertType("Accidents", "Accidents", "directions_car");
-      case "WeatherConditions":
-        return new AlertType("WeatherConditions", "Weather condition", "wb_sunny");
-      case "Pollutions":
-        return new AlertType("Pollutions", "High level of pollution", "smoking_rooms");
-      case "Pollen":
-        return new AlertType("Pollen", "Pollen", "local_florist");
-      case "AsthmaAttacks":
-        return new AlertType("AsthmaAttacks", "Asthma attack", "local_pharmacy", true);
-    }
+    return this.getAlertTypes().filter(e => e.name===alertTypeName)[0];
+  }
+
+  getAlertByName(alertTypeName: string, alertName: string): AlertType {
+    return this.getAlertList()[alertTypeName].filter(e => e.name===alertName)[0];
   }
 
   getAlertEventObservedDisplay(alertTypeName: string, eventObserved: string): Observable<string> {
@@ -158,15 +186,43 @@ export class OrionContextBrokerService {
       });
   }
 
-  submitAlert(alert: AlertType, eventObserved: Alert, description: string, address: string) {
+  searchAlertByName(alertName){
+    var alert;
+    var breakAll=false;
+    var myDictionary=this.getAlertList();
+    for (let key in myDictionary) {
+      let value = myDictionary[key];
+      for(let i=0; i<value.length; i++){
+        if (value[i].name === alertName && !value[i].sendImmediately) {
+          alert = this.getAlertTypes().filter(e => e.name === key)[0];
+          breakAll=true;
+          break;
+        }
+        if(breakAll)
+          break;
+      }
+    }
+    return alert;
+  }
+
+  searchAlertInmediately(alert): AlertType{
+    if(alert.sendImmediately)
+    {
+      this.searchAlertByName(alert.name);
+    }
+    return alert;
+  }
+
+  submitAlert(alert: AlertType, eventObserved: Alert, description: string, address: string, severity: string) {
+    alert=this.searchAlertInmediately(alert);
     description = description.replace(/(?:\r\n|\r|\n)/g, '\\n');
     var date = new Date();
     var alertId = UtilityService.guid();
     var model = {
       "id": alertId,
       "type": "Alert",
-      "alertType": alert.name,
-      "eventObserved": eventObserved.name,
+      "category": alert.name, // alertType
+      "subCategory": eventObserved.name, // eventObserved
       "locationDescription": address,
       "location": {
         "type": "Point",
@@ -175,8 +231,9 @@ export class OrionContextBrokerService {
       "dateTime": date.toISOString(),
       "description": description,
       "refDevice": "30Nov",
-      "refUser": this.loginService.getLoggedUser().id,
-      "dataSource": "USER"
+      "alertSource": this.loginService.getLoggedUser().id, // refUser
+      "dataSource": "USER",
+      "severity": severity
     };
     var json = {
       "data": [
@@ -188,52 +245,110 @@ export class OrionContextBrokerService {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
 
-    let headers2 = new Headers({'Content-Type': 'application/json', 'Fiware-Service': 'default', 'Fiware-ServicePath':'/'});
+    let headers2 = new Headers({
+      'Content-Type': 'application/json',
+      'Fiware-Service': 'default',
+      'Fiware-ServicePath': '/'
+    });
     let options2 = new RequestOptions({headers: headers2});
 
-
-    var source =
-      this.submitEncryptedAlert(model)
-        .map(res => res.json())
-        .mergeMap(
-          (response) => {
-            var messagesJson = {
-              "user": userId,
-              "message": alertId,
-              "key": response.Key
-            };
-            response.model = JSON.parse(JSON.stringify(response.model).replace(/=/g, "-"));
-            return Observable.forkJoin(
-              this.http.post(
-                environment.backend_orion + "/v2/entities?options=keyValues",
-                JSON.stringify(
-                  response.model
-                ),
-                options2
-              )
-              ,
-              this.http.post(
-                environment.backend_api + '/api/messages',
-                JSON.stringify(
-                  messagesJson
-                ),
-                options
-              )
-              ,
-              this.http.post(
-                environment.backend_sdk + "/alerts",
-                JSON.stringify(
-                  json
-                ),
-                options
-              )
-            ).finally(
-              () => {
-                this.showAutoCloseMessage('Alert sent!', 'Alert <b>' + alert.display + (alert.sendImmediately ? '' : ' - ' + eventObserved.display) + '</b> was sent. </br></br> Thanks! :)', 3000);
-              }
-            );
+    if (environment.encrypt) {
+      var source =
+        this.submitEncryptedAlert(model)
+          .map(res => res.json())
+          .mergeMap(
+            (response) => {
+              var messagesJson = {
+                "user": userId,
+                "message": alertId,
+                "key": response.Key
+              };
+              response.model = JSON.parse(JSON.stringify(response.model).replace(/=/g, "-"));
+              return Observable.forkJoin(
+                this.http.post(
+                  environment.backend_orion + "/v2/entities?options=keyValues",
+                  JSON.stringify(
+                    response.model
+                  ),
+                  options2
+                )
+                ,
+                this.http.post(
+                  environment.backend_api + '/api/messages',
+                  JSON.stringify(
+                    messagesJson
+                  ),
+                  options
+                )
+                ,
+                this.http.post(
+                  environment.backend_sdk + "/alerts",
+                  JSON.stringify(
+                    json
+                  ),
+                  options
+                )
+              ).finally(
+                () => {
+                  this.showAutoCloseMessage('Alert sent!', 'Alert <b>' + alert.display + (alert.sendImmediately ? '' : ' - ' + eventObserved.display) + '</b> was sent. </br></br> Thanks! :)', 3000);
+                }
+              );
+            }
+          );
+    }
+    else {
+      if(environment.infotec_write_location=="orion"){
+        var model2=JSON.parse(JSON.stringify(
+          model
+        ));
+        delete model2.id;
+        delete model2.type;
+        var alertId ="Alert:" + model2.subCategory.charAt(0).toLowerCase() + model2.subCategory.slice(1);
+        source = Observable.forkJoin(
+          this.http.post(
+            environment.backend_orion + "/v2/entities?options=keyValues",
+            JSON.stringify(
+              model
+            ),
+            options2
+          ),
+          this.http.post(
+            environment.infotec_backend_orion + "/v2/entities/"+alertId+"/attrs?options=keyValues",
+            JSON.stringify(
+              model2
+            ),
+            options2
+          )
+        ).finally(
+          () => {
+            this.showAutoCloseMessage('Alert sent!', 'Alert <b>' + alert.display + (alert.sendImmediately ? '' : ' - ' + eventObserved.display) + '</b> was sent. </br></br> Thanks! :)', 3000);
           }
         );
+      }
+      else {
+        source = Observable.forkJoin(
+          this.http.post(
+            environment.backend_orion + "/v2/entities?options=keyValues",
+            JSON.stringify(
+              model
+            ),
+            options2
+          ),
+          this.http.post(
+            environment.backend_sdk + "/alerts",
+            JSON.stringify(
+              json
+            ),
+            options
+          )
+        ).finally(
+          () => {
+            this.showAutoCloseMessage('Alert sent!', 'Alert <b>' + alert.display + (alert.sendImmediately ? '' : ' - ' + eventObserved.display) + '</b> was sent. </br></br> Thanks! :)', 3000);
+          }
+        )
+      }
+    }
+
 
     return source;
   }
@@ -242,30 +357,38 @@ export class OrionContextBrokerService {
     // Firefox requires Accept
     let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    return this.http.get(environment.backend_orion + "/v2/entities/?options=keyValues&type=Alert&limit=10&orderBy=!dateCreated&q=refUser==" + this.loginService.getLoggedUser().id)
+    return this.http.get(environment.backend_orion + "/v2/entities/?options=keyValues&type=Alert&limit=10&orderBy=!dateCreated&q=alertSource==" + this.loginService.getLoggedUser().id)
       .flatMap(val => {
         return <any[]>val.json()
       }).map(re => {
         if (re.description)
           re.description = re.description.replace("\\n", "\r\n");
-
-        var regexexp = new RegExp("-", 'g')
-        if (re.locationDescription)
-          re.locationDescription = re.locationDescription.replace(regexexp, "=");
-        if (re.location)
-          re.location = JSON.parse(JSON.stringify(re.location).replace(regexexp, "="));
-        if (re.refDevice)
-          re.refDevice = re.refDevice.replace(regexexp, "=");
+        if(environment.encrypt) {
+          var regexexp = new RegExp("-", 'g')
+          if (re.locationDescription)
+            re.locationDescription = re.locationDescription.replace(regexexp, "=");
+          if (re.location)
+            re.location = JSON.parse(JSON.stringify(re.location).replace(regexexp, "="));
+          if (re.refDevice)
+            re.refDevice = re.refDevice.replace(regexexp, "=");
+        }
         return re;
       }).concatMap(val => {
-        return this.getDecryptedAlert(val).onErrorResumeNext(Observable.empty());
+        if(environment.encrypt) {
+          return this.getDecryptedAlert(val).onErrorResumeNext(Observable.empty());
+        }else{
+          return Observable.of(val);
+        }
       }).map(val => {
           var res = <any>val;
-          return res.model;
+          if(environment.encrypt)
+            return res.model;
+          else
+            return res;
         }
       ).scan((a, c) => {
         return a.concat(c);
-        }, []);
+      }, []);
   }
 
   getAlertsById(id: string): Observable<Alert> {
@@ -278,20 +401,29 @@ export class OrionContextBrokerService {
       }).map(re => {
         if (re.description)
           re.description = re.description.replace("\\n", "\r\n");
-
-        var regexexp = new RegExp("-", 'g')
-        if (re.locationDescription)
-          re.locationDescription = re.locationDescription.replace(regexexp, "=");
-        if (re.location)
-          re.location = JSON.parse(JSON.stringify(re.location).replace(regexexp, "="));
-        if (re.refDevice)
-          re.refDevice = re.refDevice.replace(regexexp, "=");
+        if(environment.encrypt) {
+          var regexexp = new RegExp("-", 'g')
+          if (re.locationDescription)
+            re.locationDescription = re.locationDescription.replace(regexexp, "=");
+          if (re.location)
+            re.location = JSON.parse(JSON.stringify(re.location).replace(regexexp, "="));
+          if (re.refDevice)
+            re.refDevice = re.refDevice.replace(regexexp, "=");
+        }
         return re;
       }).concatMap(val => {
-        return this.getDecryptedAlert(val).onErrorResumeNext(Observable.empty());
+        if(environment.encrypt) {
+          return this.getDecryptedAlert(val).onErrorResumeNext(Observable.empty());
+        }else
+        {
+          return Observable.of(val);
+        }
       }).map(val => {
           var res = <any>val;
-          return res.model;
+          if(environment.encrypt)
+            return res.model;
+          else
+            return res;
         }
       ).scan((a, c) => {
         return a.concat(c);
