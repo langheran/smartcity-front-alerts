@@ -1,11 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 64 59" style="enable-background:new 0 0 64 59;" xml:space="preserve">
-<g>
-	<path fill="#ffffff" d="M14.7,27.6L14.7,27.6l3.9-14.5H22l6.8,25.3l2.5-9.5l1.7-1.3h6.5l3.9-14.5h3.4l3.9,14.5h11.3c0.8-2.5,1.2-5.2,1.2-7.9
-		c0-10.4-8-18.8-17.9-18.8c-5.2,0-9.9,2.4-13.2,6c-3.2-3.6-7.9-6-13.1-6c-9.8,0-18,8.4-18,18.8c0,2.8,0.6,5.5,1.3,7.9H14.7z"/>
-	<path fill="#ffffff" d="M49.4,31.2h11.3C53.1,47.5,32.3,58,32.3,58S11.5,47.5,4,31.2h12l1.7-1.3l2.6-9.5l6.8,25.3h3.4l3.9-14.5h6.4l1.7-1.3
-		l2.5-9.5l2.6,9.5L49.4,31.2z"/>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2018 (64 Bit Versión de evaluación) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="215.9mm" height="279.4mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 21590 27940"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str1 {stroke:#FEFEFE;stroke-width:100;stroke-miterlimit:22.9256}
+    .str2 {stroke:#FEFEFE;stroke-width:250;stroke-miterlimit:22.9256}
+    .str0 {stroke:#FEFEFE;stroke-width:20;stroke-miterlimit:22.9256}
+    .fil1 {fill:none}
+    .fil0 {fill:#FEFEFE}
+   ]]>
+  </style>
+ </defs>
+ <g id="Capa_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <circle class="fil0 str0" cx="13133.15" cy="7184.47" r="2468.95"/>
+  <path class="fil0 str1" d="M8058.87 17407.44c-135.59,3187.69 -978.71,6100.22 -3172.15,8487.64 -1388.23,854.31 -2655.54,117.35 -2186.21,-1457.47 2672.09,-2656.9 3272.1,-6045.1 2057.61,-10073.72l1028.8 -3557.95 3943.76 771.6 771.6 1286.01 -771.6 2100.48c2618.91,3172.28 3539.64,6644.23 2271.94,10502.38 -371.62,1245.07 -2271.87,1298.33 -2486.28,-214.33 714.3,-3105.86 343.09,-5767.63 -1457.47,-7844.64z"/>
+  <path class="fil0 str1" d="M10553.45 7598.27c-1431.93,-1873.49 -3487.74,-800.81 -5794.73,1457.79 -382.27,561.3 -291.96,987.59 346.23,1257.35l5302.72 892.9c734.86,-177.53 911.13,-1239.12 127.56,-1567.13 -959.71,-170.08 -1919.43,-340.15 -2879.14,-510.23 -115.77,-49.41 35.27,-300.58 127.55,-291.55 1513.2,17.88 2702.27,383.02 3535.16,1129.79 504.15,383.79 1008.3,1134.77 1512.46,2296.02 -5.45,113.06 -217.14,214.68 -291.56,145.78l-1111.57 -1949.8c-140.28,600.81 -570.39,935.95 -1293.79,1002.24l1749.35 3134.25c326.29,522.28 1401.79,315.95 1412.23,-291.56 186.08,-1509.2 172.3,-2961.34 18.23,-4373.38 -1605.04,-118.88 -2564.86,-804.4 -2760.7,-2332.47z"/>
+  <polyline class="fil1 str2" points="11980.45,4146.93 11225.94,2749.69 12679.07,3392.42 12679.07,2134.91 13629.19,3085.03 14271.92,1520.12 14970.54,2945.3 16144.22,2218.74 15892.71,3671.87 17345.84,3643.92 16367.77,5013.22 17178.17,5516.22 16144.22,6019.23 "/>
+  <polyline class="fil1 str2" points="14691.09,10965.45 16479.55,10322.72 15976.55,9763.83 17569.4,9065.21 "/>
+  <polyline class="fil1 str2" points="15641.21,12027.35 17262.01,12278.85 17094.34,11300.79 19190.19,11384.62 "/>
+  <polyline class="fil1 str2" points="14830.81,12921.58 16228.05,14123.21 16507.5,13117.2 17960.62,14151.15 "/>
+ </g>
 </svg>

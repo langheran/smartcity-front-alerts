@@ -32,114 +32,107 @@ export class OrionContextBrokerService {
   getAlertTypes(): AlertType[] {
     return [
       new AlertType("HeartAttack", "Heart attack", "HeartAttack", true),
-      new AlertType("AsthmaAttacks", "Asthma attack", "AsthmaAttacks", true),
-      new AlertType("TrafficJam", "Traffic", "TrafficJam"),
-      new AlertType("WeatherConditions", "Weather", "WeatherCondition"),
-      new AlertType("Environment", "Environment", "VehicularGas"),
+      new AlertType("AsthmaAttack", "Asthma attack", "AsthmaAttack", true),
+      new AlertType("Traffic", "Traffic", "Traffic"),
+      new AlertType("Weather", "Weather", "Weather"),
+      new AlertType("Environment", "Environment", "Environment"),
       new AlertType("Pollen", "Pollen", "Pollen"),
       new AlertType("Health", "Health", "Health"),
-      new AlertType("Security", "Security", "Assaults"),
-      new AlertType("SOSAlerts", "SOSAlerts", "BikersInjured"),
+      new AlertType("Security", "Security", "Security"),
+      new AlertType("SOSAlerts", "SOS Alerts", "SOSAlerts"),
     ];
   }
 
-  getAlertList(){
+  getAlertList() {
     return {
-      "AsthmaAttacks": this.getAlertTypes().filter(e => e.name === "AsthmaAttacks"),
+      "AsthmaAttack": this.getAlertTypes().filter(e => e.name === "AsthmaAttack"),
       "HeartAttack": this.getAlertTypes().filter(e => e.name === "HeartAttack"),
-      "TrafficJam": [
+      "Traffic": [
         new Alert("TrafficJam", "Traffic jam", "TrafficJam"),
-        new Alert("ModerateTrafficJam", "Moderate Traffic Jam", "ModerateTrafficJam"),
-        new Alert("StandstillTrafficJam", "Standstill Traffic Jam", "StandstillTrafficJam"),
-        new Alert("HeavyTrafficJam", "Heavy Traffic Jam", "HeavyTrafficJam"),
-        new Alert("MinorAccident", "Minor Accident", "MinorAccident"),
-        new Alert("CarAccident", "Car Accident", "CarAccident"),
-        new Alert("CarInWrongDirection", "Car in wrong direction", "CarAccident"),
-        new Alert("CarStopped", "Car Stopped On Road", "CarStoppedOnRoad"),
+        new Alert("ModerateTrafficJam", "Moderate traffic jam", "ModerateTrafficJam"),
+        new Alert("StandstillTrafficJam", "Standstill traffic jam", "StandstillTrafficJam"),
+        new Alert("HeavyTrafficJam", "Heavy traffic jam", "HeavyTrafficJam"),
+        new Alert("MinorAccident", "Minor accident", "MinorAccident"),
+        new Alert("CarAccident", "Car accident", "CarAccident"),
+        new Alert("CarInWrongDirection", "Car in wrong direction", "CarInWrongDirection"),
+        new Alert("CarStopped", "Car Stopped", "CarStopped"),
         new Alert("Roadworks", "Roadworks", "Roadworks"),
         new Alert("RoadClosed", "Road closed", "RoadClosed"),
-        new Alert("Hazard On Road", "Hazard On Road", "HazardOnRoad"),
+        new Alert("HazardOnRoad", "Hazard on road", "HazardOnRoad"),
         new Alert("Pothole", "Pothole", "Pothole"),
-        new Alert("CongestionOnRoad", "Congestion on road", "BumperToBumperTraffic"),
-        new Alert("BikersInjured", "Bikers injured", "BikersInjured"),
-        new Alert("AlligatorCracking", "Alligator cracking", "HazardOnRoad"),
-      ],
-      "WeatherConditions": [
-        new Alert("Rainfall", "Rain Fall", "Rain"),
-        new Alert("Temperature", "Temperature", "HighTemperature"),
+        new Alert("CongestionOnRoad", "Congestion on road", "CongestionOnRoad"),
+        new Alert("InjuredBiker", "Injured Biker", "InjuredBiker"),
+        new Alert("AlligatorCracking", "Alligator cracking", "AlligatorCracking"),],
+      "Weather": [
+        new Alert("Rainfall", "Rainfall", "Rainfall"),
+        new Alert("Temperature", "Temperature", "Temperature"),
         new Alert("HighTemperature", "High temperature", "HighTemperature"),
         new Alert("LowTemperature", "Low temperature", "LowTemperature"),
-        new Alert("HeatWave", "Heat wave", "Foggy"),
+        new Alert("HeatWave", "Heat wave", "HeatWave"),
         new Alert("Ice", "Ice", "Ice"),
         new Alert("RelativeHumidity", "Relative humidity", "RelativeHumidity"),
         new Alert("Wind", "Wind", "Wind"),
         new Alert("Flood", "Flood", "Flood"),
-        new Alert("Fog", "Fog", "Foggy"),
+        new Alert("Fog", "Fog", "Fog"),
         new Alert("Tornado", "Tornado", "Tornado"),
         new Alert("Tsunami", "Tsunami", "Tsunami"),
         new Alert("Snow", "Snow", "Snow"),
-        new Alert("Storm", "Storm", "TropicalStorm"),
-        new Alert("TropicalCyclone", "Tropical cyclone", "Hurricane"),
-        new Alert("TropicalStorm", "Tropical Storm", "TropicalStorm"),
-        new Alert("Hurricane", "Hurricane", "TropicalDepression")
-      ],
+        new Alert("Storm", "Storm", "Storm"),
+        new Alert("TropicalCyclone", "Tropical cyclone", "TropicalCyclone"),
+        new Alert("TropicalStorm", "Tropical storm", "TropicalStorm"),
+        new Alert("Hurricane", "Hurricane", "Hurricane"),],
       "Environment": [
-        new Alert("Smog", "Visible smog", "VisibleSmog"),
-        new Alert("AirPollution", "Air pollution", "VehicularGas"),
-        new Alert("PreContingencyAlert", "Pre-contingency alert", "Cough"),
-        new Alert("ContingencyAlert", "Contingency alert", "Cough"),
-        new Alert("CO", "CO", "Cough"),
-        new Alert("NO2", "NO2", "Cough"),
-        new Alert("SO2", "SO2", "Cough"),
-        new Alert("O3", "O3", "Cough"),
-        new Alert("PM10", "PM10", "Cough"),
-        new Alert("VolcanoGas", "Gas produced by volcanoes", "Volcan"),
-        new Alert("IndustrialGas", "Gas produced by industrial processes", "AgricultureGas"),
+        new Alert("Smog", "Smog", "Smog"),
+        new Alert("AirPollution", "Air pollution", "AirPollution"),
+        new Alert("PreContingencyAlert", "Pre-contingency alert", "PreContingencyAlert"),
+        new Alert("ContingencyAlert", "Contingency alert", "ContingencyAlert"),
+        new Alert("Co", "CO", "Co"),
+        new Alert("No2", "NO2", "No2"),
+        new Alert("So2", "SO2", "So2"),
+        new Alert("O3", "O3", "O3"),
+        new Alert("Pm10", "PM10", "Pm10"),
+        new Alert("VolcanoGas", "Gas produced by volcanoes", "VolcanoGas"),
+        new Alert("IndustrialGas", "Gas produced by industrial processes", "IndustrialGas"),
         new Alert("VehicularGas", "Gas emitted from vehicular exhaust", "VehicularGas"),
         new Alert("AgricultureGas", "Gas emitted from agriculture, including animal husbandry and NH3-based fertilizer applications", "AgricultureGas"),
-        new Alert("Odors", "Odors from garbage, sewage, and industrial processes", "OdorsGarbaage"),
-        new Alert("Radioactive", "Radioactive pollutants produced by nuclear explosions and war explosives", "RadioactiveNuclear")
-      ],
+        new Alert("GarbageOdors", "Odors from garbage, sewage, and industrial processes", "GarbageOdors"),
+        new Alert("Radioactive", "Radioactive pollutants produced by nuclear explosions and war explosives", "Radioactive"),],
       "Pollen": [
-        new Alert("Symptoms", "Symptoms or discomforts of users", "Symptoms"),
-        new Alert("PollenLevel", "Level of pollen on air", "Runnynose"),
-        new Alert("PollenConcentration", "Pollen concentration", "Runnynose"),
-        new Alert("Sinuspressure", "Sinus pressure", "Sinuspressure"),
-        new Alert("Runnynose", "Runny nose", "Runnynose"),
-        new Alert("Wateryeyes", "Watery eyes", "Watereyes"),
+        new Alert("SymptomsOrDiscomforts", "Symptoms or discomforts of users", "SymptomsOrDiscomforts"),
+        new Alert("PollenLevel", "Level of pollen on air", "PollenLevel"),
+        new Alert("PollenConcentration", "Pollen concentration", "PollenConcentration"),
+        new Alert("SinusPressure", "Sinus pressure", "SinusPressure"),
+        new Alert("RunnyNose", "Runny nose", "RunnyNose"),
+        new Alert("WateryEyes", "Watery eyes", "WateryEyes"),
         new Alert("Cough", "Cough", "Cough"),
-        new Alert("Nasalcongestion", "Nasal congestion", "Nasalcongestion")
-      ],
+        new Alert("NasalCongestion", "Nasal congestion", "NasalCongestion"),],
       "Health": [
-        new Alert("AsthmaAttacks", "Asthma attack", "AsthmaAttacks"),
-        new Alert("BumpedPatient", "Bumped patient", "AsthmaAttacks"),
-        new Alert("FallenPatient", "Fallen patient", "AsthmaAttacks"),
-        new Alert("HeartAttack", "Heart attack", "HeartAttack")
-      ],
+        new Alert("AsthmaAttack", "Asthma attack", "AsthmaAttack"),
+        new Alert("BumpedPatient", "Bumped patient", "BumpedPatient"),
+        new Alert("FallenPatient", "Fallen patient", "FallenPatient"),
+        new Alert("HeartAttack", "Heart attack", "HeartAttack"),],
       "Security": [
-        new Alert("Assaults", "Assaults", "Assaults"),
-        new Alert("Robbery", "Robbery", "Assaults"),
-        new Alert("SuspiciousAction", "Suspicious action", "Assaults")
-      ],
+        new Alert("Assault", "Assault", "Assault"),
+        new Alert("Robbery", "Robbery", "Robbery"),
+        new Alert("SuspiciousAction", "Suspicious action", "SuspiciousAction"),],
       "SOSAlerts": [
-        new Alert("Shelter", "Shelter", "Assaults"),
-        new Alert("CollectionCenter", "Collection center", "Assaults"),
-        new Alert("Hospital", "Hospital", "Assaults"),
-        new Alert("BloodBank", "Blood bank", "Assaults"),
-        new Alert("Earthquake", "Earthquake", "Assaults"),
-        new Alert("Collapse", "Collapse", "Assaults"),
-        new Alert("CollapsedBuilding", "Collapsed building", "Assaults"),
-        new Alert("BuildingOnTheVergeOfCollapse", "Building on the verge of collapse", "Assaults"),
-        new Alert("Sinking", "Sinking", "Assaults"),
-        new Alert("MajorCrack", "Major crack", "Assaults"),
-        new Alert("MinorCrack", "Minor crack", "Assaults"),
-        new Alert("LightTransformerDropped", "Light transformer dropped", "Assaults"),
-        new Alert("FallenLightPost", "Fallen light post", "Assaults"),
-        new Alert("Fire", "Fire", "Assaults"),
-        new Alert("WaterShortage", "Water shortage", "Assaults"),
-        new Alert("WithoutLightService", "Without light service", "Assaults"),
-        new Alert("GasLeak", "Gas leak", "Assaults")
-      ]
+        new Alert("Shelter", "Shelter", "Shelter"),
+        new Alert("CollectionCenter", "Collection center", "CollectionCenter"),
+        new Alert("Hospital", "Hospital", "Hospital"),
+        new Alert("BloodBank", "Blood bank", "BloodBank"),
+        new Alert("Earthquake", "Earthquake", "Earthquake"),
+        new Alert("Collapse", "Collapse", "Collapse"),
+        new Alert("CollapsedBuilding", "Collapsed building", "CollapsedBuilding"),
+        new Alert("BuildingOnTheVergeOfCollapse", "Building on the verge of collapse", "BuildingOnTheVergeOfCollapse"),
+        new Alert("Sinking", "Sinking", "Sinking"),
+        new Alert("MajorCrack", "Major crack", "MajorCrack"),
+        new Alert("MinorCrack", "Minor crack", "MinorCrack"),
+        new Alert("LightTransformerDropped", "Light transformer dropped", "LightTransformerDropped"),
+        new Alert("FallenLightPost", "Fallen light post", "FallenLightPost"),
+        new Alert("Fire", "Fire", "Fire"),
+        new Alert("WaterShortage", "Water shortage", "WaterShortage"),
+        new Alert("WithoutLightService", "Without light service", "WithoutLightService"),
+        new Alert("GasLeak", "Gas leak", "GasLeak"),]
     };
   }
 
@@ -158,11 +151,11 @@ export class OrionContextBrokerService {
   }
 
   getAlertTypeByName(alertTypeName: string): AlertType {
-    return this.getAlertTypes().filter(e => e.name===alertTypeName)[0];
+    return this.getAlertTypes().filter(e => e.name === alertTypeName)[0];
   }
 
   getAlertByName(alertTypeName: string, alertName: string): AlertType {
-    return this.getAlertList()[alertTypeName].filter(e => e.name===alertName)[0];
+    return this.getAlertList()[alertTypeName].filter(e => e.name === alertName)[0];
   }
 
   getAlertEventObservedDisplay(alertTypeName: string, eventObserved: string): Observable<string> {
@@ -186,49 +179,85 @@ export class OrionContextBrokerService {
       });
   }
 
-  searchAlertByName(alertName){
+  searchAlertByName(alertName) {
     var alert;
-    var breakAll=false;
-    var myDictionary=this.getAlertList();
+    var breakAll = false;
+    var myDictionary = this.getAlertList();
     for (let key in myDictionary) {
       let value = myDictionary[key];
-      for(let i=0; i<value.length; i++){
+      for (let i = 0; i < value.length; i++) {
         if (value[i].name === alertName && !value[i].sendImmediately) {
           alert = this.getAlertTypes().filter(e => e.name === key)[0];
-          breakAll=true;
+          breakAll = true;
           break;
         }
-        if(breakAll)
+        if (breakAll)
           break;
       }
     }
     return alert;
   }
 
-  searchAlertInmediately(alert): AlertType{
-    if(alert.sendImmediately)
-    {
-      this.searchAlertByName(alert.name);
+  searchAlertInmediately(alert): AlertType {
+    if (alert.sendImmediately) {
+      alert=this.searchAlertByName(alert.name);
     }
     return alert;
   }
 
-  submitAlert(alert: AlertType, eventObserved: Alert, description: string, address: string, severity: string) {
-    alert=this.searchAlertInmediately(alert);
+  submitAlert(alert: AlertType, eventObserved: Alert, description: string, address: any, severity: string) {
+    alert = this.searchAlertInmediately(alert);
     description = description.replace(/(?:\r\n|\r|\n)/g, '\\n');
+    description=description.trim();
     var date = new Date();
     var alertId = UtilityService.guid();
+
+    var streetAddress="";
+    var addressLocality="";
+
+    if(address["formatted_address"] != undefined) {
+      streetAddress=address["formatted_address"];
+    }
+    if(address["address_components"] != undefined) {
+      if(addressLocality=="")
+      {
+        address["address_components"].forEach((address_component) => {
+          if (address_component.types[0] == "administrative_area_level_1")
+            addressLocality = address_component.short_name;
+        });
+      }
+      if(addressLocality=="") {
+        address["address_components"].forEach((address_component) => {
+          if (address_component.types[0] == "locality")
+            addressLocality = address_component.short_name;
+        });
+      }
+      if(addressLocality=="")
+      {
+        address["address_components"].forEach((address_component) => {
+          if (address_component.types[0] == "political")
+            addressLocality = address_component.short_name;
+        });
+      }
+    }
+
     var model = {
       "id": alertId,
       "type": "Alert",
       "category": alert.name, // alertType
       "subCategory": eventObserved.name, // eventObserved
-      "locationDescription": address,
+      "address": {
+        "addressLocality": addressLocality,
+        "streetAddress": streetAddress,
+        "geocoderAddressComponents": address["address_components"]
+      },
+      "locationDescription": streetAddress,
       "location": {
         "type": "Point",
         "coordinates": [this.locationService.latitude, this.locationService.longitude]
       },
       "dateTime": date.toISOString(),
+      "dateObserved": date.toISOString(),
       "description": description,
       "refDevice": "30Nov",
       "alertSource": this.loginService.getLoggedUser().id, // refUser
@@ -297,33 +326,60 @@ export class OrionContextBrokerService {
           );
     }
     else {
-      if(environment.infotec_write_location=="orion"){
-        var model2=JSON.parse(JSON.stringify(
-          model
-        ));
-        delete model2.id;
-        delete model2.type;
-        var alertId ="Alert:" + model2.subCategory.charAt(0).toLowerCase() + model2.subCategory.slice(1);
-        source = Observable.forkJoin(
-          this.http.post(
-            environment.backend_orion + "/v2/entities?options=keyValues",
-            JSON.stringify(
-              model
+      if (environment.infotec_write_location == "orion") {
+        var _sendAlertByCategoryId=false;
+        if(_sendAlertByCategoryId) {
+          var model2 = JSON.parse(JSON.stringify(
+            model
+          ));
+          delete model2.id;
+          delete model2.type;
+          var alertId = "Alert:" + model2.subCategory.charAt(0).toLowerCase() + model2.subCategory.slice(1);
+          source = Observable.forkJoin(
+            this.http.post(
+              environment.backend_orion + "/v2/entities?options=keyValues",
+              JSON.stringify(
+                model
+              ),
+              options2
             ),
-            options2
-          ),
-          this.http.post(
-            environment.infotec_backend_orion + "/v2/entities/"+alertId+"/attrs?options=keyValues",
-            JSON.stringify(
-              model2
+            this.http.post(
+              environment.infotec_backend_orion + "/v2/entities/" + alertId + "/attrs?options=keyValues",
+              JSON.stringify(
+                model2
+              ),
+              options2
+            )
+          ).finally(
+            () => {
+              this.showAutoCloseMessage('Alert sent!', 'Alert <b>' + alert.display + (alert.sendImmediately ? '' : ' - ' + eventObserved.display) + '</b> was sent. </br></br> Thanks! :)', 3000);
+            }
+          );
+        }
+        else
+        {
+          alertId = UtilityService.guid();
+          source = Observable.forkJoin(
+            this.http.post(
+              environment.backend_orion + "/v2/entities?options=keyValues",
+              JSON.stringify(
+                model
+              ),
+              options2
             ),
-            options2
-          )
-        ).finally(
-          () => {
-            this.showAutoCloseMessage('Alert sent!', 'Alert <b>' + alert.display + (alert.sendImmediately ? '' : ' - ' + eventObserved.display) + '</b> was sent. </br></br> Thanks! :)', 3000);
-          }
-        );
+            this.http.post(
+              environment.infotec_backend_orion + "/v2/entities?options=keyValues",
+              JSON.stringify(
+                model
+              ),
+              options2
+            )
+          ).finally(
+            () => {
+              this.showAutoCloseMessage('Alert sent!', 'Alert <b>' + alert.display + (alert.sendImmediately ? '' : ' - ' + eventObserved.display) + '</b> was sent. </br></br> Thanks! :)', 3000);
+            }
+          );
+        }
       }
       else {
         source = Observable.forkJoin(
@@ -363,7 +419,7 @@ export class OrionContextBrokerService {
       }).map(re => {
         if (re.description)
           re.description = re.description.replace("\\n", "\r\n");
-        if(environment.encrypt) {
+        if (environment.encrypt) {
           var regexexp = new RegExp("-", 'g')
           if (re.locationDescription)
             re.locationDescription = re.locationDescription.replace(regexexp, "=");
@@ -374,14 +430,14 @@ export class OrionContextBrokerService {
         }
         return re;
       }).concatMap(val => {
-        if(environment.encrypt) {
+        if (environment.encrypt) {
           return this.getDecryptedAlert(val).onErrorResumeNext(Observable.empty());
-        }else{
+        } else {
           return Observable.of(val);
         }
       }).map(val => {
           var res = <any>val;
-          if(environment.encrypt)
+          if (environment.encrypt)
             return res.model;
           else
             return res;
@@ -401,7 +457,7 @@ export class OrionContextBrokerService {
       }).map(re => {
         if (re.description)
           re.description = re.description.replace("\\n", "\r\n");
-        if(environment.encrypt) {
+        if (environment.encrypt) {
           var regexexp = new RegExp("-", 'g')
           if (re.locationDescription)
             re.locationDescription = re.locationDescription.replace(regexexp, "=");
@@ -412,15 +468,14 @@ export class OrionContextBrokerService {
         }
         return re;
       }).concatMap(val => {
-        if(environment.encrypt) {
+        if (environment.encrypt) {
           return this.getDecryptedAlert(val).onErrorResumeNext(Observable.empty());
-        }else
-        {
+        } else {
           return Observable.of(val);
         }
       }).map(val => {
           var res = <any>val;
-          if(environment.encrypt)
+          if (environment.encrypt)
             return res.model;
           else
             return res;

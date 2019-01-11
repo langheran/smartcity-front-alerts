@@ -71,12 +71,10 @@ export class AlertTypesListScrollComponent implements OnInit {
           });
       });
     } else {
-      console.log("maickol rodriguez");
-      console.log( this._communicationService.address );
       if (prevSelectedAlertTypeName && prevSelectedAlertTypeName == alertType.name) {
         this.hideAlerts();
       }
-     this.router.navigate(['../AlertTypeAlertsList/'+ alertType.name + '/' + this._communicationService.address]);
+     this.router.navigate(['../AlertTypeAlertsList/'+ alertType.name]);
     }
   }
 }

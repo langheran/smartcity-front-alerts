@@ -21,7 +21,6 @@ export class AlertTypeAlertsListComponent implements OnInit {
   display: string;
   margentop: string;
   comment: string;
-  address: string;
   //VARIABLES PARA LO ANCHO Y ALTO DE LOS BOTONES COMMENT,DONE
   BTNwidth: any;
   BTNheight: any;
@@ -66,10 +65,8 @@ export class AlertTypeAlertsListComponent implements OnInit {
 
     this.route.params.subscribe(p => {
       this.alertTypeName = p.name;
-      this.address = p.address;
 
       console.log(p.name);
-      console.log(p.address);
 
       this.alertType = this.orion.getAlertTypeByName(this.alertTypeName);
       this.orion.getAlertsByAlertType(this.alertTypeName).subscribe(result => {
@@ -98,7 +95,7 @@ export class AlertTypeAlertsListComponent implements OnInit {
   }
 
   onAlertSubmit(description: string, severity: string) {
-      this.orion.submitAlert(this.alertType, this.currentAlert, description, this.address, severity).subscribe(r=>{});
+      this.orion.submitAlert(this.alertType, this.currentAlert, description, this._communicationService.address, severity).subscribe(r=>{});
       this.router.navigate(['../']);
   }
 

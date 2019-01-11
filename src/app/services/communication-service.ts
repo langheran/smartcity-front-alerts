@@ -2,7 +2,7 @@ import {Injectable, OnInit} from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class CommunicationService{
-  address:string;
+  address:any;
   private emitWindowResize = new Subject<any>();
   private emitMapMarkerSet = new Subject<any>();
   windowResized$ = this.emitWindowResize.asObservable();

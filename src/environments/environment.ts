@@ -21,14 +21,26 @@
 //   backend_api: 'https://www.smartsdkitesm.com:3002',
 //   encrypt: false
 // };
+// "http://79.109.226.53:1026"
+// http://159.65.33.15/back-sdk
+// export const environment = {
+//   production: false,
+//   backend_sdk: 'http://159.65.33.15/back-sdk',
+//   backend_orion: 'http://www.smartsdkitesm.com:1027',
+//   backend_encryption: 'http://www.smartsdkitesm.com:3001',
+//   backend_api: 'http://www.smartsdkitesm.com:3002',
+//   encrypt: false,
+//   infotec_write_location:"orion",
+//   infotec_backend_orion: "http://185.36.208.159:1026"
+// };
 
 export const environment = {
   production: false,
-  backend_sdk: 'http://159.65.33.15/back-sdk',
-  backend_orion: 'http://www.smartsdkitesm.com:1027',
-  backend_encryption: 'http://www.smartsdkitesm.com:3001',
-  backend_api: 'http://www.smartsdkitesm.com:3002',
+  backend_sdk: 'https://api.greenroutesdk.com.mx/back-sdk',
+  backend_orion: 'https://www.smartsdkitesm.com:1027',
+  backend_encryption: 'https://www.smartsdkitesm.com:3001',
+  backend_api: 'https://www.smartsdkitesm.com:3002',
   encrypt: false,
   infotec_write_location:"orion",
-  infotec_backend_orion: "http://79.109.226.53:1026"
+  infotec_backend_orion: "https://orion.greenroutesdk.com.mx"
 };

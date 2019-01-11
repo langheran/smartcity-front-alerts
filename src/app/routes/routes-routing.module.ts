@@ -30,7 +30,7 @@ const routes: Routes = [
     path:'login',component:LoginComponent
   },
   {
-    path: 'AlertTypeAlertsList/:name/:address', component: AlertTypeAlertsListComponent
+    path: 'AlertTypeAlertsList/:name', component: AlertTypeAlertsListComponent
   },
   {
     path: 'about', component: AboutComponent,

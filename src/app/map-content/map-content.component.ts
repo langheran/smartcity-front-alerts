@@ -82,7 +82,7 @@ export class MapContentComponent implements OnInit {
       geocoder.geocode({'location': latlng}, function (results, status) {
         if (status === 'OK') {
           if (results[0]) {
-            observer.next(results[0].formatted_address);
+            observer.next({"formatted_address":results[0].formatted_address, "address_components":results[0].address_components});
           } else {
             observer.next('No results found');
           }
